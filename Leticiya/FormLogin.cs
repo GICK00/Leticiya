@@ -15,7 +15,7 @@ namespace Leticiya
         private readonly ServicesUser servicesUser = new ServicesUser();
 
 
-        public static string Login;
+        public static string[] Position;
 
         public FormLogin()
         {
@@ -33,7 +33,7 @@ namespace Leticiya
         //Обработчик авторизации
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            if (Login != null)
+            if (Position != null)
             {
                 MessageBox.Show("Вы уже вошли в систему!", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
@@ -43,12 +43,12 @@ namespace Leticiya
                 if (textBox1.Text != "" && textBox2.Text != "")
                 {
 
-                    Login = null;
-                    string sql = $"SELECT POSITION FROM Autorization WHERE LOGIN = '{textBox1.Text}' AND PASSWORD = '{textBox2.Text}'";
+                    Position = null;
+                    string sql = $"SELECT \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_POSITION\" FROM public.\"Accountant\" WHERE \"ACCOUNTANT_LOGIN\" = '{textBox1.Text}' AND \"ACCOUNTANT_PASSWORD\" = '{textBox2.Text}'";
 
-                    if (Login != Tools.Autorization(sql))
+                    if (Position != Tools.Autorization(sql))
                     {
-                        if (Login == "admin")
+                        if (Position[0] == "admin")
                         {
                             servicesAdmin.DataTableAdmin();
                             Program.formMain.dataGridViewAdmin.Enabled = true;
@@ -69,8 +69,8 @@ namespace Leticiya
 
                         }
 
-                        Program.formMain.toolStripStatusLabel2.Text = "Произведен вход под логином " + textBox1.Text;
-                        Program.formMain.Text = "Мебельная фабрика Leticiya - " + textBox1.Text;
+                        Program.formMain.toolStripStatusLabel2.Text = "Произведен вход с правами " + Position[0];
+                        Program.formMain.Text = "Мебельная фабрика Leticiya - " + Position[0] + " " + Position[1] + " " + Position[2] + " " + Position[3];
                         FormMain.materialSkinManager.AddFormToManage(this);
                         textBox1.Clear();
                         textBox2.Clear();

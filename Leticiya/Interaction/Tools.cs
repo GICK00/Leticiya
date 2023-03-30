@@ -17,9 +17,9 @@ namespace Leticiya.Interaction
         //Метод проверки поля login пользователя на соответсвие логину гостя
         public bool LoginGuest()
         {
-            if (FormLogin.Login != null)
+            if (FormLogin.Position != null)
             {
-                if (FormLogin.Login == "user")
+                if (FormLogin.Position[0] == "user")
                     return true;
                 return true;
             }
@@ -31,9 +31,9 @@ namespace Leticiya.Interaction
         //Администратор исеет все права для взаимодействия с БД через приложение
         public bool LoginAdmin()
         {
-            if (FormLogin.Login != null)
+            if (FormLogin.Position != null)
             {
-                if (FormLogin.Login == "admin")
+                if (FormLogin.Position[0] == "admin")
                     return true;
                 MessageBox.Show("Вы не являетесь Администратором!", "Ошибка доступа", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -89,7 +89,7 @@ namespace Leticiya.Interaction
         {
             try
             {
-                Uri uri = new Uri("https://github.com/GICK00/Leticiya/blob/main/Ver.txt");
+                Uri uri = new Uri("https://github.com/GICK00/Leticiya/blob/master/Ver.txt");
                 if (client.DownloadString(uri).Contains(Program.ver))
                 {
                     Program.formMain.toolStripStatusLabel2.Text = $"Устновленна послденяя версия приложения {Program.ver}";
@@ -113,7 +113,7 @@ namespace Leticiya.Interaction
         }
 
         //Метод проверающий привелегии введенного пользователя
-        public static string Autorization(string sql)
+        public static string[] Autorization(string sql)
         {
             try
             {
@@ -123,15 +123,16 @@ namespace Leticiya.Interaction
                     using (NpgsqlDataReader reader = sqlCommand.ExecuteReader())
                     {
                         reader.Read();
-                        FormLogin.Login = reader["POSITION"].ToString().Trim();
+                        FormLogin.Position = (reader["ACCOUNTANT_POSITION"].ToString().Trim() + " " + reader["ACCOUNTANT_SURNAME"].ToString().Trim() + " " + reader["ACCOUNTANT_NAME"].ToString().Trim() + " " + reader["ACCOUNTANT_PATRONYMIC"].ToString().Trim()).Split();
                         reader.Close();
                     }
                 }
-                return FormLogin.Login;
+                return FormLogin.Position;
             }
-            catch
+            catch (Exception ex)
             {
-                return FormLogin.Login = null;
+                MessageBox.Show(ex.Message);
+                return FormLogin.Position = null;
             }
             finally
             {
@@ -149,7 +150,7 @@ namespace Leticiya.Interaction
             }
 
             string[] mas = Encrypt.DecryptText(data, Program.key).Split();
-            return $"SELECT POSITION FROM Autorization WHERE LOGIN = '{mas[0]}' AND PASSWORD = '{mas[1]}'";
+            return $"SELECT \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_POSITION\" FROM public.\"Accountant\" WHERE \"ACCOUNTANT_LOGIN\" = '{mas[0]}' AND \"ACCOUNTANT_PASSWORD\" = '{mas[1]}'";
         }
     }
 }

@@ -70,10 +70,10 @@ namespace Leticiya
             if (File.Exists(path) != false)
             {
                 Tools.Autorization(Tools.AutorizationCache());
-                if (FormLogin.Login != null)
+                if (FormLogin.Position != null)
                 {
-                    Program.formMain.Text = "Мебельная фабрика Leticiya - " + FormLogin.Login;
-                    if (FormLogin.Login == "admin")
+                    Program.formMain.Text = "Мебельная фабрика Leticiya - " + FormLogin.Position[0] + " " + FormLogin.Position[1] + " " + FormLogin.Position[2] + " " + FormLogin.Position[3];
+                    if (FormLogin.Position[0] == "admin")
                     {
                         servicesAdmin.DataTableAdmin();
                         Program.formMain.dataGridViewAdmin.Enabled = true;
@@ -174,7 +174,7 @@ namespace Leticiya
                 MessageBox.Show("Подключение к базе данных установленно", "Проверка подключения", MessageBoxButtons.OK);
                 toolStripStatusLabel2.Text = "Готово к работе";
 
-                if (FormLogin.Login != null)
+                if (FormLogin.Position != null)
                 {
                     servicesAdmin.DataTableAdmin();
                     servicesAdmin.Visibl();
@@ -205,10 +205,10 @@ namespace Leticiya
         //Обработчик выхода, полностью сбрасывает приложени (запрещает все функции) и производит выход из учетной записи
         private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (FormLogin.Login != null)
+            if (FormLogin.Position != null)
             {
                 tabControl.SelectTab(tabPage2);
-                FormLogin.Login = null;
+                FormLogin.Position = null;
                 this.Text = "Мебельная фабрика Leticiya";
                 materialSkinManager.AddFormToManage(this);
 

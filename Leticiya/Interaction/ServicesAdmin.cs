@@ -87,7 +87,7 @@ namespace Leticiya.Interaction
         //Вызов обновляет данные в dataGridView1 и сбрасывает выделенную строку
         public void ReloadEditingBD(string comboBox)
         {
-            string sql = $"SELECT * FROM {comboBox}";
+            string sql = $"SELECT * FROM \"{comboBox}\"";
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {
                 Program.connection.Open();
