@@ -59,7 +59,12 @@ namespace Leticiya
             string[] settings = File.ReadAllLines($"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\config.ini");
             Regex regex = new Regex(@"UpdateApp=True");
             if (regex.IsMatch(settings[1]))
-                tools.UpdateApp();
+            {
+                new Thread(() =>
+                {
+                    tools.UpdateApp();
+                }).Start();
+            }
 
             ServicesAdmin.PanelLoad();
             if (tools.Test() != true)
@@ -71,16 +76,7 @@ namespace Leticiya
             {
                 Tools.Autorization(Tools.AutorizationCache());
                 if (FormLogin.Position != null)
-                {
-                    Program.formMain.Text = "Мебельная фабрика Leticiya - " + FormLogin.Position[0] + " " + FormLogin.Position[1] + " " + FormLogin.Position[2] + " " + FormLogin.Position[3];
-                    if (FormLogin.Position[0] == "admin")
-                    {
-                        servicesAdmin.DataTableAdmin();
-                        Program.formMain.dataGridViewAdmin.Enabled = true;
-                        servicesAdmin.Visibl();
-                        servicesAdmin.ReloadEditingBD(Program.formMain.comboBox.Text);
-                    }
-                }
+                    tools.VisiblAtAutorization();
             }
         }
 
@@ -192,7 +188,7 @@ namespace Leticiya
         private void buttonInfo_Click(object sender, EventArgs e) => formInfo.ShowDialog();
 
         //Обработчик проверки версии приложения (верся риложения находится на GitHub)
-        private void buttonUpdateApp_Click(object sender, EventArgs e) => tools.UpdateApp();
+        private void buttonUpdateApp_Click(object sender, EventArgs e) => new Thread(() => tools.UpdateApp()).Start();
 
         //Обработчик открывающая форму авторизации
         private void buttonAuthorization_Click(object sender, EventArgs e)
@@ -222,6 +218,11 @@ namespace Leticiya
                 dataGridViewAdmin.Enabled = false;
 
                 Program.flagSelectUser = false;
+
+                treeView.Enabled = false;
+                dataGridViewUser.DataSource = null;
+                dataGridViewUser.Enabled = false;
+                dataGridViewUser.ClearSelection();
 
                 toolStripStatusLabel2.Text = "Произведен выход из системы";
                 string path = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\cahce";
@@ -297,6 +298,29 @@ namespace Leticiya
         //
         //Кнопки формы на page для user
         //
+
+        private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            servicesUser.ReloadViewBD(e.Node.Text);
+        }
+
+        private void buttonAddUser_Click(object sender, EventArgs e)
+        {
+            if (tools.LoginGuest() != true)
+                return;
+        }
+
+        private void buttonEditUser_Click(object sender, EventArgs e)
+        {
+            if (tools.LoginGuest() != true)
+                return;
+        }
+
+        private void buttonDelUser_Click(object sender, EventArgs e)
+        {
+            if (tools.LoginGuest() != true)
+                return;
+        }
 
 
 

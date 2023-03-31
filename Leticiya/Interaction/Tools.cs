@@ -10,6 +10,7 @@ namespace Leticiya.Interaction
     internal class Tools
     {
         private readonly WebClient client = new WebClient();
+        private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
 
         private static StreamReader streamReader;
         public static string connSrring;
@@ -151,6 +152,43 @@ namespace Leticiya.Interaction
 
             string[] mas = Encrypt.DecryptText(data, Program.key).Split();
             return $"SELECT \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_POSITION\" FROM public.\"Accountant\" WHERE \"ACCOUNTANT_LOGIN\" = '{mas[0]}' AND \"ACCOUNTANT_PASSWORD\" = '{mas[1]}'";
+        }
+
+        public static void SaveCache(string login, string password)
+        {
+            string path = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\cahce";
+            if (File.Exists(path) != true)
+                File.Create(path).Close();
+
+            using (StreamWriter writer = new StreamWriter(File.Open(path, FileMode.Create)))
+            {
+                writer.Write(Encrypt.EncryptText(login.Trim() + " " + password.Trim(), Program.key));
+            }
+        }
+
+        public void VisiblAtAutorization()
+        {
+            if (FormLogin.Position[0] == "admin")
+            {
+                servicesAdmin.DataTableAdmin();
+                Program.formMain.dataGridViewAdmin.Enabled = true;
+                servicesAdmin.Visibl();
+                servicesAdmin.ReloadEditingBD(Program.formMain.comboBox.Text);
+
+                Program.formMain.treeView.Enabled = true;
+                Program.formMain.dataGridViewUser.Enabled = true;
+            }
+            else
+            {
+                if (FormLogin.Position[0] == "user")
+                {
+                    Program.formMain.treeView.Enabled = true;
+                    Program.formMain.dataGridViewUser.Enabled = true;
+                }
+            }
+
+            Program.formMain.toolStripStatusLabel2.Text = "Произведен вход с правами " + FormLogin.Position[0];
+            Program.formMain.Text = "Мебельная фабрика Leticiya - " + FormLogin.Position[0] + " " + FormLogin.Position[1] + " " + FormLogin.Position[2] + " " + FormLogin.Position[3];
         }
     }
 }

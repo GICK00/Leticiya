@@ -2,8 +2,6 @@
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
-using System.IO;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -13,6 +11,7 @@ namespace Leticiya
     {
         private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
         private readonly ServicesUser servicesUser = new ServicesUser();
+        private readonly Tools tools = new Tools();
 
 
         public static string[] Position;
@@ -42,35 +41,13 @@ namespace Leticiya
             {
                 if (textBox1.Text != "" && textBox2.Text != "")
                 {
-
                     Position = null;
                     string sql = $"SELECT \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_POSITION\" FROM public.\"Accountant\" WHERE \"ACCOUNTANT_LOGIN\" = '{textBox1.Text}' AND \"ACCOUNTANT_PASSWORD\" = '{textBox2.Text}'";
-
                     if (Position != Tools.Autorization(sql))
                     {
-                        if (Position[0] == "admin")
-                        {
-                            servicesAdmin.DataTableAdmin();
-                            Program.formMain.dataGridViewAdmin.Enabled = true;
-                            servicesAdmin.Visibl();
-                            servicesAdmin.ReloadEditingBD(Program.formMain.comboBox.Text);
+                        tools.VisiblAtAutorization();
+                        Tools.SaveCache(textBox1.Text, textBox2.Text);
 
-                            string path = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\cahce";
-                            if (File.Exists(path) != true)
-                                File.Create(path).Close();
-
-                            using (StreamWriter writer = new StreamWriter(File.Open(path, FileMode.Create)))
-                            {
-                                writer.Write(Encrypt.EncryptText(textBox1.Text.Trim() + " " + textBox2.Text.Trim(), Program.key));
-                            }
-                        }
-                        else
-                        {
-
-                        }
-
-                        Program.formMain.toolStripStatusLabel2.Text = "Произведен вход с правами " + Position[0];
-                        Program.formMain.Text = "Мебельная фабрика Leticiya - " + Position[0] + " " + Position[1] + " " + Position[2] + " " + Position[3];
                         FormMain.materialSkinManager.AddFormToManage(this);
                         textBox1.Clear();
                         textBox2.Clear();

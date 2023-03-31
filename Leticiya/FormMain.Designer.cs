@@ -59,9 +59,9 @@ namespace Leticiya
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAddUser = new System.Windows.Forms.Button();
+            this.buttonEditUser = new System.Windows.Forms.Button();
+            this.buttonDelUser = new System.Windows.Forms.Button();
             this.dataGridViewUser = new System.Windows.Forms.DataGridView();
             this.treeView = new System.Windows.Forms.TreeView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -348,9 +348,9 @@ namespace Leticiya
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.buttonAddUser);
+            this.panel2.Controls.Add(this.buttonEditUser);
+            this.panel2.Controls.Add(this.buttonDelUser);
             this.panel2.Location = new System.Drawing.Point(140, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1059, 32);
@@ -366,59 +366,62 @@ namespace Leticiya
             this.label1.TabIndex = 68;
             this.label1.Text = "Заказы";
             // 
-            // button3
+            // buttonAddUser
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(740, 5);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(103, 23);
-            this.button3.TabIndex = 67;
-            this.button3.Text = "Добавить";
-            this.button3.UseVisualStyleBackColor = false;
+            this.buttonAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonAddUser.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonAddUser.FlatAppearance.BorderSize = 0;
+            this.buttonAddUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonAddUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.buttonAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddUser.Location = new System.Drawing.Point(740, 5);
+            this.buttonAddUser.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonAddUser.Name = "buttonAddUser";
+            this.buttonAddUser.Size = new System.Drawing.Size(103, 23);
+            this.buttonAddUser.TabIndex = 67;
+            this.buttonAddUser.Text = "Добавить";
+            this.buttonAddUser.UseVisualStyleBackColor = false;
+            this.buttonAddUser.Click += new System.EventHandler(this.buttonAddUser_Click);
             // 
-            // button2
+            // buttonEditUser
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(847, 5);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(103, 23);
-            this.button2.TabIndex = 66;
-            this.button2.Text = "Изменить";
-            this.button2.UseVisualStyleBackColor = false;
+            this.buttonEditUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEditUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonEditUser.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonEditUser.FlatAppearance.BorderSize = 0;
+            this.buttonEditUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonEditUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.buttonEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEditUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonEditUser.Location = new System.Drawing.Point(847, 5);
+            this.buttonEditUser.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonEditUser.Name = "buttonEditUser";
+            this.buttonEditUser.Size = new System.Drawing.Size(103, 23);
+            this.buttonEditUser.TabIndex = 66;
+            this.buttonEditUser.Text = "Изменить";
+            this.buttonEditUser.UseVisualStyleBackColor = false;
+            this.buttonEditUser.Click += new System.EventHandler(this.buttonEditUser_Click);
             // 
-            // button1
+            // buttonDelUser
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(954, 5);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 23);
-            this.button1.TabIndex = 65;
-            this.button1.Text = "Удалить";
-            this.button1.UseVisualStyleBackColor = false;
+            this.buttonDelUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDelUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonDelUser.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonDelUser.FlatAppearance.BorderSize = 0;
+            this.buttonDelUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonDelUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.buttonDelUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDelUser.Location = new System.Drawing.Point(954, 5);
+            this.buttonDelUser.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonDelUser.Name = "buttonDelUser";
+            this.buttonDelUser.Size = new System.Drawing.Size(103, 23);
+            this.buttonDelUser.TabIndex = 65;
+            this.buttonDelUser.Text = "Удалить";
+            this.buttonDelUser.UseVisualStyleBackColor = false;
+            this.buttonDelUser.Click += new System.EventHandler(this.buttonDelUser_Click);
             // 
             // dataGridViewUser
             // 
@@ -430,6 +433,7 @@ namespace Leticiya
             this.dataGridViewUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUser.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.dataGridViewUser.Enabled = false;
             this.dataGridViewUser.Location = new System.Drawing.Point(140, 38);
             this.dataGridViewUser.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridViewUser.MultiSelect = false;
@@ -445,6 +449,7 @@ namespace Leticiya
             // treeView
             // 
             this.treeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView.Enabled = false;
             this.treeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.treeView.ItemHeight = 20;
             this.treeView.Location = new System.Drawing.Point(5, 38);
@@ -457,7 +462,7 @@ namespace Leticiya
             treeNode3.Text = "Цеха";
             treeNode4.Name = "Узел4";
             treeNode4.Text = "Товары";
-            treeNode5.Name = "Заказчики";
+            treeNode5.Name = "Узел5";
             treeNode5.Text = "Заказчики";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
@@ -468,6 +473,7 @@ namespace Leticiya
             this.treeView.Scrollable = false;
             this.treeView.Size = new System.Drawing.Size(132, 122);
             this.treeView.TabIndex = 0;
+            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             // 
             // tabPage1
             // 
@@ -984,12 +990,12 @@ namespace Leticiya
         private System.Windows.Forms.ToolStripLabel toolStripLabel9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public System.Windows.Forms.Panel panelDefault;
-        private System.Windows.Forms.TreeView treeView;
+        public System.Windows.Forms.TreeView treeView;
         public System.Windows.Forms.DataGridView dataGridViewUser;
         public System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonAddUser;
+        private System.Windows.Forms.Button buttonEditUser;
+        private System.Windows.Forms.Button buttonDelUser;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
     }
