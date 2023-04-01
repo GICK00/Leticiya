@@ -25,7 +25,7 @@ namespace Leticiya
         private readonly FormLogin formLogin = new FormLogin();
         private readonly FormSettings formSettings = new FormSettings();
 
-
+        private static string treeViewItemSelect = null; 
         public static int n = 0;
 
         public FormMain()
@@ -301,13 +301,31 @@ namespace Leticiya
 
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            servicesUser.ReloadViewBD(e.Node.Text);
+            treeViewItemSelect = e.Node.Text;
+            servicesUser.ReloadViewBD(treeViewItemSelect);
         }
 
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
             if (tools.LoginGuest() != true)
                 return;
+
+            switch (treeViewItemSelect)
+            {
+                case "Заказы":
+                    FormAddEditDel formAddEditDel = new FormAddEditDel("add");
+                    formAddEditDel.ShowDialog();
+                    break;
+                case "Категории":
+                    break;
+                case "Цеха":
+                    break;
+                case "Товары":
+                    break;
+                case "Заказчики":
+                    break;
+            }
+
         }
 
         private void buttonEditUser_Click(object sender, EventArgs e)

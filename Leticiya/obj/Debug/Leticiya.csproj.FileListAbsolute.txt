@@ -41,7 +41,6 @@ C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormLogi
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormMain.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormRequest.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormSettings.resources
-C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormOrder.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.Properties.Resources.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.GenerateResource.cache
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.CoreCompileInputs.cache
@@ -98,3 +97,4 @@ C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.CoreComp
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.CopyComplete
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.exe
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.pdb
+C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditDel.resources

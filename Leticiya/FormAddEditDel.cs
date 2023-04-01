@@ -9,13 +9,26 @@ using System.Windows.Forms;
 
 namespace Leticiya
 {
-    public partial class FormOrder : MaterialForm
+    public partial class FormAddEditDel : MaterialForm
     {
         private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
 
-        public FormOrder()
+        public FormAddEditDel(string type)
         {
             InitializeComponent();
+
+            switch (type)
+            {
+                case "add":
+                    buttonAddEditDel.Text = "Добавить заказ";
+                    break;
+                case "edit":
+                    buttonAddEditDel.Text = "Изменить заказ";
+                    break;
+                case "del":
+                    buttonAddEditDel.Text = "Удалить заказ";
+                    break;
+            }
 
             new Thread(() =>
             {
@@ -24,6 +37,11 @@ namespace Leticiya
                 materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
                 materialSkinManager.ColorScheme = new ColorScheme(Primary.Grey300, Primary.Grey900, Primary.Grey200, Accent.LightBlue200, TextShade.BLACK);
             }).Start();
+        }
+
+        private void buttonAddEditDel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

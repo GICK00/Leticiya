@@ -23,12 +23,18 @@ namespace Leticiya
             {
                 sqlLoad = sql;
                 typeLoad = type;
-                if (typeLoad == "res")
-                    this.label1.Text = "Восстановление...";
-                else if (typeLoad == "back")
-                    this.label1.Text = "Создание резерной копии...";
-                else if (typeLoad == "update")
-                    this.label1.Text = "Проверка версии...";
+                switch (typeLoad)
+                {
+                    case "res":
+                        this.label1.Text = "Восстановление...";
+                        break;
+                    case "back":
+                        this.label1.Text = "Создание резерной копии...";
+                        break;
+                    case "update":
+                        this.label1.Text = "Проверка версии...";
+                        break;
+                }
             }).Start();
         }
 
