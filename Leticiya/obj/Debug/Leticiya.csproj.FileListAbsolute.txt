@@ -97,4 +97,4 @@ C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.CoreComp
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.CopyComplete
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.exe
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.pdb
-C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditDel.resources
+C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditDelOrder.resources

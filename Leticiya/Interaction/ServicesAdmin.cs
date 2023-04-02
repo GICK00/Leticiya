@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Leticiya.Interaction
@@ -87,19 +89,21 @@ namespace Leticiya.Interaction
         //Вызов обновляет данные в dataGridView1 и сбрасывает выделенную строку
         public void ReloadEditingBD(string comboBox)
         {
-            string sql = $"SELECT * FROM \"{comboBox}\"";
-            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
-            {
-                Program.connection.Open();
-                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+            string sql = $"SELECT * FROM public.\"{comboBox}\"";
+
+                using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
                 {
-                    DataTable dataTable = new DataTable();
-                    dataTable.Load(dataReader);
-                    Program.formMain.dataGridViewAdmin.DataSource = dataTable;
-                    dataReader.Close();
+                    Program.connection.Open();
+                    using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(dataReader);
+                        Program.formMain.dataGridViewAdmin.DataSource = dataTable;
+                        dataReader.Close();
+                    }
+                    Program.connection.Close();
                 }
-                Program.connection.Close();
-            }
+            
             Program.flagUpdateAdmin = false;
             FormMain.n = 0;
             Program.formMain.dataGridViewAdmin.ClearSelection();

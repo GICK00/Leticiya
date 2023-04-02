@@ -30,11 +30,11 @@ namespace Leticiya
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Заказы");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Категории");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Цеха");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Товары");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Заказчики");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Заказы");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Категории");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Цеха");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Товары");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Заказчики");
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -281,10 +281,10 @@ namespace Leticiya
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(1, 712);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 711);
             this.statusStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1237, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(1231, 24);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 14;
             this.statusStrip1.Text = "statusStrip1";
@@ -306,14 +306,14 @@ namespace Leticiya
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControl.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl.ItemSize = new System.Drawing.Size(20, 25);
-            this.tabControl.Location = new System.Drawing.Point(1, 80);
+            this.tabControl.Location = new System.Drawing.Point(3, 80);
             this.tabControl.Margin = new System.Windows.Forms.Padding(0);
-            this.tabControl.MinimumSize = new System.Drawing.Size(1235, 632);
+            this.tabControl.MinimumSize = new System.Drawing.Size(1231, 632);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.Padding = new System.Drawing.Point(0, 0);
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1235, 632);
+            this.tabControl.Size = new System.Drawing.Size(1231, 632);
             this.tabControl.TabIndex = 45;
             this.tabControl.TabStop = false;
             this.tabControl.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl_Selecting);
@@ -328,7 +328,7 @@ namespace Leticiya
             this.tabPage2.Location = new System.Drawing.Point(29, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1202, 624);
+            this.tabPage2.Size = new System.Drawing.Size(1198, 624);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Работа";
             // 
@@ -353,7 +353,7 @@ namespace Leticiya
             this.panel2.Controls.Add(this.buttonDelUser);
             this.panel2.Location = new System.Drawing.Point(140, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1059, 32);
+            this.panel2.Size = new System.Drawing.Size(1055, 32);
             this.panel2.TabIndex = 64;
             // 
             // label1
@@ -376,7 +376,7 @@ namespace Leticiya
             this.buttonAddUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddUser.Location = new System.Drawing.Point(740, 5);
+            this.buttonAddUser.Location = new System.Drawing.Point(736, 5);
             this.buttonAddUser.Margin = new System.Windows.Forms.Padding(0);
             this.buttonAddUser.Name = "buttonAddUser";
             this.buttonAddUser.Size = new System.Drawing.Size(103, 23);
@@ -395,7 +395,7 @@ namespace Leticiya
             this.buttonEditUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonEditUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonEditUser.Location = new System.Drawing.Point(847, 5);
+            this.buttonEditUser.Location = new System.Drawing.Point(843, 5);
             this.buttonEditUser.Margin = new System.Windows.Forms.Padding(0);
             this.buttonEditUser.Name = "buttonEditUser";
             this.buttonEditUser.Size = new System.Drawing.Size(103, 23);
@@ -414,7 +414,7 @@ namespace Leticiya
             this.buttonDelUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonDelUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDelUser.Location = new System.Drawing.Point(954, 5);
+            this.buttonDelUser.Location = new System.Drawing.Point(950, 5);
             this.buttonDelUser.Margin = new System.Windows.Forms.Padding(0);
             this.buttonDelUser.Name = "buttonDelUser";
             this.buttonDelUser.Size = new System.Drawing.Size(103, 23);
@@ -442,7 +442,7 @@ namespace Leticiya
             this.dataGridViewUser.RowHeadersVisible = false;
             this.dataGridViewUser.RowHeadersWidth = 20;
             this.dataGridViewUser.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewUser.Size = new System.Drawing.Size(1058, 583);
+            this.dataGridViewUser.Size = new System.Drawing.Size(1054, 615);
             this.dataGridViewUser.TabIndex = 2;
             this.dataGridViewUser.TabStop = false;
             // 
@@ -454,22 +454,22 @@ namespace Leticiya
             this.treeView.ItemHeight = 20;
             this.treeView.Location = new System.Drawing.Point(5, 38);
             this.treeView.Name = "treeView";
-            treeNode1.Name = "Узел1";
-            treeNode1.Text = "Заказы";
-            treeNode2.Name = "Узел2";
-            treeNode2.Text = "Категории";
-            treeNode3.Name = "Узел3";
-            treeNode3.Text = "Цеха";
-            treeNode4.Name = "Узел4";
-            treeNode4.Text = "Товары";
-            treeNode5.Name = "Узел5";
-            treeNode5.Text = "Заказчики";
+            treeNode21.Name = "Узел1";
+            treeNode21.Text = "Заказы";
+            treeNode22.Name = "Узел2";
+            treeNode22.Text = "Категории";
+            treeNode23.Name = "Узел3";
+            treeNode23.Text = "Цеха";
+            treeNode24.Name = "Узел4";
+            treeNode24.Text = "Товары";
+            treeNode25.Name = "Узел5";
+            treeNode25.Text = "Заказчики";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5});
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24,
+            treeNode25});
             this.treeView.Scrollable = false;
             this.treeView.Size = new System.Drawing.Size(132, 122);
             this.treeView.TabIndex = 0;
@@ -996,7 +996,7 @@ namespace Leticiya
         private System.Windows.Forms.Button buttonAddUser;
         private System.Windows.Forms.Button buttonEditUser;
         private System.Windows.Forms.Button buttonDelUser;
-        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
     }
 }

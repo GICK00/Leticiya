@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Leticiya.Interaction
@@ -11,6 +12,7 @@ namespace Leticiya.Interaction
     {
         private readonly WebClient client = new WebClient();
         private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
+        private readonly ServicesUser servicesUser = new ServicesUser();
 
         private static StreamReader streamReader;
         public static string connSrring;
@@ -130,9 +132,8 @@ namespace Leticiya.Interaction
                 }
                 return FormLogin.Position;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+            catch
+            { 
                 return FormLogin.Position = null;
             }
             finally
@@ -177,6 +178,8 @@ namespace Leticiya.Interaction
 
                 Program.formMain.treeView.Enabled = true;
                 Program.formMain.dataGridViewUser.Enabled = true;
+                servicesUser.ReloadViewBD(FormMain.treeViewItemSelect);
+
             }
             else
             {
@@ -184,6 +187,7 @@ namespace Leticiya.Interaction
                 {
                     Program.formMain.treeView.Enabled = true;
                     Program.formMain.dataGridViewUser.Enabled = true;
+                    servicesUser.ReloadViewBD(FormMain.treeViewItemSelect);
                 }
             }
 

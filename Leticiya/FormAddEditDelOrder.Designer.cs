@@ -1,6 +1,6 @@
 ﻿namespace Leticiya
 {
-    partial class FormAddEditDel
+    partial class FormAddEditDelOrder
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddEditDel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddEditDelOrder));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButtonCreationBlank = new System.Windows.Forms.ToolStripButton();
@@ -550,6 +550,7 @@
             // 
             // panel10
             // 
+            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel10.Controls.Add(this.panel11);
             this.panel10.Location = new System.Drawing.Point(763, 85);
@@ -605,17 +606,21 @@
             this.textBox14.Size = new System.Drawing.Size(288, 445);
             this.textBox14.TabIndex = 50;
             // 
-            // FormAddEditDel
+            // FormAddEditDelOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(1087, 736);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridViewUser);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "FormAddEditDel";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1087, 736);
+            this.Name = "FormAddEditDelOrder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Заказы";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

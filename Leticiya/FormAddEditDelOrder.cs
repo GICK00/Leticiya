@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace Leticiya
 {
-    public partial class FormAddEditDel : MaterialForm
+    public partial class FormAddEditDelOrder : MaterialForm
     {
         private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
 
-        public FormAddEditDel(string type)
+        public FormAddEditDelOrder(string type)
         {
             InitializeComponent();
 

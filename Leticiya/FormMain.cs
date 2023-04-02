@@ -25,7 +25,7 @@ namespace Leticiya
         private readonly FormLogin formLogin = new FormLogin();
         private readonly FormSettings formSettings = new FormSettings();
 
-        private static string treeViewItemSelect = null; 
+        public static string treeViewItemSelect = null; 
         public static int n = 0;
 
         public FormMain()
@@ -313,31 +313,86 @@ namespace Leticiya
             switch (treeViewItemSelect)
             {
                 case "Заказы":
-                    FormAddEditDel formAddEditDel = new FormAddEditDel("add");
+                    FormAddEditDelOrder formAddEditDel = new FormAddEditDelOrder("add");
                     formAddEditDel.ShowDialog();
                     break;
                 case "Категории":
+                    FormAddEditDelOther formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "add");
+                    formAddEditDelOther.ShowDialog();   
                     break;
                 case "Цеха":
+                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "add");
+                    formAddEditDelOther.ShowDialog();
                     break;
                 case "Товары":
+                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "add");
+                    formAddEditDelOther.ShowDialog();
                     break;
                 case "Заказчики":
+                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "add");
+                    formAddEditDelOther.ShowDialog();
                     break;
             }
-
         }
 
         private void buttonEditUser_Click(object sender, EventArgs e)
         {
             if (tools.LoginGuest() != true)
                 return;
+
+            switch (treeViewItemSelect)
+            {
+                case "Заказы":
+                    FormAddEditDelOrder formAddEditDel = new FormAddEditDelOrder("edit");
+                    formAddEditDel.ShowDialog();
+                    break;
+                case "Категории":
+                    FormAddEditDelOther formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "edit");
+                    formAddEditDelOther.ShowDialog();
+                    break;
+                case "Цеха":
+                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "edit");
+                    formAddEditDelOther.ShowDialog();
+                    break;
+                case "Товары":
+                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "edit");
+                    formAddEditDelOther.ShowDialog();
+                    break;
+                case "Заказчики":
+                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "edit");
+                    formAddEditDelOther.ShowDialog();
+                    break;
+            }
         }
 
         private void buttonDelUser_Click(object sender, EventArgs e)
         {
             if (tools.LoginGuest() != true)
                 return;
+
+            switch (treeViewItemSelect)
+            {
+                case "Заказы":
+                    FormAddEditDelOrder formAddEditDel = new FormAddEditDelOrder("del");
+                    formAddEditDel.ShowDialog();
+                    break;
+                case "Категории":
+                    FormAddEditDelOther formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "del");
+                    formAddEditDelOther.ShowDialog();
+                    break;
+                case "Цеха":
+                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "del");
+                    formAddEditDelOther.ShowDialog();
+                    break;
+                case "Товары":
+                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "del");
+                    formAddEditDelOther.ShowDialog();
+                    break;
+                case "Заказчики":
+                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "del");
+                    formAddEditDelOther.ShowDialog();
+                    break;
+            }
         }
 
 

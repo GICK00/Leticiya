@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Data;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Leticiya.Interaction

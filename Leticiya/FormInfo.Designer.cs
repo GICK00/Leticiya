@@ -45,7 +45,7 @@ namespace Leticiya
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkLabel1.Location = new System.Drawing.Point(264, 178);
+            this.linkLabel1.Location = new System.Drawing.Point(265, 194);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(114, 16);
             this.linkLabel1.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace Leticiya
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkLabel2.Location = new System.Drawing.Point(423, 177);
+            this.linkLabel2.Location = new System.Drawing.Point(425, 193);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(159, 16);
             this.linkLabel2.TabIndex = 2;
@@ -71,7 +71,7 @@ namespace Leticiya
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkLabel3.Location = new System.Drawing.Point(162, 210);
+            this.linkLabel3.Location = new System.Drawing.Point(163, 226);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(209, 16);
             this.linkLabel3.TabIndex = 3;

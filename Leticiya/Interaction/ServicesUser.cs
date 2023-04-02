@@ -12,6 +12,7 @@ namespace Leticiya.Interaction
         //Вызов обновляет данные в dataGridView1 и сбрасывает выделенную строку
         public void ReloadViewBD(string element)
         {
+            Program.formMain.label1.Text = element;
             string sql = null;
             switch (element)
             {
@@ -21,19 +22,15 @@ namespace Leticiya.Interaction
                         $"\r\nFROM public.\"Order\" o, public.\"Customer\" cu, public.\"Accountant\" ac\r\nWHERE o.\"CUSTOMER_ID\" = cu.\"CUSTOMER_ID\" AND o.\"ACCOUNTANT_ID\" = ac.\"ACCOUNTANT_ID\"";
                     break;
                 case "Категории":
-                    Program.formMain.toolStripStatusLabel2.Text = element;
                     //sql = $"SELECT * FROM \"\"";
                     break;
                 case "Цеха":
-                    Program.formMain.toolStripStatusLabel2.Text = element;
                     //sql = $"SELECT * FROM \"\"";
                     break;
                 case "Товары":
-                    Program.formMain.toolStripStatusLabel2.Text = element;
                     //sql = $"SELECT * FROM \"\"";
                     break;
                 case "Заказчики":
-                    Program.formMain.toolStripStatusLabel2.Text = element;
                     //sql = $"SELECT * FROM \"\"";
                     break;
             }

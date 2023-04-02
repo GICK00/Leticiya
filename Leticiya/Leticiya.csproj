@@ -169,6 +169,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="FormAddEditDelOther.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddEditDelOther.Designer.cs">
+      <DependentUpon>FormAddEditDelOther.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDeletedSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,11 +205,11 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAddEditDel.cs">
+    <Compile Include="FormAddEditDelOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddEditDel.Designer.cs">
-      <DependentUpon>FormAddEditDel.cs</DependentUpon>
+    <Compile Include="FormAddEditDelOrder.Designer.cs">
+      <DependentUpon>FormAddEditDelOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRequest.cs">
       <SubType>Form</SubType>
@@ -248,8 +254,8 @@
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAddEditDel.resx">
-      <DependentUpon>FormAddEditDel.cs</DependentUpon>
+    <EmbeddedResource Include="FormAddEditDelOrder.resx">
+      <DependentUpon>FormAddEditDelOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
