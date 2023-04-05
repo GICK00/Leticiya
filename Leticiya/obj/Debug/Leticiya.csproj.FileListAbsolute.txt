@@ -90,7 +90,6 @@ C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormLogin.resou
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormMain.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormRequest.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormSettings.resources
-C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormOrder.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.Properties.Resources.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.GenerateResource.cache
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.CoreCompileInputs.cache
@@ -98,3 +97,4 @@ C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.CopyComp
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.exe
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.pdb
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditDelOrder.resources
+C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditDelOrder.resources
