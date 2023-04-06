@@ -2,6 +2,7 @@
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -33,6 +34,10 @@ namespace Leticiya
             Program.formMain = this;
 
             InitializeComponent();
+
+            //Под вопросом
+            //this.dataGridViewUser.RowsDefaultCellStyle.BackColor = Color.White;
+            //this.dataGridViewUser.AlternatingRowsDefaultCellStyle.BackColor = Color.SlateGray;
 
             new Thread(() =>
             {
@@ -408,6 +413,20 @@ namespace Leticiya
             DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение?", "Выход", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result != DialogResult.Yes)
                 e.Cancel = true;
+        }
+
+        private void buttonNextpage_Click(object sender, EventArgs e) => textBoxCoutPage.Text = (Convert.ToInt32(textBoxCoutPage.Text) + 1).ToString();
+
+        private void buttonPrevPage_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(textBoxCoutPage.Text) > 1)
+                textBoxCoutPage.Text = (Convert.ToInt32(textBoxCoutPage.Text) - 1).ToString();
+        }
+
+        private void textBoxCoutPage_TextChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(textBoxCoutPage.Text) >= 1)
+                servicesUser.ReloadViewBD(treeViewItemSelect);
         }
     }
 }
