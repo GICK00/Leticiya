@@ -232,6 +232,9 @@
     <Compile Include="Interaction\ServicesUser.cs" />
     <Compile Include="Interaction\Tools.cs" />
     <Compile Include="Program.cs" />
+    <EmbeddedResource Include="FormAddEditDelOther.resx">
+      <DependentUpon>FormAddEditDelOther.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDeletedSearch.resx">
       <DependentUpon>FormDeletedSearch.cs</DependentUpon>
     </EmbeddedResource>

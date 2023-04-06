@@ -35,6 +35,7 @@ namespace Leticiya
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Цеха");
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Товары");
             System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Заказчики");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Пользователи");
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -56,19 +57,24 @@ namespace Leticiya
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.buttonPrevPage = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.textBoxCoutPage = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonNextpage = new System.Windows.Forms.Button();
+            this.dataGridViewUser = new System.Windows.Forms.DataGridView();
             this.buttonAddUser = new System.Windows.Forms.Button();
+            this.treeView = new System.Windows.Forms.TreeView();
             this.buttonEditUser = new System.Windows.Forms.Button();
             this.buttonDelUser = new System.Windows.Forms.Button();
-            this.dataGridViewUser = new System.Windows.Forms.DataGridView();
-            this.treeView = new System.Windows.Forms.TreeView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.buttonPrevPage2 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxCoutPageAdmin = new System.Windows.Forms.TextBox();
+            this.buttonNextPage2 = new System.Windows.Forms.Button();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel8 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton6 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -104,10 +110,10 @@ namespace Leticiya
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
             this.tabPage1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panelBackround.SuspendLayout();
             this.panel54.SuspendLayout();
@@ -326,10 +332,17 @@ namespace Leticiya
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.buttonPrevPage);
             this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.panel2);
+            this.tabPage2.Controls.Add(this.panel5);
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.buttonNextpage);
             this.tabPage2.Controls.Add(this.dataGridViewUser);
+            this.tabPage2.Controls.Add(this.buttonAddUser);
             this.tabPage2.Controls.Add(this.treeView);
+            this.tabPage2.Controls.Add(this.buttonEditUser);
+            this.tabPage2.Controls.Add(this.buttonDelUser);
             this.tabPage2.Location = new System.Drawing.Point(29, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -337,32 +350,18 @@ namespace Leticiya
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Работа";
             // 
-            // label2
+            // label4
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(6, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 24);
-            this.label2.TabIndex = 69;
-            this.label2.Text = "Ресурсы";
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.buttonPrevPage);
-            this.panel2.Controls.Add(this.panel5);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.buttonNextpage);
-            this.panel2.Controls.Add(this.buttonAddUser);
-            this.panel2.Controls.Add(this.buttonEditUser);
-            this.panel2.Controls.Add(this.buttonDelUser);
-            this.panel2.Location = new System.Drawing.Point(140, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1055, 32);
-            this.panel2.TabIndex = 64;
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(661, 11);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 15);
+            this.label4.TabIndex = 79;
+            this.label4.Text = "Страница";
             // 
             // buttonPrevPage
             // 
@@ -374,7 +373,7 @@ namespace Leticiya
             this.buttonPrevPage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonPrevPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPrevPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonPrevPage.Location = new System.Drawing.Point(593, 5);
+            this.buttonPrevPage.Location = new System.Drawing.Point(727, 7);
             this.buttonPrevPage.Margin = new System.Windows.Forms.Padding(0);
             this.buttonPrevPage.Name = "buttonPrevPage";
             this.buttonPrevPage.Size = new System.Drawing.Size(23, 23);
@@ -383,12 +382,22 @@ namespace Leticiya
             this.buttonPrevPage.UseVisualStyleBackColor = false;
             this.buttonPrevPage.Click += new System.EventHandler(this.buttonPrevPage_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(6, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 24);
+            this.label2.TabIndex = 69;
+            this.label2.Text = "Ресурсы";
+            // 
             // panel5
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel5.Controls.Add(this.textBoxCoutPage);
-            this.panel5.Location = new System.Drawing.Point(619, 5);
+            this.panel5.Location = new System.Drawing.Point(753, 7);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(55, 23);
             this.panel5.TabIndex = 78;
@@ -413,7 +422,7 @@ namespace Leticiya
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(3, 3);
+            this.label1.Location = new System.Drawing.Point(137, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 24);
             this.label1.TabIndex = 68;
@@ -429,7 +438,7 @@ namespace Leticiya
             this.buttonNextpage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonNextpage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonNextpage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonNextpage.Location = new System.Drawing.Point(677, 5);
+            this.buttonNextpage.Location = new System.Drawing.Point(811, 7);
             this.buttonNextpage.Margin = new System.Windows.Forms.Padding(0);
             this.buttonNextpage.Name = "buttonNextpage";
             this.buttonNextpage.Size = new System.Drawing.Size(23, 23);
@@ -437,6 +446,35 @@ namespace Leticiya
             this.buttonNextpage.Text = ">";
             this.buttonNextpage.UseVisualStyleBackColor = false;
             this.buttonNextpage.Click += new System.EventHandler(this.buttonNextpage_Click);
+            // 
+            // dataGridViewUser
+            // 
+            this.dataGridViewUser.AllowUserToAddRows = false;
+            this.dataGridViewUser.AllowUserToDeleteRows = false;
+            this.dataGridViewUser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewUser.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewUser.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridViewUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewUser.CausesValidation = false;
+            this.dataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUser.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.dataGridViewUser.Enabled = false;
+            this.dataGridViewUser.Location = new System.Drawing.Point(140, 38);
+            this.dataGridViewUser.Margin = new System.Windows.Forms.Padding(0);
+            this.dataGridViewUser.MultiSelect = false;
+            this.dataGridViewUser.Name = "dataGridViewUser";
+            this.dataGridViewUser.ReadOnly = true;
+            this.dataGridViewUser.RowHeadersVisible = false;
+            this.dataGridViewUser.RowHeadersWidth = 20;
+            this.dataGridViewUser.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewUser.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewUser.Size = new System.Drawing.Size(1054, 583);
+            this.dataGridViewUser.TabIndex = 2;
+            this.dataGridViewUser.TabStop = false;
+            this.dataGridViewUser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewUser_MouseDoubleClick);
             // 
             // buttonAddUser
             // 
@@ -448,7 +486,7 @@ namespace Leticiya
             this.buttonAddUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddUser.Location = new System.Drawing.Point(736, 5);
+            this.buttonAddUser.Location = new System.Drawing.Point(870, 7);
             this.buttonAddUser.Margin = new System.Windows.Forms.Padding(0);
             this.buttonAddUser.Name = "buttonAddUser";
             this.buttonAddUser.Size = new System.Drawing.Size(103, 23);
@@ -456,6 +494,38 @@ namespace Leticiya
             this.buttonAddUser.Text = "Добавить";
             this.buttonAddUser.UseVisualStyleBackColor = false;
             this.buttonAddUser.Click += new System.EventHandler(this.buttonAddUser_Click);
+            // 
+            // treeView
+            // 
+            this.treeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView.Enabled = false;
+            this.treeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeView.ItemHeight = 20;
+            this.treeView.Location = new System.Drawing.Point(5, 38);
+            this.treeView.Name = "treeView";
+            treeNode1.Name = "Заказы";
+            treeNode1.Text = "Заказы";
+            treeNode2.Name = "Категории";
+            treeNode2.Text = "Категории";
+            treeNode3.Name = "Цеха";
+            treeNode3.Text = "Цеха";
+            treeNode4.Name = "Товары";
+            treeNode4.Text = "Товары";
+            treeNode5.Name = "Заказчики";
+            treeNode5.Text = "Заказчики";
+            treeNode6.Name = "Пользователи";
+            treeNode6.Text = "Пользователи";
+            this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6});
+            this.treeView.Scrollable = false;
+            this.treeView.Size = new System.Drawing.Size(132, 122);
+            this.treeView.TabIndex = 0;
+            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             // 
             // buttonEditUser
             // 
@@ -467,7 +537,7 @@ namespace Leticiya
             this.buttonEditUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonEditUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonEditUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonEditUser.Location = new System.Drawing.Point(843, 5);
+            this.buttonEditUser.Location = new System.Drawing.Point(977, 7);
             this.buttonEditUser.Margin = new System.Windows.Forms.Padding(0);
             this.buttonEditUser.Name = "buttonEditUser";
             this.buttonEditUser.Size = new System.Drawing.Size(103, 23);
@@ -486,7 +556,7 @@ namespace Leticiya
             this.buttonDelUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonDelUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDelUser.Location = new System.Drawing.Point(950, 5);
+            this.buttonDelUser.Location = new System.Drawing.Point(1084, 7);
             this.buttonDelUser.Margin = new System.Windows.Forms.Padding(0);
             this.buttonDelUser.Name = "buttonDelUser";
             this.buttonDelUser.Size = new System.Drawing.Size(103, 23);
@@ -495,63 +565,13 @@ namespace Leticiya
             this.buttonDelUser.UseVisualStyleBackColor = false;
             this.buttonDelUser.Click += new System.EventHandler(this.buttonDelUser_Click);
             // 
-            // dataGridViewUser
-            // 
-            this.dataGridViewUser.AllowUserToAddRows = false;
-            this.dataGridViewUser.AllowUserToDeleteRows = false;
-            this.dataGridViewUser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewUser.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewUser.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridViewUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUser.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.dataGridViewUser.Enabled = false;
-            this.dataGridViewUser.Location = new System.Drawing.Point(140, 38);
-            this.dataGridViewUser.Margin = new System.Windows.Forms.Padding(0);
-            this.dataGridViewUser.MultiSelect = false;
-            this.dataGridViewUser.Name = "dataGridViewUser";
-            this.dataGridViewUser.ReadOnly = true;
-            this.dataGridViewUser.RowHeadersVisible = false;
-            this.dataGridViewUser.RowHeadersWidth = 20;
-            this.dataGridViewUser.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewUser.Size = new System.Drawing.Size(1054, 583);
-            this.dataGridViewUser.TabIndex = 2;
-            this.dataGridViewUser.TabStop = false;
-            // 
-            // treeView
-            // 
-            this.treeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView.Enabled = false;
-            this.treeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeView.ItemHeight = 20;
-            this.treeView.Location = new System.Drawing.Point(5, 38);
-            this.treeView.Name = "treeView";
-            treeNode1.Name = "Узел1";
-            treeNode1.Text = "Заказы";
-            treeNode2.Name = "Узел2";
-            treeNode2.Text = "Категории";
-            treeNode3.Name = "Узел3";
-            treeNode3.Text = "Цеха";
-            treeNode4.Name = "Узел4";
-            treeNode4.Text = "Товары";
-            treeNode5.Name = "Узел5";
-            treeNode5.Text = "Заказчики";
-            this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5});
-            this.treeView.Scrollable = false;
-            this.treeView.Size = new System.Drawing.Size(132, 122);
-            this.treeView.TabIndex = 0;
-            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
-            // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.buttonPrevPage2);
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Controls.Add(this.buttonNextPage2);
             this.tabPage1.Controls.Add(this.toolStrip2);
             this.tabPage1.Controls.Add(this.panelBackround);
             this.tabPage1.Controls.Add(this.dataGridViewAdmin);
@@ -562,6 +582,79 @@ namespace Leticiya
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Управление БД";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label5.Location = new System.Drawing.Point(135, 581);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 15);
+            this.label5.TabIndex = 82;
+            this.label5.Text = "Страница";
+            // 
+            // buttonPrevPage2
+            // 
+            this.buttonPrevPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonPrevPage2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonPrevPage2.FlatAppearance.BorderSize = 0;
+            this.buttonPrevPage2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonPrevPage2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.buttonPrevPage2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPrevPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonPrevPage2.Location = new System.Drawing.Point(115, 555);
+            this.buttonPrevPage2.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonPrevPage2.Name = "buttonPrevPage2";
+            this.buttonPrevPage2.Size = new System.Drawing.Size(23, 23);
+            this.buttonPrevPage2.TabIndex = 79;
+            this.buttonPrevPage2.Text = "<";
+            this.buttonPrevPage2.UseVisualStyleBackColor = false;
+            this.buttonPrevPage2.Click += new System.EventHandler(this.buttonPrevPage2_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel2.Controls.Add(this.textBoxCoutPageAdmin);
+            this.panel2.Location = new System.Drawing.Point(141, 555);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(55, 23);
+            this.panel2.TabIndex = 81;
+            // 
+            // textBoxCoutPageAdmin
+            // 
+            this.textBoxCoutPageAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxCoutPageAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBoxCoutPageAdmin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxCoutPageAdmin.Location = new System.Drawing.Point(4, 5);
+            this.textBoxCoutPageAdmin.Name = "textBoxCoutPageAdmin";
+            this.textBoxCoutPageAdmin.ReadOnly = true;
+            this.textBoxCoutPageAdmin.Size = new System.Drawing.Size(48, 14);
+            this.textBoxCoutPageAdmin.TabIndex = 50;
+            this.textBoxCoutPageAdmin.Text = "1";
+            this.textBoxCoutPageAdmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxCoutPageAdmin.TextChanged += new System.EventHandler(this.textBoxCoutPageAdmin_TextChanged);
+            // 
+            // buttonNextPage2
+            // 
+            this.buttonNextPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonNextPage2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonNextPage2.FlatAppearance.BorderSize = 0;
+            this.buttonNextPage2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonNextPage2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.buttonNextPage2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonNextPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonNextPage2.Location = new System.Drawing.Point(199, 555);
+            this.buttonNextPage2.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonNextPage2.Name = "buttonNextPage2";
+            this.buttonNextPage2.Size = new System.Drawing.Size(23, 23);
+            this.buttonNextPage2.TabIndex = 80;
+            this.buttonNextPage2.Text = ">";
+            this.buttonNextPage2.UseVisualStyleBackColor = false;
+            this.buttonNextPage2.Click += new System.EventHandler(this.buttonNextPage2_Click);
             // 
             // toolStrip2
             // 
@@ -943,6 +1036,8 @@ namespace Leticiya
             // 
             // dataGridViewAdmin
             // 
+            this.dataGridViewAdmin.AllowUserToAddRows = false;
+            this.dataGridViewAdmin.AllowUserToDeleteRows = false;
             this.dataGridViewAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -959,10 +1054,11 @@ namespace Leticiya
             this.dataGridViewAdmin.RowHeadersVisible = false;
             this.dataGridViewAdmin.RowHeadersWidth = 20;
             this.dataGridViewAdmin.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAdmin.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewAdmin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAdmin.Size = new System.Drawing.Size(863, 584);
             this.dataGridViewAdmin.TabIndex = 0;
             this.dataGridViewAdmin.TabStop = false;
-            this.dataGridViewAdmin.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_SelectionChanged);
             this.dataGridViewAdmin.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // FormMain
@@ -990,12 +1086,13 @@ namespace Leticiya
             this.tabControl.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.panelBackround.ResumeLayout(false);
@@ -1068,9 +1165,7 @@ namespace Leticiya
         public System.Windows.Forms.Panel panelDefault;
         public System.Windows.Forms.TreeView treeView;
         public System.Windows.Forms.DataGridView dataGridViewUser;
-        public System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button buttonAddUser;
-        private System.Windows.Forms.Button buttonEditUser;
         private System.Windows.Forms.Button buttonDelUser;
         public System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -1078,5 +1173,12 @@ namespace Leticiya
         private System.Windows.Forms.Button buttonPrevPage;
         private System.Windows.Forms.Panel panel5;
         public System.Windows.Forms.TextBox textBoxCoutPage;
+        private System.Windows.Forms.Button buttonEditUser;
+        private System.Windows.Forms.Button buttonPrevPage2;
+        private System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.TextBox textBoxCoutPageAdmin;
+        private System.Windows.Forms.Button buttonNextPage2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

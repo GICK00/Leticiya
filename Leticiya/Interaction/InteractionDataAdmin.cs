@@ -14,7 +14,7 @@ namespace Leticiya.Interaction
         public void AddAndUpdate(string action)
         {
             string[] array = null;
-            if (action == "Update" && Program.flagUpdateAdmin == true)
+            if (action == "Update" && FormMain.flagUpdateAdmin == true)
                 array = servicesAdmin.ArrayUpdate();
             else if (action == "Update")
             {

@@ -98,3 +98,4 @@ C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.exe
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.pdb
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditDelOrder.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditDelOrder.resources
+C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditDelOther.resources

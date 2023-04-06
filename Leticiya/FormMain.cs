@@ -26,8 +26,12 @@ namespace Leticiya
         private readonly FormLogin formLogin = new FormLogin();
         private readonly FormSettings formSettings = new FormSettings();
 
-        public static string treeViewItemSelect = null; 
-        public static int n = 0;
+        public static string treeViewItemSelect = null;
+
+        public static bool flagUpdateAdmin = false;
+        public static bool flagSelectUser = false;
+        public static int AdminGridSelect = 0;
+        public static int UserGridSelect = 0;
 
         public FormMain()
         {
@@ -217,17 +221,19 @@ namespace Leticiya
 
                 comboBox.DataSource = null;
                 comboBoxFilter.DataSource = null;
-                dataGridViewAdmin.DataSource = null;
-                Program.flagUpdateAdmin = false;
-                dataGridViewAdmin.ClearSelection();
-                dataGridViewAdmin.Enabled = false;
-
-                Program.flagSelectUser = false;
-
                 treeView.Enabled = false;
-                dataGridViewUser.DataSource = null;
+
+                dataGridViewAdmin.Enabled = false;
+                dataGridViewAdmin.DataSource = null;
+                
+                dataGridViewAdmin.ClearSelection();
+                FormMain.flagUpdateAdmin = false;                
+
                 dataGridViewUser.Enabled = false;
+                dataGridViewUser.DataSource = null;
+                
                 dataGridViewUser.ClearSelection();
+                FormMain.flagSelectUser = false;
 
                 toolStripStatusLabel2.Text = "Произведен выход из системы";
                 string path = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\cahce";
@@ -245,8 +251,8 @@ namespace Leticiya
         {
             if (tools.CheckConfig() != true || tools.Test() != true)
                 return;
-            Program.flagUpdateAdmin = false;
-            n = 0;
+            FormMain.flagUpdateAdmin = false;
+            AdminGridSelect = 0;
             dataGridViewAdmin.ClearSelection();
             formRequest.ShowDialog();
         }
@@ -273,10 +279,25 @@ namespace Leticiya
         {
             if (tools.CheckConfig() != true || tools.Test() != true)
                 return;
-            Program.flagUpdateAdmin = false;
-            n = 0;
+            FormMain.flagUpdateAdmin = false;
+            AdminGridSelect = 0;
             dataGridViewAdmin.ClearSelection();
             interactionTool.buttonClearBD();
+        }
+
+        //Кнопки переключения между страницами для admin
+        private void buttonPrevPage2_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(textBoxCoutPageAdmin.Text) > 1)
+                textBoxCoutPageAdmin.Text = (Convert.ToInt32(textBoxCoutPageAdmin.Text) - 1).ToString();
+        }
+
+        private void buttonNextPage2_Click(object sender, EventArgs e) => textBoxCoutPageAdmin.Text = (Convert.ToInt32(textBoxCoutPageAdmin.Text) + 1).ToString();
+
+        private void textBoxCoutPageAdmin_TextChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(textBoxCoutPageAdmin.Text) >= 1)
+                servicesAdmin.ReloadEditingBD(comboBox.Text);
         }
 
         //
@@ -288,88 +309,59 @@ namespace Leticiya
         {
             servicesAdmin.TextViewTextBox(servicesAdmin.ArrayUpdate());
             dataGridViewAdmin.Rows[dataGridViewAdmin.CurrentRow.Index].Selected = true;
-            Program.flagUpdateAdmin = true;
+            FormMain.flagUpdateAdmin = true;
 
             toolStripStatusLabel2.Text = $"Выбрана строка № {(dataGridViewAdmin.CurrentRow.Index + 1)}";
-        }
-
-        //Обработчик который просто выделяет всю строку при выделени одной ячейи
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            dataGridViewAdmin.Rows[dataGridViewAdmin.CurrentRow.Index].Selected = true;
-            n = dataGridViewAdmin.CurrentRow.Index;
         }
 
         //
         //Кнопки формы на page для user
         //
 
+        //Обработчик выбора вкладки на TreeView
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             treeViewItemSelect = e.Node.Text;
             servicesUser.ReloadViewBD(treeViewItemSelect);
         }
 
+        //Обработчки добавления
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
             if (tools.LoginGuest() != true)
                 return;
 
-            switch (treeViewItemSelect)
+            if(treeViewItemSelect == "Заказы")
             {
-                case "Заказы":
-                    FormAddEditDelOrder formAddEditDel = new FormAddEditDelOrder("add");
-                    formAddEditDel.ShowDialog();
-                    break;
-                case "Категории":
-                    FormAddEditDelOther formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "add");
-                    formAddEditDelOther.ShowDialog();   
-                    break;
-                case "Цеха":
-                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "add");
-                    formAddEditDelOther.ShowDialog();
-                    break;
-                case "Товары":
-                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "add");
-                    formAddEditDelOther.ShowDialog();
-                    break;
-                case "Заказчики":
-                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "add");
-                    formAddEditDelOther.ShowDialog();
-                    break;
+                FormAddEditDelOrder formAddEditDel = new FormAddEditDelOrder("add");
+                formAddEditDel.ShowDialog();
+            } 
+            else
+            {
+                FormAddEditDelOther formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "add");
+                formAddEditDelOther.ShowDialog();
             }
         }
 
+        //Обработчик изменения 
         private void buttonEditUser_Click(object sender, EventArgs e)
         {
             if (tools.LoginGuest() != true)
                 return;
 
-            switch (treeViewItemSelect)
+            if (treeViewItemSelect == "Заказы")
             {
-                case "Заказы":
-                    FormAddEditDelOrder formAddEditDel = new FormAddEditDelOrder("edit");
-                    formAddEditDel.ShowDialog();
-                    break;
-                case "Категории":
-                    FormAddEditDelOther formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "edit");
-                    formAddEditDelOther.ShowDialog();
-                    break;
-                case "Цеха":
-                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "edit");
-                    formAddEditDelOther.ShowDialog();
-                    break;
-                case "Товары":
-                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "edit");
-                    formAddEditDelOther.ShowDialog();
-                    break;
-                case "Заказчики":
-                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "edit");
-                    formAddEditDelOther.ShowDialog();
-                    break;
+                FormAddEditDelOrder formAddEditDel = new FormAddEditDelOrder("edit");
+                formAddEditDel.ShowDialog();
+            }
+            else
+            {
+                FormAddEditDelOther formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "edit");
+                formAddEditDelOther.ShowDialog();
             }
         }
 
+        //Обработчик удаления
         private void buttonDelUser_Click(object sender, EventArgs e)
         {
             if (tools.LoginGuest() != true)
@@ -378,43 +370,20 @@ namespace Leticiya
             switch (treeViewItemSelect)
             {
                 case "Заказы":
-                    FormAddEditDelOrder formAddEditDel = new FormAddEditDelOrder("del");
-                    formAddEditDel.ShowDialog();
+                    //
                     break;
-                case "Категории":
-                    FormAddEditDelOther formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "del");
-                    formAddEditDelOther.ShowDialog();
-                    break;
-                case "Цеха":
-                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "del");
-                    formAddEditDelOther.ShowDialog();
-                    break;
-                case "Товары":
-                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "del");
-                    formAddEditDelOther.ShowDialog();
-                    break;
-                case "Заказчики":
-                    formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "del");
-                    formAddEditDelOther.ShowDialog();
+                default:
+                    //
                     break;
             }
         }
 
 
 
+        
 
 
-
-
-
-        //Обработчик вызова диалогового окна при закрытие главной формы приложения
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение?", "Выход", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result != DialogResult.Yes)
-                e.Cancel = true;
-        }
-
+        //Кнопки переключения между страницами для user
         private void buttonNextpage_Click(object sender, EventArgs e) => textBoxCoutPage.Text = (Convert.ToInt32(textBoxCoutPage.Text) + 1).ToString();
 
         private void buttonPrevPage_Click(object sender, EventArgs e)
@@ -427,6 +396,23 @@ namespace Leticiya
         {
             if (Convert.ToInt32(textBoxCoutPage.Text) >= 1)
                 servicesUser.ReloadViewBD(treeViewItemSelect);
+        }
+
+        //Обработчик обрабатывающий двойное нажатие на строку в dataGridView на tabControl для админов
+        private void dataGridViewUser_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            dataGridViewUser.Rows[dataGridViewUser.CurrentRow.Index].Selected = true;
+            FormMain.flagSelectUser = true;
+
+            toolStripStatusLabel2.Text = $"Выбрана строка № {(dataGridViewUser.CurrentRow.Cells[0].Value)}";
+        }
+
+        //Обработчик вызова диалогового окна при закрытие главной формы приложения
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение?", "Выход", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+                e.Cancel = true;
         }
     }
 }

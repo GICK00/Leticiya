@@ -533,7 +533,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 75;
-            this.label1.Text = "Ф,И,О";
+            this.label1.Text = "Ф.И.О";
             // 
             // label11
             // 

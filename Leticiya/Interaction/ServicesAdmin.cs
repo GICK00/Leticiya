@@ -89,23 +89,29 @@ namespace Leticiya.Interaction
         //Вызов обновляет данные в dataGridView1 и сбрасывает выделенную строку
         public void ReloadEditingBD(string comboBox)
         {
-            string sql = $"SELECT * FROM public.\"{comboBox}\"";
+            string sql = $"SELECT * FROM public.\"{comboBox}\" LIMIT 41";
 
-                using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            int textBoxCoutPage = Convert.ToInt32(Program.formMain.textBoxCoutPageAdmin.Text);
+            int offsetPage = (textBoxCoutPage - 1) * 41;
+
+            if (textBoxCoutPage > 1)
+                sql += $"\r\nOFFSET {offsetPage}";           
+
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
                 {
-                    Program.connection.Open();
-                    using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
-                    {
-                        DataTable dataTable = new DataTable();
-                        dataTable.Load(dataReader);
-                        Program.formMain.dataGridViewAdmin.DataSource = dataTable;
-                        dataReader.Close();
-                    }
-                    Program.connection.Close();
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(dataReader);
+                    Program.formMain.dataGridViewAdmin.DataSource = dataTable;
+                    dataReader.Close();
                 }
-            
-            Program.flagUpdateAdmin = false;
-            FormMain.n = 0;
+                Program.connection.Close();
+            }
+
+            FormMain.flagUpdateAdmin = false;
+            FormMain.AdminGridSelect = 0;
             Program.formMain.dataGridViewAdmin.ClearSelection();
         }
 
