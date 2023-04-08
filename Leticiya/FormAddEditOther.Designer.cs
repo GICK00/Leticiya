@@ -1,6 +1,6 @@
 ﻿namespace Leticiya
 {
-    partial class FormAddEditDelOther
+    partial class FormAddEditOther
     {
         /// <summary>
         /// Required designer variable.

@@ -169,11 +169,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="FormAddEditDelOther.cs">
+    <Compile Include="Class\Customer.cs" />
+    <Compile Include="Class\Order.cs" />
+    <Compile Include="Class\Product.cs" />
+    <Compile Include="FormAddEditOther.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddEditDelOther.Designer.cs">
-      <DependentUpon>FormAddEditDelOther.cs</DependentUpon>
+    <Compile Include="FormAddEditOther.Designer.cs">
+      <DependentUpon>FormAddEditOther.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDeletedSearch.cs">
       <SubType>Form</SubType>
@@ -205,11 +208,11 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAddEditDelOrder.cs">
+    <Compile Include="FormAddEditlOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddEditDelOrder.Designer.cs">
-      <DependentUpon>FormAddEditDelOrder.cs</DependentUpon>
+    <Compile Include="FormAddEditlOrder.Designer.cs">
+      <DependentUpon>FormAddEditlOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRequest.cs">
       <SubType>Form</SubType>
@@ -232,8 +235,8 @@
     <Compile Include="Interaction\ServicesUser.cs" />
     <Compile Include="Interaction\Tools.cs" />
     <Compile Include="Program.cs" />
-    <EmbeddedResource Include="FormAddEditDelOther.resx">
-      <DependentUpon>FormAddEditDelOther.cs</DependentUpon>
+    <EmbeddedResource Include="FormAddEditOther.resx">
+      <DependentUpon>FormAddEditOther.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeletedSearch.resx">
       <DependentUpon>FormDeletedSearch.cs</DependentUpon>
@@ -257,8 +260,8 @@
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAddEditDelOrder.resx">
-      <DependentUpon>FormAddEditDelOrder.cs</DependentUpon>
+    <EmbeddedResource Include="FormAddEditlOrder.resx">
+      <DependentUpon>FormAddEditlOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

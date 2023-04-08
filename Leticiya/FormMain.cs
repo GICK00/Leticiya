@@ -333,12 +333,12 @@ namespace Leticiya
 
             if(treeViewItemSelect == "Заказы")
             {
-                FormAddEditDelOrder formAddEditDel = new FormAddEditDelOrder("add");
+                FormAddEditOrder formAddEditDel = new FormAddEditOrder("add");
                 formAddEditDel.ShowDialog();
             } 
             else
             {
-                FormAddEditDelOther formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "add");
+                FormAddEditOther formAddEditDelOther = new FormAddEditOther(treeViewItemSelect, "add");
                 formAddEditDelOther.ShowDialog();
             }
         }
@@ -351,12 +351,12 @@ namespace Leticiya
 
             if (treeViewItemSelect == "Заказы")
             {
-                FormAddEditDelOrder formAddEditDel = new FormAddEditDelOrder("edit");
+                FormAddEditOrder formAddEditDel = new FormAddEditOrder("edit");
                 formAddEditDel.ShowDialog();
             }
             else
             {
-                FormAddEditDelOther formAddEditDelOther = new FormAddEditDelOther(treeViewItemSelect, "edit");
+                FormAddEditOther formAddEditDelOther = new FormAddEditOther(treeViewItemSelect, "edit");
                 formAddEditDelOther.ShowDialog();
             }
         }
@@ -413,6 +413,19 @@ namespace Leticiya
             DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть приложение?", "Выход", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result != DialogResult.Yes)
                 e.Cancel = true;
+        }
+
+        //Оптимизация отображения таблиц при изменение размеров окна
+        private void FormMain_ResizeBegin(object sender, EventArgs e)
+        {
+            dataGridViewAdmin.Visible = false;
+            dataGridViewUser.Visible = false;
+        }
+
+        private void FormMain_ResizeEnd(object sender, EventArgs e)
+        {
+            dataGridViewAdmin.Visible = true;
+            dataGridViewUser.Visible = true;
         }
     }
 }

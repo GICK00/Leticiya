@@ -13,10 +13,10 @@ using System.Windows.Forms;
 
 namespace Leticiya
 {
-    public partial class FormAddEditDelOther : MaterialForm
+    public partial class FormAddEditOther : MaterialForm
     {
         private string type;
-        public FormAddEditDelOther(string name, string type)
+        public FormAddEditOther(string name, string type)
         {
             InitializeComponent();
 

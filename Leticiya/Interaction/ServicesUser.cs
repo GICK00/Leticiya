@@ -1,6 +1,8 @@
 ﻿using Npgsql;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
@@ -91,6 +93,85 @@ namespace Leticiya.Interaction
                 }
                 Program.connection.Close();
             }
+        }
+
+        public List<List<string>> DataTableCustomer()
+        {
+            List<List<string>> list = new List<List<string>>();
+            List<string> names = new List<string>();
+            List<string> dataCustomer = new List<string>();
+
+            const string sql = "SELECT \"CUSTOMER_ID\", \"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_ORGANIZATION\", \"CUSTOMER_TELEPHONE\"" + 
+                "\r\nFROM public.\"Customer\"";
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(dataReader);
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        names.Add(row["CUSTOMER_SURNAME"].ToString() + " " + row["CUSTOMER_NAME"].ToString() + " "
+                            + row["CUSTOMER_PATRONYMIC"].ToString() + " " + row["CUSTOMER_ORGANIZATION"].ToString());
+                        dataCustomer.Add(row["CUSTOMER_ID"].ToString() + "|" + row["CUSTOMER_SURNAME"].ToString() + " " + row["CUSTOMER_NAME"].ToString() + " "
+                            + row["CUSTOMER_PATRONYMIC"].ToString() + "|" + row["CUSTOMER_ORGANIZATION"].ToString() + "|" 
+                            + row["CUSTOMER_TELEPHONE"].ToString());
+                    }
+                    dataReader.Close();
+                }
+                Program.connection.Close();
+                list.Add(names);
+                list.Add(dataCustomer);
+            }
+            return list;
+        }
+
+        //Выгрузка в comboBox товаров для добавления
+        public List<List<string>> DataTableOrderProduct()
+        {
+            List<List<string>> list = new List<List<string>>();
+            List<string> names = new List<string>();
+            List<string> dataProducrt = new List<string>();
+
+            const string sql = "SELECT \"PRODUCT_ID\", \"PRODUCT_NAME\", \"CATEGORY_NAME\", \"PRODUCT_PRICE\"" +
+                "\r\nFROM public.\"Product\" p, public.\"Category\" c " +
+                "\r\nWHERE p.\"CATEGORY_ID\" = c.\"CATEGORY_ID\"";
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(dataReader);
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        names.Add(row["PRODUCT_NAME"].ToString());
+                        dataProducrt.Add(row["PRODUCT_ID"].ToString() + "|" + row["PRODUCT_NAME"].ToString() + "|" + row["CATEGORY_NAME"].ToString() + "|" + row["PRODUCT_PRICE"].ToString());
+                    }
+                    dataReader.Close();
+                }
+                Program.connection.Close();
+                list.Add(names);
+                list.Add(dataProducrt);
+            }
+            return list;
+        }
+
+        //Поиск информации в БД
+        public int SearchUser()
+        {
+            int id;
+            string sql = "SELECT \"ACCOUNTANT_ID\"" +
+                "\r\nFROM public.\"Accountant\" " +
+                $"\r\nWHERE \"ACCOUNTANT_SURNAME\" = '{FormLogin.Position[1]}' AND \"ACCOUNTANT_NAME\" = '{FormLogin.Position[2]}'";
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                id = (int?)sqlCommand.ExecuteScalar() ?? 0;
+                Program.connection.Close();
+            }
+            return id;
         }
     }
 }
