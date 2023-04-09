@@ -30,12 +30,12 @@ namespace Leticiya
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Заказы");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Категории");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Цеха");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Товары");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Заказчики");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Пользователи");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Заказы");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Категории");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Цеха");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Товары");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Заказчики");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Пользователи");
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -505,25 +505,25 @@ namespace Leticiya
             this.treeView.ItemHeight = 20;
             this.treeView.Location = new System.Drawing.Point(5, 38);
             this.treeView.Name = "treeView";
-            treeNode13.Name = "Заказы";
-            treeNode13.Text = "Заказы";
-            treeNode14.Name = "Категории";
-            treeNode14.Text = "Категории";
-            treeNode15.Name = "Цеха";
-            treeNode15.Text = "Цеха";
-            treeNode16.Name = "Товары";
-            treeNode16.Text = "Товары";
-            treeNode17.Name = "Заказчики";
-            treeNode17.Text = "Заказчики";
-            treeNode18.Name = "Пользователи";
-            treeNode18.Text = "Пользователи";
+            treeNode1.Name = "Заказы";
+            treeNode1.Text = "Заказы";
+            treeNode2.Name = "Категории";
+            treeNode2.Text = "Категории";
+            treeNode3.Name = "Цеха";
+            treeNode3.Text = "Цеха";
+            treeNode4.Name = "Товары";
+            treeNode4.Text = "Товары";
+            treeNode5.Name = "Заказчики";
+            treeNode5.Text = "Заказчики";
+            treeNode6.Name = "Пользователи";
+            treeNode6.Text = "Пользователи";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14,
-            treeNode15,
-            treeNode16,
-            treeNode17,
-            treeNode18});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6});
             this.treeView.Scrollable = false;
             this.treeView.Size = new System.Drawing.Size(132, 122);
             this.treeView.TabIndex = 0;

@@ -6,7 +6,6 @@ using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using Path = System.IO.Path;
 

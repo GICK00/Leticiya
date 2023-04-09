@@ -9,7 +9,7 @@ namespace Leticiya
         public static FormMain formMain;
         public static NpgsqlConnection connection;
 
-        public static string ver = "Ver. Alpha 0.2.0 L";
+        public static string ver = "Ver. Alpha 1.0.0 L";
         public const string key = "asK/332dsas27dgagf2Wk9#";
 
         public static bool SQLStat = false;
