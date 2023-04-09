@@ -31,18 +31,21 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBoxCategory = new System.Windows.Forms.TextBox();
             this.panel = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.buttonExit = new System.Windows.Forms.Button();
+            this.buttonAddEdit = new System.Windows.Forms.Button();
             this.panelAccountant = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.comboBoxPosition = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxAccountentName = new System.Windows.Forms.TextBox();
             this.panelProduct = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxWorkshop = new System.Windows.Forms.ComboBox();
@@ -70,12 +73,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBoxWorkshop = new System.Windows.Forms.TextBox();
-            this.buttonEdit = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.button1Add = new System.Windows.Forms.Button();
-            this.buttonExit = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.panel.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panelAccountant.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -90,7 +90,6 @@
             this.panelCategory.SuspendLayout();
             this.panelWorkshop.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -111,7 +110,6 @@
             this.textBoxCategory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxCategory.Location = new System.Drawing.Point(4, 5);
             this.textBoxCategory.Name = "textBoxCategory";
-            this.textBoxCategory.ReadOnly = true;
             this.textBoxCategory.Size = new System.Drawing.Size(290, 13);
             this.textBoxCategory.TabIndex = 50;
             // 
@@ -129,12 +127,58 @@
             this.panel.Size = new System.Drawing.Size(321, 330);
             this.panel.TabIndex = 79;
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.buttonExit);
+            this.panel5.Controls.Add(this.buttonAddEdit);
+            this.panel5.Location = new System.Drawing.Point(3, 265);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(315, 62);
+            this.panel5.TabIndex = 86;
+            // 
+            // buttonExit
+            // 
+            this.buttonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonExit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonExit.FlatAppearance.BorderSize = 0;
+            this.buttonExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonExit.Location = new System.Drawing.Point(83, 35);
+            this.buttonExit.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(145, 23);
+            this.buttonExit.TabIndex = 79;
+            this.buttonExit.Text = "Отмена";
+            this.buttonExit.UseVisualStyleBackColor = false;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
+            // buttonAddEdit
+            // 
+            this.buttonAddEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonAddEdit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonAddEdit.FlatAppearance.BorderSize = 0;
+            this.buttonAddEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.buttonAddEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.buttonAddEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddEdit.Location = new System.Drawing.Point(83, 7);
+            this.buttonAddEdit.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonAddEdit.Name = "buttonAddEdit";
+            this.buttonAddEdit.Size = new System.Drawing.Size(145, 23);
+            this.buttonAddEdit.TabIndex = 78;
+            this.buttonAddEdit.Text = "Добавить";
+            this.buttonAddEdit.UseVisualStyleBackColor = false;
+            this.buttonAddEdit.Click += new System.EventHandler(this.buttonAddEdit_Click);
+            // 
             // panelAccountant
             // 
             this.panelAccountant.BackColor = System.Drawing.Color.White;
             this.panelAccountant.Controls.Add(this.label13);
             this.panelAccountant.Controls.Add(this.panel9);
-            this.panelAccountant.Controls.Add(this.comboBox1);
+            this.panelAccountant.Controls.Add(this.comboBoxPosition);
             this.panelAccountant.Controls.Add(this.label10);
             this.panelAccountant.Controls.Add(this.label11);
             this.panelAccountant.Controls.Add(this.panel10);
@@ -162,37 +206,40 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel9.Controls.Add(this.textBox1);
+            this.panel9.Controls.Add(this.textBoxPassword);
             this.panel9.Location = new System.Drawing.Point(9, 95);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(297, 24);
             this.panel9.TabIndex = 81;
             // 
-            // textBox1
+            // textBoxPassword
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(4, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(290, 13);
-            this.textBox1.TabIndex = 50;
+            this.textBoxPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPassword.Location = new System.Drawing.Point(4, 5);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.ReadOnly = true;
+            this.textBoxPassword.Size = new System.Drawing.Size(290, 13);
+            this.textBoxPassword.TabIndex = 50;
             // 
-            // comboBox1
+            // comboBoxPosition
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(9, 139);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(297, 23);
-            this.comboBox1.TabIndex = 85;
+            this.comboBoxPosition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.comboBoxPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPosition.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBoxPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxPosition.FormattingEnabled = true;
+            this.comboBoxPosition.Items.AddRange(new object[] {
+            "admin",
+            "user"});
+            this.comboBoxPosition.Location = new System.Drawing.Point(9, 139);
+            this.comboBoxPosition.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.comboBoxPosition.Name = "comboBoxPosition";
+            this.comboBoxPosition.Size = new System.Drawing.Size(297, 23);
+            this.comboBoxPosition.TabIndex = 85;
             // 
             // label10
             // 
@@ -221,24 +268,23 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel10.Controls.Add(this.textBox2);
+            this.panel10.Controls.Add(this.textBoxLogin);
             this.panel10.Location = new System.Drawing.Point(9, 52);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(297, 24);
             this.panel10.TabIndex = 79;
             // 
-            // textBox2
+            // textBoxLogin
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.textBoxLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(4, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(290, 13);
-            this.textBox2.TabIndex = 50;
+            this.textBoxLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBoxLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxLogin.Location = new System.Drawing.Point(4, 5);
+            this.textBoxLogin.Name = "textBoxLogin";
+            this.textBoxLogin.Size = new System.Drawing.Size(290, 13);
+            this.textBoxLogin.TabIndex = 50;
             // 
             // label12
             // 
@@ -255,24 +301,23 @@
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel11.Controls.Add(this.textBox3);
+            this.panel11.Controls.Add(this.textBoxAccountentName);
             this.panel11.Location = new System.Drawing.Point(9, 9);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(297, 24);
             this.panel11.TabIndex = 78;
             // 
-            // textBox3
+            // textBoxAccountentName
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.textBoxAccountentName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Location = new System.Drawing.Point(4, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(290, 13);
-            this.textBox3.TabIndex = 50;
+            this.textBoxAccountentName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBoxAccountentName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxAccountentName.Location = new System.Drawing.Point(4, 5);
+            this.textBoxAccountentName.Name = "textBoxAccountentName";
+            this.textBoxAccountentName.Size = new System.Drawing.Size(290, 13);
+            this.textBoxAccountentName.TabIndex = 50;
             // 
             // panelProduct
             // 
@@ -349,7 +394,6 @@
             this.textBoxPRODUCT_PRICE.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPRODUCT_PRICE.Location = new System.Drawing.Point(4, 5);
             this.textBoxPRODUCT_PRICE.Name = "textBoxPRODUCT_PRICE";
-            this.textBoxPRODUCT_PRICE.ReadOnly = true;
             this.textBoxPRODUCT_PRICE.Size = new System.Drawing.Size(290, 13);
             this.textBoxPRODUCT_PRICE.TabIndex = 50;
             // 
@@ -408,7 +452,6 @@
             this.textBoxPRODUCT_NAME.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPRODUCT_NAME.Location = new System.Drawing.Point(4, 5);
             this.textBoxPRODUCT_NAME.Name = "textBoxPRODUCT_NAME";
-            this.textBoxPRODUCT_NAME.ReadOnly = true;
             this.textBoxPRODUCT_NAME.Size = new System.Drawing.Size(290, 13);
             this.textBoxPRODUCT_NAME.TabIndex = 50;
             // 
@@ -458,7 +501,6 @@
             this.textBoxCUSTOMER_ORGANIZATION.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxCUSTOMER_ORGANIZATION.Location = new System.Drawing.Point(4, 5);
             this.textBoxCUSTOMER_ORGANIZATION.Name = "textBoxCUSTOMER_ORGANIZATION";
-            this.textBoxCUSTOMER_ORGANIZATION.ReadOnly = true;
             this.textBoxCUSTOMER_ORGANIZATION.Size = new System.Drawing.Size(290, 13);
             this.textBoxCUSTOMER_ORGANIZATION.TabIndex = 50;
             // 
@@ -492,7 +534,6 @@
             this.textBoxCUSTOMER_TELEPHONE.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxCUSTOMER_TELEPHONE.Location = new System.Drawing.Point(4, 5);
             this.textBoxCUSTOMER_TELEPHONE.Name = "textBoxCUSTOMER_TELEPHONE";
-            this.textBoxCUSTOMER_TELEPHONE.ReadOnly = true;
             this.textBoxCUSTOMER_TELEPHONE.Size = new System.Drawing.Size(290, 13);
             this.textBoxCUSTOMER_TELEPHONE.TabIndex = 50;
             // 
@@ -526,7 +567,6 @@
             this.textBoxCUSTOMER_NAME.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxCUSTOMER_NAME.Location = new System.Drawing.Point(4, 5);
             this.textBoxCUSTOMER_NAME.Name = "textBoxCUSTOMER_NAME";
-            this.textBoxCUSTOMER_NAME.ReadOnly = true;
             this.textBoxCUSTOMER_NAME.Size = new System.Drawing.Size(290, 13);
             this.textBoxCUSTOMER_NAME.TabIndex = 50;
             // 
@@ -596,76 +636,10 @@
             this.textBoxWorkshop.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxWorkshop.Location = new System.Drawing.Point(4, 5);
             this.textBoxWorkshop.Name = "textBoxWorkshop";
-            this.textBoxWorkshop.ReadOnly = true;
             this.textBoxWorkshop.Size = new System.Drawing.Size(290, 13);
             this.textBoxWorkshop.TabIndex = 50;
             // 
-            // buttonEdit
-            // 
-            this.buttonEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonEdit.Enabled = false;
-            this.buttonEdit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonEdit.FlatAppearance.BorderSize = 0;
-            this.buttonEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.buttonEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
-            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonEdit.Location = new System.Drawing.Point(83, 7);
-            this.buttonEdit.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(145, 23);
-            this.buttonEdit.TabIndex = 77;
-            this.buttonEdit.Text = "Изменить";
-            this.buttonEdit.UseVisualStyleBackColor = false;
-            this.buttonEdit.Visible = false;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Controls.Add(this.buttonExit);
-            this.panel5.Controls.Add(this.button1Add);
-            this.panel5.Controls.Add(this.buttonEdit);
-            this.panel5.Location = new System.Drawing.Point(3, 265);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(315, 62);
-            this.panel5.TabIndex = 86;
-            // 
-            // button1Add
-            // 
-            this.button1Add.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1Add.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1Add.FlatAppearance.BorderSize = 0;
-            this.button1Add.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button1Add.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
-            this.button1Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1Add.Location = new System.Drawing.Point(83, 7);
-            this.button1Add.Margin = new System.Windows.Forms.Padding(0);
-            this.button1Add.Name = "button1Add";
-            this.button1Add.Size = new System.Drawing.Size(145, 23);
-            this.button1Add.TabIndex = 78;
-            this.button1Add.Text = "Добавить";
-            this.button1Add.UseVisualStyleBackColor = false;
-            // 
-            // buttonExit
-            // 
-            this.buttonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonExit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonExit.FlatAppearance.BorderSize = 0;
-            this.buttonExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.buttonExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
-            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonExit.Location = new System.Drawing.Point(83, 35);
-            this.buttonExit.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(145, 23);
-            this.buttonExit.TabIndex = 79;
-            this.buttonExit.Text = "Отмена";
-            this.buttonExit.UseVisualStyleBackColor = false;
-            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
-            // 
-            // FormAddEditDelOther
+            // FormAddEditOther
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -676,13 +650,14 @@
             this.MaximumSize = new System.Drawing.Size(327, 400);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(327, 400);
-            this.Name = "FormAddEditDelOther";
+            this.Name = "FormAddEditOther";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAddEditDelOther";
-            this.Load += new System.EventHandler(this.FormAddEditDelOther_Load);
+            this.Load += new System.EventHandler(this.FormAddEditOther_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.panelAccountant.ResumeLayout(false);
             this.panelAccountant.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -711,7 +686,6 @@
             this.panelWorkshop.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -751,18 +725,17 @@
         private System.Windows.Forms.Panel panelAccountant;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel9;
-        public System.Windows.Forms.TextBox textBox1;
-        public System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.TextBox textBoxPassword;
+        public System.Windows.Forms.ComboBox comboBoxPosition;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel10;
-        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox textBoxLogin;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel11;
-        public System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button buttonEdit;
+        public System.Windows.Forms.TextBox textBoxAccountentName;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button1Add;
+        private System.Windows.Forms.Button buttonAddEdit;
         private System.Windows.Forms.Button buttonExit;
     }
 }

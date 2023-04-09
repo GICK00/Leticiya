@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace Leticiya.Class
+﻿namespace Leticiya.Class
 {
     internal class Customer
     {
@@ -12,10 +10,10 @@ namespace Leticiya.Class
         public string Telephone;
         public string Address;
 
-        public Customer (int id, string surname, string name, string patronymic, string organization, string telephone, string address)
+        public Customer(int id, string surname, string name, string patronymic, string organization, string telephone, string address)
         {
             Id = id;
-            Surname = surname;  
+            Surname = surname;
             Name = name;
             Patronymic = patronymic;
             Organization = organization;

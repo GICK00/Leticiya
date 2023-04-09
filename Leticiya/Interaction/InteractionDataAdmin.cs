@@ -1,7 +1,6 @@
 ﻿using Npgsql;
 using System;
 using System.Data;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Leticiya.Interaction
@@ -14,7 +13,7 @@ namespace Leticiya.Interaction
         public void AddAndUpdate(string action)
         {
             string[] array = null;
-            if (action == "Update" && FormMain.flagUpdateAdmin == true)
+            if (action == "Update" && FormMain.flagSelectAdmin == true)
                 array = servicesAdmin.ArrayUpdate();
             else if (action == "Update")
             {
@@ -361,16 +360,19 @@ namespace Leticiya.Interaction
         }
 
         // Удаление данных из таблиц БД по указанному ID в таблице (для всех таблиц одиноковое написание ..._ID).
-        public void Deleted(Form form, TextBox textBox)
+        public void Deleted(int n)
         {
+            DialogResult result = MessageBox.Show("Вы уверенны что хотите удалить строку данных?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+                return;
             try
             {
                 Program.connection.Open();
-                string sql = $"DELETE FROM {Program.formMain.comboBox.Text} WHERE {Program.formMain.comboBox.Text.ToUpper()}_ID = @ID";
+                string sql = $"DELETE FROM public.\"{Program.formMain.comboBox.Text}\" WHERE \"{Program.formMain.comboBox.Text.ToUpper()}_ID\" = @ID";
                 using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
                 {
                     sqlCommand.Parameters.Add(new NpgsqlParameter("@ID", SqlDbType.Int));
-                    sqlCommand.Parameters["@ID"].Value = Convert.ToInt32(textBox.Text);
+                    sqlCommand.Parameters["@ID"].Value = n;
 
                     sqlCommand.ExecuteNonQuery();
                 }

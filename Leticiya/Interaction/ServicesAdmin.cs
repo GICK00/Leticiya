@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Leticiya.Interaction
@@ -95,7 +93,7 @@ namespace Leticiya.Interaction
             int offsetPage = (textBoxCoutPage - 1) * 41;
 
             if (textBoxCoutPage > 1)
-                sql += $"\r\nOFFSET {offsetPage}";           
+                sql += $"\r\nOFFSET {offsetPage}";
 
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {
@@ -110,7 +108,7 @@ namespace Leticiya.Interaction
                 Program.connection.Close();
             }
 
-            FormMain.flagUpdateAdmin = false;
+            FormMain.flagSelectAdmin = false;
             FormMain.AdminGridSelect = 0;
             Program.formMain.dataGridViewAdmin.ClearSelection();
         }

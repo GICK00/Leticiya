@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 
 namespace Leticiya.Class
 {
@@ -22,7 +20,7 @@ namespace Leticiya.Class
 
         public void AddProduct(int id, string name, double price, int cout)
         {
-            products.Add(new Product(id, name, price ,cout));
+            products.Add(new Product(id, name, price, cout));
         }
 
         public double OrderPrice()

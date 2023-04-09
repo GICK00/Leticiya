@@ -2,11 +2,11 @@
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
-using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using Path = System.IO.Path;
 
@@ -15,7 +15,8 @@ namespace Leticiya
     public partial class FormMain : MaterialForm
     {
         public static readonly MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-        private readonly InteractionDataAdmin interactionData = new InteractionDataAdmin();
+        private readonly InteractionDataAdmin interactionDataAdmin = new InteractionDataAdmin();
+        private readonly InteractionDataUser interactionDataUser = new InteractionDataUser();
         private readonly InteractionTool interactionTool = new InteractionTool();
         private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
         private readonly ServicesUser servicesUser = new ServicesUser();
@@ -28,7 +29,7 @@ namespace Leticiya
 
         public static string treeViewItemSelect = null;
 
-        public static bool flagUpdateAdmin = false;
+        public static bool flagSelectAdmin = false;
         public static bool flagSelectUser = false;
         public static int AdminGridSelect = 0;
         public static int UserGridSelect = 0;
@@ -38,10 +39,6 @@ namespace Leticiya
             Program.formMain = this;
 
             InitializeComponent();
-
-            //Под вопросом
-            //this.dataGridViewUser.RowsDefaultCellStyle.BackColor = Color.White;
-            //this.dataGridViewUser.AlternatingRowsDefaultCellStyle.BackColor = Color.SlateGray;
 
             new Thread(() =>
             {
@@ -116,7 +113,7 @@ namespace Leticiya
         {
             if (tools.Test() != true)
                 return;
-            interactionData.AddAndUpdate("Add");
+            interactionDataAdmin.AddAndUpdate("Add");
         }
 
         //Обработчик изменения выбранной информации для выбранной таблицы в comboBox
@@ -124,7 +121,7 @@ namespace Leticiya
         {
             if (tools.Test() != true)
                 return;
-            interactionData.AddAndUpdate("Update");
+            interactionDataAdmin.AddAndUpdate("Update");
         }
 
         //Обработчик поиска информации в выбранной таблицы в comboBox
@@ -141,8 +138,13 @@ namespace Leticiya
         {
             if (tools.Test() != true)
                 return;
-            FormDeletedSearch formDeletedAndSearch = new FormDeletedSearch("del");
-            formDeletedAndSearch.ShowDialog();
+
+            if (flagSelectAdmin == false)
+            {
+                MessageBox.Show("Выберете, что нужно изменить", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            interactionDataAdmin.Deleted(AdminGridSelect);
         }
 
         //Обработчик обновления информации в dataGriedView (выгрузка информации из таблиц БД в dataGriedView)
@@ -225,13 +227,13 @@ namespace Leticiya
 
                 dataGridViewAdmin.Enabled = false;
                 dataGridViewAdmin.DataSource = null;
-                
+
                 dataGridViewAdmin.ClearSelection();
-                FormMain.flagUpdateAdmin = false;                
+                FormMain.flagSelectAdmin = false;
 
                 dataGridViewUser.Enabled = false;
                 dataGridViewUser.DataSource = null;
-                
+
                 dataGridViewUser.ClearSelection();
                 FormMain.flagSelectUser = false;
 
@@ -251,7 +253,7 @@ namespace Leticiya
         {
             if (tools.CheckConfig() != true || tools.Test() != true)
                 return;
-            FormMain.flagUpdateAdmin = false;
+            FormMain.flagSelectAdmin = false;
             AdminGridSelect = 0;
             dataGridViewAdmin.ClearSelection();
             formRequest.ShowDialog();
@@ -279,7 +281,7 @@ namespace Leticiya
         {
             if (tools.CheckConfig() != true || tools.Test() != true)
                 return;
-            FormMain.flagUpdateAdmin = false;
+            FormMain.flagSelectAdmin = false;
             AdminGridSelect = 0;
             dataGridViewAdmin.ClearSelection();
             interactionTool.buttonClearBD();
@@ -305,13 +307,14 @@ namespace Leticiya
         //
 
         //Обработчик обрабатывающий двойное нажатие на строку в dataGridView на tabControl для админов
-        private void dataGridView1_MouseDoubleClick(object sender, EventArgs e)
+        private void dataGridViewAdmin_MouseDoubleClick(object sender, EventArgs e)
         {
             servicesAdmin.TextViewTextBox(servicesAdmin.ArrayUpdate());
-            dataGridViewAdmin.Rows[dataGridViewAdmin.CurrentRow.Index].Selected = true;
-            FormMain.flagUpdateAdmin = true;
+            FormMain.flagSelectAdmin = true;
 
-            toolStripStatusLabel2.Text = $"Выбрана строка № {(dataGridViewAdmin.CurrentRow.Index + 1)}";
+            AdminGridSelect = dataGridViewAdmin.CurrentRow.Index + 1;
+
+            toolStripStatusLabel2.Text = $"Выбрана строка № {dataGridViewAdmin.CurrentRow.Index + 1}";
         }
 
         //
@@ -323,6 +326,10 @@ namespace Leticiya
         {
             treeViewItemSelect = e.Node.Text;
             servicesUser.ReloadViewBD(treeViewItemSelect);
+            UserGridSelect = 0;
+            flagSelectUser = false;
+            toolStripStatusLabel2.Text = $"Выбран раздел {treeViewItemSelect}";
+
         }
 
         //Обработчки добавления
@@ -331,11 +338,11 @@ namespace Leticiya
             if (tools.LoginGuest() != true)
                 return;
 
-            if(treeViewItemSelect == "Заказы")
+            if (treeViewItemSelect == "Заказы")
             {
                 FormAddEditOrder formAddEditDel = new FormAddEditOrder("add");
                 formAddEditDel.ShowDialog();
-            } 
+            }
             else
             {
                 FormAddEditOther formAddEditDelOther = new FormAddEditOther(treeViewItemSelect, "add");
@@ -348,6 +355,12 @@ namespace Leticiya
         {
             if (tools.LoginGuest() != true)
                 return;
+
+            if(flagSelectUser == false)
+            {
+                MessageBox.Show("Выберете, что нужно изменить", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             if (treeViewItemSelect == "Заказы")
             {
@@ -367,20 +380,32 @@ namespace Leticiya
             if (tools.LoginGuest() != true)
                 return;
 
+            if (flagSelectUser == false)
+            {
+                MessageBox.Show("Выберете, что нужно удалить", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string sql = null;
             switch (treeViewItemSelect)
             {
                 case "Заказы":
-                    //
+                    sql = $"DELETE FROM \"Order_Product\"" +
+                    $"\r\nWHERE \"ORDER_ID\" = {UserGridSelect};" +
+                    $"\r\nDELETE FROM \"Order\" " +
+                    $"\r\nWHERE \"ORDER_ID\" = {UserGridSelect};";
                     break;
-                default:
-                    //
+                case "":
                     break;
+
             }
+
+            interactionDataUser.Deleted(sql);
         }
 
 
 
-        
+
 
 
         //Кнопки переключения между страницами для user
@@ -401,10 +426,11 @@ namespace Leticiya
         //Обработчик обрабатывающий двойное нажатие на строку в dataGridView на tabControl для админов
         private void dataGridViewUser_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            dataGridViewUser.Rows[dataGridViewUser.CurrentRow.Index].Selected = true;
             FormMain.flagSelectUser = true;
 
-            toolStripStatusLabel2.Text = $"Выбрана строка № {(dataGridViewUser.CurrentRow.Cells[0].Value)}";
+            UserGridSelect = (int)dataGridViewUser.CurrentRow.Cells[0].Value;
+
+            toolStripStatusLabel2.Text = $"Выбрана строка № {dataGridViewUser.CurrentRow.Cells[0].Value}";
         }
 
         //Обработчик вызова диалогового окна при закрытие главной формы приложения

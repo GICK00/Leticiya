@@ -2,10 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Windows;
 
 namespace Leticiya.Interaction
 {
@@ -55,6 +51,7 @@ namespace Leticiya.Interaction
                         "\r\n\"WORKSHOP_NAME\" AS \"Название цеха\"" +
                         "\r\nFROM public.\"Product\" p, public.\"Category\" c, public.\"Workshop\" w" +
                         "\r\nWHERE P.\"CATEGORY_ID\" = c.\"CATEGORY_ID\" AND p.\"WORKSHOP_ID\" = w.\"WORKSHOP_ID\"" +
+                        "\r\nORDER BY \"PRODUCT_ID\" DESC" +
                         "\r\nLIMIT 41";
                     if (textBoxCoutPage > 1)
                         sql += $"\r\nOFFSET {offsetPage}";
@@ -74,7 +71,8 @@ namespace Leticiya.Interaction
                     if (FormLogin.Position[0] == "admin")
                         sql += ", \"ACCOUNTANT_PASSWORD\" AS \"Пароль пользователя\", \"ACCOUNTANT_POSITION\" AS \"Права пользователя\"";
                     sql += "\r\nFROM public.\"Accountant\"" +
-                        "\r\nORDER BY \"ACCOUNTANT_ID\" DESC";
+                        "\r\nORDER BY \"ACCOUNTANT_ID\" DESC" +
+                        "\r\nLIMIT 41";
                     if (textBoxCoutPage > 1)
                         sql += $"\r\nOFFSET {offsetPage}";
                     break;
@@ -101,7 +99,7 @@ namespace Leticiya.Interaction
             List<string> names = new List<string>();
             List<string> dataCustomer = new List<string>();
 
-            const string sql = "SELECT \"CUSTOMER_ID\", \"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_ORGANIZATION\", \"CUSTOMER_TELEPHONE\"" + 
+            const string sql = "SELECT \"CUSTOMER_ID\", \"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_ORGANIZATION\", \"CUSTOMER_TELEPHONE\"" +
                 "\r\nFROM public.\"Customer\"";
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {
@@ -115,7 +113,7 @@ namespace Leticiya.Interaction
                         names.Add(row["CUSTOMER_SURNAME"].ToString() + " " + row["CUSTOMER_NAME"].ToString() + " "
                             + row["CUSTOMER_PATRONYMIC"].ToString() + " " + row["CUSTOMER_ORGANIZATION"].ToString());
                         dataCustomer.Add(row["CUSTOMER_ID"].ToString() + "|" + row["CUSTOMER_SURNAME"].ToString() + " " + row["CUSTOMER_NAME"].ToString() + " "
-                            + row["CUSTOMER_PATRONYMIC"].ToString() + "|" + row["CUSTOMER_ORGANIZATION"].ToString() + "|" 
+                            + row["CUSTOMER_PATRONYMIC"].ToString() + "|" + row["CUSTOMER_ORGANIZATION"].ToString() + "|"
                             + row["CUSTOMER_TELEPHONE"].ToString());
                     }
                     dataReader.Close();

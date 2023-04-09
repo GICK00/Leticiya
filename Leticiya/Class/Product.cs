@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace Leticiya.Class
+﻿namespace Leticiya.Class
 {
     internal class Product
     {

@@ -24,21 +24,18 @@ namespace Leticiya
                 materialSkinManager.ColorScheme = new ColorScheme(Primary.Grey300, Primary.Grey900, Primary.Grey200, Accent.LightBlue200, TextShade.BLACK);
             }).Start();
 
-            new Thread(() =>
+            type = t;
+            switch (type)
             {
-                type = t;
-                switch (type)
-                {
-                    case "del":
-                        this.Text = "Удаление";
-                        label1.Text = "Укажите номер в таблицы для удаление данных.";
-                        break;
-                    case "sea":
-                        this.Text = "Поиск";
-                        label1.Text = "Укажите данные для поиска.";
-                        break;
-                }
-            }).Start();
+                case "del":
+                    this.Text = "Удаление";
+                    label1.Text = "Укажите номер в таблицы для удаление данных.";
+                    break;
+                case "sea":
+                    this.Text = "Поиск";
+                    label1.Text = "Укажите данные для поиска.";
+                    break;
+            }
         }
 
         //Обработчик выполнения операции удаления либо поиска
@@ -46,11 +43,6 @@ namespace Leticiya
         {
             switch (type)
             {
-                case "del":
-                    DialogResult result = MessageBox.Show("Вы уверенны что хотите удалить строку данных?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result != DialogResult.No)
-                        interactionData.Deleted(this, textBox1);
-                    break;
                 case "sea":
                     Search();
                     break;

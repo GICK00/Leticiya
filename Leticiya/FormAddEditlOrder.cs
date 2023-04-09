@@ -2,16 +2,9 @@
 using Leticiya.Interaction;
 using MaterialSkin;
 using MaterialSkin.Controls;
-using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
 namespace Leticiya
@@ -21,10 +14,10 @@ namespace Leticiya
         private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
         private readonly ServicesUser servicesUser = new ServicesUser();
         private readonly InteractionDataUser interactionDataUser = new InteractionDataUser();
+
         private Order order;
         private int CustomerId;
         private int ProductId;
-
 
         private string type;
 
@@ -34,7 +27,7 @@ namespace Leticiya
 
             this.type = type;
 
-            if(type == "add")
+            if (type == "add")
                 buttonAddEdit.Text = "Добавить заказ";
             else
                 buttonAddEdit.Text = "Изменить заказ";
@@ -48,7 +41,7 @@ namespace Leticiya
             }).Start();
         }
 
-        
+
 
         private void FormAddEditOrder_Load(object sender, EventArgs e)
         {
@@ -56,18 +49,17 @@ namespace Leticiya
                 return;
             comboBoxCustomer.DataSource = servicesUser.DataTableCustomer()[0];
             comboBoxProduct.DataSource = servicesUser.DataTableOrderProduct()[0];
-
         }
 
         private void buttonAddEdit_Click(object sender, EventArgs e)
         {
-            if(CustomerId == -1)
+            if (CustomerId == -1)
             {
                 MessageBox.Show("Нет такого заказчика");
                 return;
             }
 
-            if(type == "add")
+            if (type == "add")
             {
                 order = new Order();
 
@@ -90,13 +82,17 @@ namespace Leticiya
 
                 order.Comment = textBoxComment.Text.Trim();
 
-                interactionDataUser.AddData(order);
+                interactionDataUser.AddDataOrder(order);
+                servicesUser.ReloadViewBD("Заказы");
+
+
+                Program.formMain.toolStripStatusLabel2.Text = "Заказ оформлен";
             }
             else
             {
-
+                Program.formMain.toolStripStatusLabel2.Text = "Заказ обновлен";
             }
-            
+
         }
 
         private void comboBoxCustomer_TextChanged(object sender, EventArgs e)
@@ -140,10 +136,16 @@ namespace Leticiya
             }
             catch
             {
-                MessageBox.Show("Введите количество товара!", "Предупреждение!", MessageBoxButtons.OK ,MessageBoxIcon.Information);
+                MessageBox.Show("Введите количество товара!", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        private void dataGridViewProduct_MouseDoubleClick(object sender, MouseEventArgs e) => dataGridViewProduct.Rows.RemoveAt(dataGridViewProduct.CurrentRow.Index);        
+        private void dataGridViewProduct_MouseDoubleClick(object sender, MouseEventArgs e) => dataGridViewProduct.Rows.RemoveAt(dataGridViewProduct.CurrentRow.Index);
+
+        private void textBoxCout_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+                e.Handled = true;
+        }
     }
 }

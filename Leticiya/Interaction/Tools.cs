@@ -3,7 +3,6 @@ using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Leticiya.Interaction
@@ -130,7 +129,7 @@ namespace Leticiya.Interaction
                 return FormLogin.Position;
             }
             catch
-            { 
+            {
                 return FormLogin.Position = null;
             }
             finally

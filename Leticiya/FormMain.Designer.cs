@@ -1062,7 +1062,7 @@ namespace Leticiya
             this.dataGridViewAdmin.Size = new System.Drawing.Size(859, 585);
             this.dataGridViewAdmin.TabIndex = 0;
             this.dataGridViewAdmin.TabStop = false;
-            this.dataGridViewAdmin.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            this.dataGridViewAdmin.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewAdmin_MouseDoubleClick);
             // 
             // FormMain
             // 

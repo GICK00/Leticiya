@@ -267,10 +267,12 @@ namespace Leticiya
             this.textBoxCout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.textBoxCout.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxCout.Location = new System.Drawing.Point(4, 5);
+            this.textBoxCout.MaxLength = 5;
             this.textBoxCout.Name = "textBoxCout";
             this.textBoxCout.Size = new System.Drawing.Size(120, 13);
             this.textBoxCout.TabIndex = 8;
             this.textBoxCout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxCout.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCout_KeyPress);
             // 
             // buttonAddProduct
             // 

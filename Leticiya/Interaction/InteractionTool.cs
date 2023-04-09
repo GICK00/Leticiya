@@ -1,5 +1,4 @@
 ﻿using Npgsql;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Leticiya.Interaction
