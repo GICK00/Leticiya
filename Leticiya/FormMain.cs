@@ -389,12 +389,30 @@ namespace Leticiya
             switch (treeViewItemSelect)
             {
                 case "Заказы":
-                    sql = $"DELETE FROM \"Order_Product\"" +
+                    sql = "DELETE FROM \"Order_Product\"" +
                     $"\r\nWHERE \"ORDER_ID\" = {UserGridSelect};" +
-                    $"\r\nDELETE FROM \"Order\" " +
+                    "\r\nDELETE FROM \"Order\" " +
                     $"\r\nWHERE \"ORDER_ID\" = {UserGridSelect};";
                     break;
-                case "":
+                case "Категории":
+                    sql = "DELETE FROM \"Category\"" +
+                    $"\r\nWHERE \"CATEGORY_ID\" = {UserGridSelect};";
+                    break;
+                case "Цеха":
+                    sql = "DELETE FROM \"Workshop\"" +
+                    $"\r\nWHERE \"WORKSHOP_ID\" = {UserGridSelect};";
+                    break;
+                case "Товары":
+                    sql = "DELETE FROM \"Product\"" +
+                    $"\r\nWHERE \"PRODUCT_ID\" = {UserGridSelect};";
+                    break;
+                case "Заказчики":
+                    sql = "DELETE FROM \"Customer\"" +
+                    $"\r\nWHERE \"CUSTOMER_ID\" = {UserGridSelect};";
+                    break;
+                case "Пользователи":
+                    sql = "DELETE FROM \"Accountant\"" +
+                    $"\r\nWHERE \"ACCOUNTANT_ID\" = {UserGridSelect};";
                     break;
 
             }
