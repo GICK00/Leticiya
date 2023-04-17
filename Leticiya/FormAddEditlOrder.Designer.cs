@@ -34,10 +34,6 @@ namespace Leticiya
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddEditOrder));
             this.buttonAddEdit = new System.Windows.Forms.Button();
             this.dataGridViewProduct = new System.Windows.Forms.DataGridView();
-            this.NameProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cout = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBoxCustomer = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -73,6 +69,11 @@ namespace Leticiya
             this.label12 = new System.Windows.Forms.Label();
             this.panel18 = new System.Windows.Forms.Panel();
             this.textBoxComment = new System.Windows.Forms.TextBox();
+            this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cout = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduct)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -117,6 +118,7 @@ namespace Leticiya
             this.dataGridViewProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdProduct,
             this.NameProduct,
             this.Category,
             this.Cout,
@@ -143,30 +145,6 @@ namespace Leticiya
             this.dataGridViewProduct.TabIndex = 71;
             this.dataGridViewProduct.TabStop = false;
             this.dataGridViewProduct.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewProduct_MouseDoubleClick);
-            // 
-            // NameProduct
-            // 
-            this.NameProduct.HeaderText = "Название товара";
-            this.NameProduct.Name = "NameProduct";
-            this.NameProduct.ReadOnly = true;
-            // 
-            // Category
-            // 
-            this.Category.HeaderText = "Категория товара";
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            // 
-            // Cout
-            // 
-            this.Cout.HeaderText = "Количество товара";
-            this.Cout.Name = "Cout";
-            this.Cout.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Цеан товара (за шт.)";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
             // 
             // label7
             // 
@@ -616,6 +594,36 @@ namespace Leticiya
             this.textBoxComment.TabIndex = 10;
             this.textBoxComment.Text = "Подьем на 3 этаж, отсутствует грузовой лифт";
             // 
+            // IdProduct
+            // 
+            this.IdProduct.HeaderText = "Номер товара";
+            this.IdProduct.Name = "IdProduct";
+            this.IdProduct.ReadOnly = true;
+            // 
+            // NameProduct
+            // 
+            this.NameProduct.HeaderText = "Название товара";
+            this.NameProduct.Name = "NameProduct";
+            this.NameProduct.ReadOnly = true;
+            // 
+            // Category
+            // 
+            this.Category.HeaderText = "Категория товара";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            // 
+            // Cout
+            // 
+            this.Cout.HeaderText = "Количество товара";
+            this.Cout.Name = "Cout";
+            this.Cout.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цеан товара (за шт.)";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
             // FormAddEditOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -696,6 +704,7 @@ namespace Leticiya
         private System.Windows.Forms.Panel panel6;
         public System.Windows.Forms.TextBox textBoxCout;
         private System.Windows.Forms.Label label14;
+        private DataGridViewTextBoxColumn IdProduct;
         private DataGridViewTextBoxColumn NameProduct;
         private DataGridViewTextBoxColumn Category;
         private DataGridViewTextBoxColumn Cout;

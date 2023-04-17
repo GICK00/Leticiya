@@ -17,7 +17,6 @@ namespace Leticiya
 
         private Order order;
         private int CustomerId;
-        private int ProductId;
 
         private string type;
 
@@ -78,7 +77,7 @@ namespace Leticiya
                 order.DeleveryPrice = Convert.ToDouble(textBoxDeleveryPrice.Text.Trim());
 
                 for (int i = 0; i < dataGridViewProduct.Rows.Count; i++)
-                    order.AddProduct(ProductId, dataGridViewProduct["NameProduct", i].Value.ToString(), Convert.ToDouble(dataGridViewProduct["Price", i].Value), Convert.ToInt32(dataGridViewProduct["Cout", i].Value));
+                    order.AddProduct(Convert.ToInt32(dataGridViewProduct["IdProduct", i].Value), dataGridViewProduct["NameProduct", i].Value.ToString(), Convert.ToDouble(dataGridViewProduct["Price", i].Value), Convert.ToInt32(dataGridViewProduct["Cout", i].Value));
 
                 order.Comment = textBoxComment.Text.Trim();
 
@@ -128,8 +127,7 @@ namespace Leticiya
                     data = row.Split("|".ToCharArray());
                     if (data[1] == comboBoxProduct.Text)
                     {
-                        dataGridViewProduct.Rows.Add(data[1], data[2], Convert.ToInt32(textBoxCout.Text), data[3]);
-                        ProductId = Convert.ToInt32(data[0]);
+                        dataGridViewProduct.Rows.Add(data[0], data[1], data[2], Convert.ToInt32(textBoxCout.Text), data[3]);
                         return;
                     }
                 }

@@ -63,13 +63,16 @@ namespace Leticiya.Interaction
                 Program.connection.Close();
             }
 
-
             if (order.products.Count == 0)
                 return;
-            sql = "INSERT INTO public.\"Order_Product\" (\"ORDER_ID\", \"PRODUCT_ID\", \"ORDER_PRODUCT_COUT\")" +
-                $"\r\nVALUES ('{OrderId}', '{order.products[0].Id}', '{order.products[0].Cout}')";
-            for (int i = 0; i < order.products.Count; i++)
-                sql += $",\r\n('{OrderId}', '{order.products[i].Id}', '{order.products[i].Cout}')";
+            if (order.products.Count >= 1)
+                sql = "INSERT INTO public.\"Order_Product\" (\"ORDER_ID\", \"PRODUCT_ID\", \"ORDER_PRODUCT_COUT\")" +
+                    $"\r\nVALUES ('{OrderId}', '{order.products[0].Id}', '{order.products[0].Cout}')";
+            if (order.products.Count > 1)
+            {
+                for (int i = 1; i < order.products.Count; i++)
+                    sql += $",\r\n('{OrderId}', '{order.products[i].Id}', '{order.products[i].Cout}')";
+            }
 
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {

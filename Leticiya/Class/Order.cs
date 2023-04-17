@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 
 namespace Leticiya.Class
 {
@@ -27,7 +28,7 @@ namespace Leticiya.Class
         {
             double sum = 0;
             for (int i = 0; i < products.Count; i++)
-                sum += products[i].Cout * products[i].Price;
+                sum += products[i].Cout * products[i].Price;                
             return sum + DeleveryPrice;
         }
     }
