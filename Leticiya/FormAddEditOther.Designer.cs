@@ -221,7 +221,6 @@
             this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPassword.Location = new System.Drawing.Point(4, 5);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.ReadOnly = true;
             this.textBoxPassword.Size = new System.Drawing.Size(290, 13);
             this.textBoxPassword.TabIndex = 50;
             // 

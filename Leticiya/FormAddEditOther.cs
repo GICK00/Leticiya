@@ -86,25 +86,32 @@ namespace Leticiya
                             string[] FIO = textBoxCUSTOMER_NAME.Text.Trim().Split();
                             if (FIO.Length > 3)
                                 sql = "INSERT INTO \"Customer\" (\"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_TELEPHONE\", \"CUSTOMER_ORGANIZATION\")" +
-                                    $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','','{textBoxCUSTOMER_TELEPHONE.Text.Trim()}','{textBoxCUSTOMER_ORGANIZATION.Text.Trim()}')";
+                                    $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','{FIO[2]}','{textBoxCUSTOMER_TELEPHONE.Text.Trim()}','{textBoxCUSTOMER_ORGANIZATION.Text.Trim()}')";
                             else
                                 sql = "INSERT INTO \"Customer\" (\"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_TELEPHONE\", \"CUSTOMER_ORGANIZATION\")" +
-                                    $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','{FIO[2]}','{textBoxCUSTOMER_TELEPHONE.Text.Trim()}','{textBoxCUSTOMER_ORGANIZATION.Text.Trim()}')";
+                                    $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','','{textBoxCUSTOMER_TELEPHONE.Text.Trim()}','{textBoxCUSTOMER_ORGANIZATION.Text.Trim()}')";
                             break;
                         case "Пользователи":
                             FIO = textBoxAccountentName.Text.Trim().Split();
-                            if (FIO.Length == 3)
-                                sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
-                                    $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','{FIO[2]}','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
-                            else if (FIO.Length == 2)
-                                sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
-                                    $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
-                            else if (FIO.Length == 1)
-                                sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
-                                    $"\r\n\tVALUES ('{FIO[0]}','','','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
-                            else
-                                sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
-                                    $"\r\n\tVALUES ('{FIO[0]}','','','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
+                            switch(FIO.Length)
+                            {
+                                case 3:
+                                    sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
+                                        $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','{FIO[2]}','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
+                                    break;
+                                case 2:
+                                    sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
+                                        $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
+                                    break;
+                                case 1:
+                                    sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
+                                        $"\r\n\tVALUES ('{FIO[0]}','','','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
+                                    break;
+                                case 0:
+                                    sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
+                                        $"\r\n\tVALUES ('','','','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
+                                    break;
+                            }
                             break;
                     }
                     interactionDataUser.AddDataOther(sql);
