@@ -74,14 +74,6 @@ namespace Leticiya.Interaction
             Program.formMain.toolStripStatusLabel2.Text = $"Выбрана таблица {Program.formMain.comboBox.Text}";*/
         }
 
-        //Метод вызова панели загрузки
-        public static void PanelLoad()
-        {
-            FormLoad formLoad = new FormLoad(null, null);
-            formLoad.progressBar.Value = 0;
-            formLoad.ShowDialog();
-        }
-
         //Метод вывода содержимого таблицы БД в таблицу dataGridView1
         //Выбранная таблица определяется пользователем или находится по стандарту в comboBox
         //Вызов обновляет данные в dataGridView1 и сбрасывает выделенную строку

@@ -30,12 +30,12 @@ namespace Leticiya
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Заказы");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Категории");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Цеха");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Товары");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Заказчики");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Пользователи");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Заказы");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Категории");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Цеха");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Товары");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Заказчики");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Пользователи");
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -106,6 +106,8 @@ namespace Leticiya
             this.buttonSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewAdmin = new System.Windows.Forms.DataGridView();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.CreateInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -145,7 +147,8 @@ namespace Leticiya
             this.toolStripLabel3,
             this.toolStripSeparator2,
             this.toolStripLabel5,
-            this.toolStripButtonSettings});
+            this.toolStripButtonSettings,
+            this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 55);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -505,25 +508,25 @@ namespace Leticiya
             this.treeView.ItemHeight = 20;
             this.treeView.Location = new System.Drawing.Point(5, 38);
             this.treeView.Name = "treeView";
-            treeNode1.Name = "Заказы";
-            treeNode1.Text = "Заказы";
-            treeNode2.Name = "Категории";
-            treeNode2.Text = "Категории";
-            treeNode3.Name = "Цеха";
-            treeNode3.Text = "Цеха";
-            treeNode4.Name = "Товары";
-            treeNode4.Text = "Товары";
-            treeNode5.Name = "Заказчики";
-            treeNode5.Text = "Заказчики";
-            treeNode6.Name = "Пользователи";
-            treeNode6.Text = "Пользователи";
+            treeNode7.Name = "Заказы";
+            treeNode7.Text = "Заказы";
+            treeNode8.Name = "Категории";
+            treeNode8.Text = "Категории";
+            treeNode9.Name = "Цеха";
+            treeNode9.Text = "Цеха";
+            treeNode10.Name = "Товары";
+            treeNode10.Text = "Товары";
+            treeNode11.Name = "Заказчики";
+            treeNode11.Text = "Заказчики";
+            treeNode12.Name = "Пользователи";
+            treeNode12.Text = "Пользователи";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6});
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12});
             this.treeView.Scrollable = false;
             this.treeView.Size = new System.Drawing.Size(132, 122);
             this.treeView.TabIndex = 0;
@@ -1064,6 +1067,24 @@ namespace Leticiya
             this.dataGridViewAdmin.TabStop = false;
             this.dataGridViewAdmin.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewAdmin_MouseDoubleClick);
             // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CreateInvoiceToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(86, 24);
+            this.toolStripDropDownButton1.Text = "Документы";
+            // 
+            // CreateInvoiceToolStripMenuItem
+            // 
+            this.CreateInvoiceToolStripMenuItem.Name = "CreateInvoiceToolStripMenuItem";
+            this.CreateInvoiceToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.CreateInvoiceToolStripMenuItem.Text = "Создать накладную на заказ";
+            this.CreateInvoiceToolStripMenuItem.Click += new System.EventHandler(this.CreateInvoiceToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1185,5 +1206,7 @@ namespace Leticiya
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem CreateInvoiceToolStripMenuItem;
     }
 }

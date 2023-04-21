@@ -44,7 +44,13 @@ namespace Leticiya.Interaction
             return false;
         }
 
-
+        //Метод вызова панели загрузки
+        public static void PanelLoad(string sql, string type)
+        {
+            FormLoad formLoad = new FormLoad(sql, type);
+            formLoad.progressBar.Value = 0;
+            formLoad.ShowDialog();
+        }
 
         //Функция проверки поля SQLStat на bool значение для вывода соответвующих уведомлений для пользоватля
         public bool Test()

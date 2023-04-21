@@ -14,8 +14,7 @@ namespace Leticiya.Interaction
 
             string path = ServicesAdmin.saveFileDialogBack.FileName;
             string sql = $@"BACKUP DATABASE[{builder["Database"]}] TO DISK = N'{path}' WITH NOFORMAT, NOINIT, NAME = N'{builder["Database"]}-Полная База данных Резервное копирование', SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
-            FormLoad formLoad = new FormLoad(sql, "back");
-            formLoad.ShowDialog();
+            Tools.PanelLoad(sql, "back");
         }
 
         // Восстанавливает БД из выбранной резервной копии.
@@ -31,8 +30,7 @@ namespace Leticiya.Interaction
 
             string path = ServicesAdmin.openFileDialogRes.FileName;
             string sql = $@"USE master RESTORE DATABASE [{builder["Database"]}] FROM  DISK = N'{path}' WITH REPLACE, FILE = 1,  NOUNLOAD,  STATS = 5";
-            FormLoad formLoad = new FormLoad(sql, "res");
-            formLoad.ShowDialog();
+            Tools.PanelLoad(sql, "res");
         }
 
         // Очищает все таблицы БД от данных кроме таблицы Autorization (она необходима для авторизации в приложении). 

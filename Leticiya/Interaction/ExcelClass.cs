@@ -1,6 +1,4 @@
-﻿using Leticiya.Interaction;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -18,7 +16,7 @@ namespace Leticiya.Interaction
             Excel.Application application = new Excel.Application();
             Excel.Workbook workbook = application.Workbooks.Add();
             Excel.Worksheet worksheet = workbook.Sheets[1];
-
+            Excel.Range _excelCells;
             DataTable dataTable = new DataTable();
 
             //dataTable = servicesUser.StudentDebtors(Id_Order);
@@ -34,30 +32,52 @@ namespace Leticiya.Interaction
             WHERE o."ORDER_ID" = 1 AND o."ORDER_ID" = op."ORDER_ID" AND op."PRODUCT_ID" = p."PRODUCT_ID" AND p."CATEGORY_ID" = c."CATEGORY_ID"
             */
 
-            Excel.Range _excelCells1 = (Excel.Range)worksheet.get_Range("A1", "F1").Cells;
-            _excelCells1.Merge(Type.Missing);
+            worksheet.Range["D3"].Value = "НАКЛАДНАЯ";
+            worksheet.Range["E3"].Value = $"№{Id_Order} от {DateTime.Now.ToString("dd:MM:yyyy")} г.";
 
-            List<string> names = new List<string>();
-            List<string> number = new List<string>();
-            List<string> debtors = new List<string>();
+            worksheet.Range["B5"].Value = "Отправитель:";
+            worksheet.Range["D5"].Value = "";
 
-            foreach (DataRow row in dataTable.Rows)
+            worksheet.Range["B7"].Value = "Получатель:";
+            worksheet.Range["D7"].Value = "";
+
+            worksheet.Range["B11"].Value = "№";
+            worksheet.Range["B12"].Value = "п/п";
+
+            _excelCells = (Excel.Range)worksheet.get_Range("C11", "F11").Cells;
+            _excelCells.Merge(Type.Missing);
+            _excelCells = (Excel.Range)worksheet.get_Range("G11", "H11").Cells;
+            _excelCells.Merge(Type.Missing);
+            _excelCells = (Excel.Range)worksheet.get_Range("G12", "H12").Cells;
+            _excelCells.Merge(Type.Missing);
+
+            worksheet.Range["C11"].Value = "Наименование товарно-материальных ценностей";
+            worksheet.Range["G11"].Value = "Количество,";
+            worksheet.Range["G12"].Value = "шт.";
+            worksheet.Range["I11"].Value = "Цена,";
+            worksheet.Range["I12"].Value = "руб.";
+            worksheet.Range["I11"].Value = "Сумма,";
+            worksheet.Range["I12"].Value = "руб.";
+
+            int n = 4 + 4;
+            for (int i = 0; i < n; i++)
             {
-                names.Add(row["STUDENT_SURNAME"].ToString().Trim() + " " + row["STUDENT_NAME"].ToString().Trim() + " "
-                    + row["STUDENT_PATRONUMIC"].ToString().Trim());
-                number.Add(row["STUDENT_NUM_RECORD_BOOK"].ToString().Trim());
-                debtors.Add("Количество задолжностей: " + row["Количество задолжностей"].ToString().Trim());
+                worksheet.Range[$"B{13 + i}"].Value = i + 1;
+                _excelCells = (Excel.Range)worksheet.get_Range($"C{12 + i}", $"F{12 + i}").Cells;
+                _excelCells.Merge(Type.Missing);
+                _excelCells = (Excel.Range)worksheet.get_Range($"G{12 + i}", $"H{12 + i}").Cells;
+                _excelCells.Merge(Type.Missing);
             }
 
-            worksheet.Range["A1"].Value = $"Список должников группы {Id_Order} {DateTime.Now}";
-            for (int i = 2; i < names.Count + 2; i++)
-            {
-                Excel.Range _excelCells2 = (Excel.Range)worksheet.get_Range($"B{i + 1}", $"E{i + 1}").Cells;
-                _excelCells2.Merge(Type.Missing);
-                worksheet.Cells[i + 1, 2].Value = names[i - 2];
-                worksheet.Cells[i + 1, 6].Value = number[i - 2];
-                worksheet.Cells[i + 1, 7].Value = debtors[i - 2];
-            }
+            _excelCells = (Excel.Range)worksheet.get_Range($"C{12 + n}", $"F{12 + n}").Cells;
+            _excelCells.Merge(Type.Missing);
+
+            worksheet.Range[$"C{13 + n}"].Value = "Итого: ";
+
+
+
+
+
 
             worksheet.Columns.AutoFit();
 

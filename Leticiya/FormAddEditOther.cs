@@ -93,7 +93,7 @@ namespace Leticiya
                             break;
                         case "Пользователи":
                             FIO = textBoxAccountentName.Text.Trim().Split();
-                            switch(FIO.Length)
+                            switch (FIO.Length)
                             {
                                 case 3:
                                     sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +

@@ -2,7 +2,6 @@
 using Npgsql;
 using NpgsqlTypes;
 using System;
-using System.Data;
 using System.Windows.Forms;
 
 namespace Leticiya.Interaction
@@ -98,7 +97,7 @@ namespace Leticiya.Interaction
             if (result == DialogResult.No)
                 return;
             try
-            {                
+            {
                 using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
                 {
                     Program.connection.Open();

@@ -46,10 +46,10 @@ namespace Leticiya
                 materialSkinManager.ColorScheme = new ColorScheme(Primary.Grey300, Primary.Grey900, Primary.Grey200, Accent.LightBlue200, TextShade.BLACK);
             }).Start();
 
-            ServicesAdmin.saveFileDialogBack.Filter = "Bak files(*bak)|*bak";
-
+            ServicesAdmin.saveFileDialogBack.Filter = "Bak files(*.bak)|*.bak";
+            ExcelClass.saveFileDialogExp.Filter = "Excel files(*.xlsx)|*.xlsx";
             ServicesAdmin.openFileDialogSQL.Filter = "Sql files(*.sql)|*.sql| Text files(*.txt)|*.txt| All files(*.*)|*.*";
-            ServicesAdmin.openFileDialogRes.Filter = "Bak files(*bak)|*bak";
+            ServicesAdmin.openFileDialogRes.Filter = "Bak files(*.bak)|*.bak";
 
             servicesAdmin.Visibl();
 
@@ -71,7 +71,7 @@ namespace Leticiya
                 }).Start();
             }
 
-            ServicesAdmin.PanelLoad();
+            Tools.PanelLoad("", "open");
             if (tools.Test() != true)
                 return;
             toolStripStatusLabel2.Text = "Готово к работе";
@@ -165,8 +165,23 @@ namespace Leticiya
             servicesAdmin.Filter(comboBox.Text, comboBoxFilter.Text);
         }
 
+        //Кнопки переключения между страницами для admin
+        private void buttonPrevPage2_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(textBoxCoutPageAdmin.Text) > 1)
+                textBoxCoutPageAdmin.Text = (Convert.ToInt32(textBoxCoutPageAdmin.Text) - 1).ToString();
+        }
+
+        private void buttonNextPage2_Click(object sender, EventArgs e) => textBoxCoutPageAdmin.Text = (Convert.ToInt32(textBoxCoutPageAdmin.Text) + 1).ToString();
+
+        private void textBoxCoutPageAdmin_TextChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(textBoxCoutPageAdmin.Text) >= 1)
+                servicesAdmin.ReloadEditingBD(comboBox.Text);
+        }
+
         //
-        //ToolStrip1 на page для admin
+        //ToolStrip
         //
 
         //Обработчик переподключения к БД
@@ -174,7 +189,7 @@ namespace Leticiya
         {
             if (tools.CheckConfig() != true)
                 return;
-            Interaction.ServicesAdmin.PanelLoad();
+            Tools.PanelLoad("", "open");
             if (Program.SQLStat != false)
             {
                 MessageBox.Show("Подключение к базе данных установленно", "Проверка подключения", MessageBoxButtons.OK);
@@ -286,19 +301,26 @@ namespace Leticiya
             interactionTool.buttonClearBD();
         }
 
-        //Кнопки переключения между страницами для admin
-        private void buttonPrevPage2_Click(object sender, EventArgs e)
+        //Обработчик для создания накладной на заказ
+        private void CreateInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(textBoxCoutPageAdmin.Text) > 1)
-                textBoxCoutPageAdmin.Text = (Convert.ToInt32(textBoxCoutPageAdmin.Text) - 1).ToString();
-        }
+            if (tools.LoginGuest() != true)
+                return;
+            if (treeViewItemSelect != "Заказы")
+            {
+                MessageBox.Show("Откройте раздел \"Заказы\" и выберети заказ для создания накладной.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
 
-        private void buttonNextPage2_Click(object sender, EventArgs e) => textBoxCoutPageAdmin.Text = (Convert.ToInt32(textBoxCoutPageAdmin.Text) + 1).ToString();
-
-        private void textBoxCoutPageAdmin_TextChanged(object sender, EventArgs e)
-        {
-            if (Convert.ToInt32(textBoxCoutPageAdmin.Text) >= 1)
-                servicesAdmin.ReloadEditingBD(comboBox.Text);
+            }
+            if (flagSelectUser == false)
+            {
+                MessageBox.Show("Выберете заказ на который нужно создать накладную.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            ExcelClass.saveFileDialogExp.FileName = $"Накладаная_№{UserGridSelect}_{DateTime.Now.ToString("dd.MM.yyyy")}.xlsx";
+            if (tools.Test() != true || ExcelClass.saveFileDialogExp.ShowDialog() == DialogResult.Cancel)
+                return;
+            Tools.PanelLoad(UserGridSelect.ToString(), "excel");
         }
 
         //
@@ -355,7 +377,7 @@ namespace Leticiya
             if (tools.LoginGuest() != true)
                 return;
 
-            if(flagSelectUser == false)
+            if (flagSelectUser == false)
             {
                 MessageBox.Show("Выберете, что нужно изменить", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -420,11 +442,6 @@ namespace Leticiya
             interactionDataUser.Deleted(sql);
         }
 
-
-
-
-
-
         //Кнопки переключения между страницами для user
         private void buttonNextpage_Click(object sender, EventArgs e) => textBoxCoutPage.Text = (Convert.ToInt32(textBoxCoutPage.Text) + 1).ToString();
 
@@ -440,6 +457,10 @@ namespace Leticiya
                 servicesUser.ReloadViewBD(treeViewItemSelect);
         }
 
+        //
+        //DataGriedView на page для user
+        //
+
         //Обработчик обрабатывающий двойное нажатие на строку в dataGridView на tabControl для админов
         private void dataGridViewUser_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -449,6 +470,10 @@ namespace Leticiya
 
             toolStripStatusLabel2.Text = $"Выбрана строка № {dataGridViewUser.CurrentRow.Cells[0].Value}";
         }
+
+        //
+        //Настройки формы
+        //
 
         //Обработчик вызова диалогового окна при закрытие главной формы приложения
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
