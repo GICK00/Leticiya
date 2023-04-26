@@ -436,7 +436,6 @@ namespace Leticiya
                     sql = "DELETE FROM \"Accountant\"" +
                     $"\r\nWHERE \"ACCOUNTANT_ID\" = {UserGridSelect};";
                     break;
-
             }
 
             interactionDataUser.Deleted(sql);
@@ -471,6 +470,24 @@ namespace Leticiya
             toolStripStatusLabel2.Text = $"Выбрана строка № {dataGridViewUser.CurrentRow.Cells[0].Value}";
         }
 
+        //Контекстное меня для DataGriedViewUser для раздела Заказы
+        private void toolStripButtonViewFullOrder_Click(object sender, EventArgs e)
+        {
+            if (flagSelectUser == false)
+            {
+                MessageBox.Show("Выберете заказ для просмотра.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            FormViewFullOrder formViewFullOrder = new FormViewFullOrder(UserGridSelect);
+            formViewFullOrder.Show();
+        }
+
+        private void contextMenuStripGriedViewUser_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (treeViewItemSelect != "Заказы")
+                e.Cancel = true;
+        }
+
         //
         //Настройки формы
         //
@@ -494,23 +511,6 @@ namespace Leticiya
         {
             dataGridViewAdmin.Visible = true;
             dataGridViewUser.Visible = true;
-        }
-
-        private void toolStripButtonViewFullOrder_Click(object sender, EventArgs e)
-        {
-            if (flagSelectUser == false)
-            {
-                MessageBox.Show("Выберете заказ для просмотра.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            FormViewFullOrder formViewFullOrder = new FormViewFullOrder();
-            formViewFullOrder.Show();
-        }
-
-        private void contextMenuStripGriedViewUser_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (treeViewItemSelect != "Заказы")
-                e.Cancel = true;
         }
     }
 }

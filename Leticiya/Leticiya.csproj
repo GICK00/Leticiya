@@ -269,6 +269,9 @@
     <EmbeddedResource Include="FormAddEditlOrder.resx">
       <DependentUpon>FormAddEditlOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormViewFullOrder.resx">
+      <DependentUpon>FormViewFullOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
