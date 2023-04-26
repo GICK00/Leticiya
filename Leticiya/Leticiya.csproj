@@ -226,6 +226,12 @@
     <Compile Include="FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormViewFullOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormViewFullOrder.Designer.cs">
+      <DependentUpon>FormViewFullOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interaction\Encrypt.cs" />
     <Compile Include="Interaction\ExcelClass.cs" />
     <Compile Include="Interaction\InteractionDataAdmin.cs" />

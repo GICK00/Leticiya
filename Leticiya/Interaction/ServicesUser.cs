@@ -171,5 +171,70 @@ namespace Leticiya.Interaction
             }
             return id;
         }
+
+        // Заппрос на вывод данныз для заполнения их в таблиц Excel
+        public List<string> DataOrder(int order_id)
+        {
+            string sql = "SELECT o.\"ORDER_ID\", \"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"ORDER_PRICE\"," +
+                "\r\n\"CUSTOMER_ORGANIZATION\", \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\"" +
+                "\r\nFROM public.\"Order\" o, public.\"Customer\" cu, public.\"Accountant\" ac" +
+                $"\r\nWHERE o.\"ORDER_ID\" = {order_id} AND o.\"CUSTOMER_ID\" = cu.\"CUSTOMER_ID\" AND o.\"ACCOUNTANT_ID\" = ac.\"ACCOUNTANT_ID\"";
+            List<string> list = new List<string>();
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(dataReader);
+                    dataReader.Close();
+                    DataRow row = dataTable.Rows[0];
+
+                    list.Add(row["CUSTOMER_ORGANIZATION"].ToString());
+                    list.Add(row["CUSTOMER_SURNAME"].ToString());
+                    list.Add(row["CUSTOMER_NAME"].ToString());
+                    list.Add(row["CUSTOMER_PATRONYMIC"].ToString());
+                    list.Add(row["ORDER_PRICE"].ToString());
+                    list.Add(row["ACCOUNTANT_SURNAME"].ToString());
+                    list.Add(row["ACCOUNTANT_NAME"].ToString());
+                    list.Add(row["ACCOUNTANT_PATRONYMIC"].ToString());
+                }
+                Program.connection.Close();
+            }
+            return list;
+        }
+
+        public List<string>[] DataOrderProduct(int order_id)
+        {
+            string sql = "SELECT \"CATEGORY_NAME\", \"PRODUCT_NAME\", \"PRODUCT_PRICE\", \"ORDER_PRODUCT_COUT\"" +
+                "\r\nFROM public.\"Order\" o, public.\"Product\" p, public.\"Order_Product\" op, public.\"Category\" c" +
+                $"\r\nWHERE o.\"ORDER_ID\" = {order_id} AND o.\"ORDER_ID\" = op.\"ORDER_ID\" AND op.\"PRODUCT_ID\" = p.\"PRODUCT_ID\" AND p.\"CATEGORY_ID\" = c.\"CATEGORY_ID\"";
+
+            List<string>[] mas;
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(dataReader);
+                    dataReader.Close();
+                    int size = dataTable.Rows.Count;
+                    mas = new List<string>[size];
+                    for (int i = 0; i < size; i++)
+                    {
+                        List<string> list = new List<string>();
+                        DataRow row = dataTable.Rows[i];
+                        list.Add(row["CATEGORY_NAME"].ToString());
+                        list.Add(row["PRODUCT_NAME"].ToString());
+                        list.Add(row["ORDER_PRODUCT_COUT"].ToString());
+                        list.Add(row["PRODUCT_PRICE"].ToString());
+                        mas[i] = list;
+                    }
+                }
+                Program.connection.Close();
+            }
+            return mas;
+        }
     }
 }
