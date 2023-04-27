@@ -2,6 +2,7 @@
 using Leticiya.Interaction;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -15,16 +16,17 @@ namespace Leticiya
         private readonly ServicesUser servicesUser = new ServicesUser();
         private readonly InteractionDataUser interactionDataUser = new InteractionDataUser();
 
-        private Order order;
         private int CustomerId;
+        private int OrderId;
 
         private string type;
 
-        public FormAddEditOrder(string type)
+        public FormAddEditOrder(string type, int order_id)
         {
             InitializeComponent();
 
             this.type = type;
+            this.OrderId = order_id;
 
             if (type == "add")
                 buttonAddEdit.Text = "Добавить заказ";
@@ -40,14 +42,15 @@ namespace Leticiya
             }).Start();
         }
 
-
-
         private void FormAddEditOrder_Load(object sender, EventArgs e)
         {
             if (Program.SQLStat != true)
                 return;
             comboBoxCustomer.DataSource = servicesUser.DataTableCustomer()[0];
             comboBoxProduct.DataSource = servicesUser.DataTableOrderProduct()[0];
+            if (type != "edit")
+                return;
+            DataInForm();
         }
 
         private void buttonAddEdit_Click(object sender, EventArgs e)
@@ -57,41 +60,44 @@ namespace Leticiya
                 MessageBox.Show("Нет такого заказчика");
                 return;
             }
+            
+            Order order = new Order();
+
+            string[] Customer = comboBoxCustomer.Text.Trim().Split();
+
+            if (Customer.Length > 3)
+                order.AddCustomer(CustomerId, Customer[0], Customer[1], Customer[2], Customer[3], textBoxTelephone.Text.Trim());
+            else if (Customer.Length > 2)
+                order.AddCustomer(CustomerId, Customer[0], Customer[1], Customer[2], null, textBoxTelephone.Text.Trim());
+            else
+                order.AddCustomer(CustomerId, Customer[0], Customer[1], null, null, textBoxTelephone.Text.Trim());
+
+
+            order.Address = textBoxAddres.Text.Trim();
+            order.Status = comboBoxStatus.Text;
+            order.DataOrder = textBoxDataOrder.Text.Trim();
+            order.DataDelevery = textBoxDeleveryData.Text.Trim();
+            order.DeleveryPrice = Convert.ToDouble(textBoxDeleveryPrice.Text.Trim());
+
+            for (int i = 0; i < dataGridViewProduct.Rows.Count; i++)
+                order.AddProduct(Convert.ToInt32(dataGridViewProduct["IdProduct", i].Value), dataGridViewProduct["NameProduct", i].Value.ToString(), Convert.ToDouble(dataGridViewProduct["Price", i].Value), Convert.ToInt32(dataGridViewProduct["Cout", i].Value));
+
+            order.Comment = textBoxComment.Text.Trim();
+
+            if (type == "add")
+                interactionDataUser.AddUpdateDataOrder("add", order, -1);
+            else
+                interactionDataUser.AddUpdateDataOrder("edit", order, OrderId);
 
             if (type == "add")
             {
-                order = new Order();
-
-                string[] Customer = comboBoxCustomer.Text.Trim().Split();
-
-                if (Customer.Length > 3)
-                    order.AddCustomer(CustomerId, Customer[0], Customer[1], Customer[2], Customer[3], textBoxTelephone.Text.Trim(), textBoxAddres.Text.Trim());
-                else
-                    order.AddCustomer(CustomerId, Customer[0], Customer[1], Customer[2], null, textBoxTelephone.Text.Trim(), textBoxAddres.Text.Trim());
-
-
-                order.Address = textBoxAddres.Text.Trim();
-                order.Status = comboBoxStatus.Text;
-                order.DataOrder = textBoxDataOrder.Text.Trim();
-                order.DataDelevery = textBoxDeleveryData.Text.Trim();
-                order.DeleveryPrice = Convert.ToDouble(textBoxDeleveryPrice.Text.Trim());
-
-                for (int i = 0; i < dataGridViewProduct.Rows.Count; i++)
-                    order.AddProduct(Convert.ToInt32(dataGridViewProduct["IdProduct", i].Value), dataGridViewProduct["NameProduct", i].Value.ToString(), Convert.ToDouble(dataGridViewProduct["Price", i].Value), Convert.ToInt32(dataGridViewProduct["Cout", i].Value));
-
-                order.Comment = textBoxComment.Text.Trim();
-
-                interactionDataUser.AddDataOrder(order);
-                servicesUser.ReloadViewBD("Заказы");
-
-
                 Program.formMain.toolStripStatusLabel2.Text = "Заказ оформлен";
             }
             else
             {
                 Program.formMain.toolStripStatusLabel2.Text = "Заказ обновлен";
             }
-
+            servicesUser.ReloadViewBD("Заказы");
         }
 
         private void comboBoxCustomer_TextChanged(object sender, EventArgs e)
@@ -136,6 +142,25 @@ namespace Leticiya
             {
                 MessageBox.Show("Введите количество товара!", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void DataInForm()
+        {
+            Order order = servicesUser.FullDataOrder(OrderId);
+
+            comboBoxCustomer.Text = $"{order.customer.Surname} {order.customer.Name} {order.customer.Patronymic} {order.customer.Organization}".Trim();
+
+            textBoxAddres.Text = order.Address;
+            comboBoxStatus.Text = order.Status;
+            textBoxDataOrder.Text = order.DataOrder;
+            textBoxDeleveryData.Text = order.DataDelevery;
+            textBoxDeleveryPrice.Text = order.DeleveryPrice.ToString();
+
+            List<string>[] orderList = servicesUser.DataOrderProduct(OrderId);
+            for (int i = 0; i < orderList.Length; i++)
+                dataGridViewProduct.Rows.Add(orderList[i][4], orderList[i][1], orderList[i][0], orderList[i][2], orderList[i][3]);
+
+            textBoxComment.Text = order.Comment;
         }
 
         private void dataGridViewProduct_MouseDoubleClick(object sender, MouseEventArgs e) => dataGridViewProduct.Rows.RemoveAt(dataGridViewProduct.CurrentRow.Index);

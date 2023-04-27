@@ -1,7 +1,10 @@
-﻿using Npgsql;
+﻿using Leticiya.Class;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Windows;
+using System.Windows.Forms.VisualStyles;
 
 namespace Leticiya.Interaction
 {
@@ -179,6 +182,7 @@ namespace Leticiya.Interaction
                 "\r\n\"CUSTOMER_ORGANIZATION\", \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\"" +
                 "\r\nFROM public.\"Order\" o, public.\"Customer\" cu, public.\"Accountant\" ac" +
                 $"\r\nWHERE o.\"ORDER_ID\" = {order_id} AND o.\"CUSTOMER_ID\" = cu.\"CUSTOMER_ID\" AND o.\"ACCOUNTANT_ID\" = ac.\"ACCOUNTANT_ID\"";
+
             List<string> list = new List<string>();
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {
@@ -189,15 +193,6 @@ namespace Leticiya.Interaction
                     dataTable.Load(dataReader);
                     dataReader.Close();
                     DataRow row = dataTable.Rows[0];
-
-                    list.Add(row["CUSTOMER_ORGANIZATION"].ToString());
-                    list.Add(row["CUSTOMER_SURNAME"].ToString());
-                    list.Add(row["CUSTOMER_NAME"].ToString());
-                    list.Add(row["CUSTOMER_PATRONYMIC"].ToString());
-                    list.Add(row["ORDER_PRICE"].ToString());
-                    list.Add(row["ACCOUNTANT_SURNAME"].ToString());
-                    list.Add(row["ACCOUNTANT_NAME"].ToString());
-                    list.Add(row["ACCOUNTANT_PATRONYMIC"].ToString());
                 }
                 Program.connection.Close();
             }
@@ -206,7 +201,7 @@ namespace Leticiya.Interaction
 
         public List<string>[] DataOrderProduct(int order_id)
         {
-            string sql = "SELECT \"CATEGORY_NAME\", \"PRODUCT_NAME\", \"PRODUCT_PRICE\", \"ORDER_PRODUCT_COUT\"" +
+            string sql = "SELECT p.\"PRODUCT_ID\", \"CATEGORY_NAME\", \"PRODUCT_NAME\", \"PRODUCT_PRICE\", \"ORDER_PRODUCT_COUT\"" +
                 "\r\nFROM public.\"Order\" o, public.\"Product\" p, public.\"Order_Product\" op, public.\"Category\" c" +
                 $"\r\nWHERE o.\"ORDER_ID\" = {order_id} AND o.\"ORDER_ID\" = op.\"ORDER_ID\" AND op.\"PRODUCT_ID\" = p.\"PRODUCT_ID\" AND p.\"CATEGORY_ID\" = c.\"CATEGORY_ID\"";
 
@@ -229,12 +224,62 @@ namespace Leticiya.Interaction
                         list.Add(row["PRODUCT_NAME"].ToString());
                         list.Add(row["ORDER_PRODUCT_COUT"].ToString());
                         list.Add(row["PRODUCT_PRICE"].ToString());
+                        list.Add(row["PRODUCT_ID"].ToString());
                         mas[i] = list;
                     }
                 }
                 Program.connection.Close();
             }
             return mas;
+        }
+        
+        public Order FullDataOrder(int order_id)
+        {
+            string sql = "SELECT o.\"ORDER_ID\", \"ORDER_STATUS\", \"ORDER_DATA\", cu.\"CUSTOMER_ID\", \"ORDER_PRICE\", \"ORDER_PRICE_DELIVERY\", \"ORDER_ADDRESS\", \"ORDER_UNLOADING_DATA\", \"ORDER_COMMENTORDER_COMMENT\", ac.\"ACCOUNTANT_ID\"," +
+                "\r\n\"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_ORGANIZATION\", \"CUSTOMER_TELEPHONE\"" +
+                "\r\nFROM public.\"Order\" o, public.\"Customer\" cu, public.\"Accountant\" ac" +
+                $"\r\nWHERE o.\"ORDER_ID\" = {order_id} AND o.\"CUSTOMER_ID\" = cu.\"CUSTOMER_ID\" AND o.\"ACCOUNTANT_ID\" = ac.\"ACCOUNTANT_ID\"";
+            DataTable dataTable;
+            DataRow row;
+
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    dataTable = new DataTable();
+                    dataTable.Load(dataReader);
+                    dataReader.Close();
+                    row = dataTable.Rows[0];
+                }
+                Program.connection.Close();
+            }
+
+            Order order = new Order();
+
+            string[] Customer = $"{row["CUSTOMER_SURNAME"]}|{row["CUSTOMER_NAME"]}|{row["CUSTOMER_PATRONYMIC"]}|{row["CUSTOMER_ORGANIZATION"]}".Trim().Split("|".ToCharArray());
+
+            if (Customer.Length > 3)
+                order.AddCustomer(Convert.ToInt32(row["CUSTOMER_ID"]), Customer[0], Customer[1], Customer[2], Customer[3], row["CUSTOMER_TELEPHONE"].ToString());
+            else if (Customer.Length > 2)
+                order.AddCustomer(Convert.ToInt32(row["CUSTOMER_ID"]), Customer[0], Customer[1], Customer[2], null, row["CUSTOMER_TELEPHONE"].ToString());
+            else
+                order.AddCustomer(Convert.ToInt32(row["CUSTOMER_ID"]), Customer[0], Customer[1], null, null, row["CUSTOMER_TELEPHONE"].ToString());
+
+
+            order.Address = row["ORDER_ADDRESS"].ToString();
+            order.Status = row["ORDER_STATUS"].ToString();
+            order.DataOrder = row["ORDER_DATA"].ToString();
+            order.DataDelevery = row["ORDER_UNLOADING_DATA"].ToString();
+            order.DeleveryPrice = Convert.ToDouble(row["ORDER_PRICE_DELIVERY"]);
+
+            List<string>[] dataOrderProduct = DataOrderProduct(order_id);
+
+            for (int i = 0; i < dataOrderProduct.Length; i++)
+                order.AddProduct(Convert.ToInt32(dataOrderProduct[i][4]), dataOrderProduct[i][1], Convert.ToDouble(dataOrderProduct[i][3]), Convert.ToInt32(dataOrderProduct[i][2]));
+
+            order.Comment = row["ORDER_COMMENTORDER_COMMENT"].ToString();
+            return order;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Leticiya.Interaction;
 using Npgsql;
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,28 +18,21 @@ namespace Leticiya
         {
             InitializeComponent();
 
-            new Thread(() =>
+            sqlLoad = sql;
+            typeLoad = type;
+
+            switch (typeLoad)
             {
-                sqlLoad = sql;
-                typeLoad = type;
-                Action action = () =>
-                {
-                    switch (typeLoad)
-                    {
-                        case "res":
-                            this.label1.Text = "Восстановление...";
-                            break;
-                        case "back":
-                            this.label1.Text = "Создание резерной копии...";
-                            break;
-                        case "excel":
-                            this.label1.Text = "Создание документа...";
-                            break;
-                    }
-                };
-                if (InvokeRequired)
-                    Invoke(action);
-            }).Start();
+                case "res":
+                    this.label1.Text = "Восстановление...";
+                    break;
+                case "back":
+                    this.label1.Text = "Создание резерной копии...";
+                    break;
+                case "excel":
+                    this.label1.Text = "Создание документа...";
+                    break;
+            }
         }
 
         private void FormLoad_Load(object sender, EventArgs e)

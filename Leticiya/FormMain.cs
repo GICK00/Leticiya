@@ -361,7 +361,7 @@ namespace Leticiya
 
             if (treeViewItemSelect == "Заказы")
             {
-                FormAddEditOrder formAddEditDel = new FormAddEditOrder("add");
+                FormAddEditOrder formAddEditDel = new FormAddEditOrder("add", 0);
                 formAddEditDel.ShowDialog();
             }
             else
@@ -385,7 +385,7 @@ namespace Leticiya
 
             if (treeViewItemSelect == "Заказы")
             {
-                FormAddEditOrder formAddEditDel = new FormAddEditOrder("edit");
+                FormAddEditOrder formAddEditDel = new FormAddEditOrder("edit", UserGridSelect);
                 formAddEditDel.ShowDialog();
             }
             else

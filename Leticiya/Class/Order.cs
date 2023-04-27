@@ -13,9 +13,9 @@ namespace Leticiya.Class
         public List<Product> products = new List<Product>();
         public string Comment;
 
-        public void AddCustomer(int id, string surname, string name, string patronymic, string organization, string telephone, string address)
+        public void AddCustomer(int id, string surname, string name, string patronymic, string organization, string telephone)
         {
-            customer = new Customer(id, surname, name, patronymic, organization, telephone, address);
+            customer = new Customer(id, surname, name, patronymic, organization, telephone);
         }
 
         public void AddProduct(int id, string name, double price, int cout)
