@@ -202,7 +202,7 @@ namespace Leticiya.Interaction
             excelCells.Borders[BorderIndex].Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
             excelCells.Borders[BorderIndex].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
             excelCells.Borders[BorderIndex].ColorIndex = 0;
-            
+
             worksheet.Columns.AutoFit();
         }
     }

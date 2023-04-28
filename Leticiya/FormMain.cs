@@ -366,7 +366,7 @@ namespace Leticiya
             }
             else
             {
-                FormAddEditOther formAddEditDelOther = new FormAddEditOther(treeViewItemSelect, "add");
+                FormAddEditOther formAddEditDelOther = new FormAddEditOther("add", treeViewItemSelect, 0);
                 formAddEditDelOther.ShowDialog();
             }
         }
@@ -390,7 +390,7 @@ namespace Leticiya
             }
             else
             {
-                FormAddEditOther formAddEditDelOther = new FormAddEditOther(treeViewItemSelect, "edit");
+                FormAddEditOther formAddEditDelOther = new FormAddEditOther("edit", treeViewItemSelect, UserGridSelect);
                 formAddEditDelOther.ShowDialog();
             }
         }

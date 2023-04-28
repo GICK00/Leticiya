@@ -2,7 +2,6 @@
 using Leticiya.Interaction;
 using MaterialSkin;
 using MaterialSkin.Controls;
-using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -60,7 +59,7 @@ namespace Leticiya
                 MessageBox.Show("Нет такого заказчика");
                 return;
             }
-            
+
             Order order = new Order();
 
             string[] Customer = comboBoxCustomer.Text.Trim().Split();

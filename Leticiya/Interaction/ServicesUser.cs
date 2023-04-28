@@ -3,8 +3,6 @@ using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows;
-using System.Windows.Forms.VisualStyles;
 
 namespace Leticiya.Interaction
 {
@@ -232,7 +230,7 @@ namespace Leticiya.Interaction
             }
             return mas;
         }
-        
+
         public Order FullDataOrder(int order_id)
         {
             string sql = "SELECT o.\"ORDER_ID\", \"ORDER_STATUS\", \"ORDER_DATA\", cu.\"CUSTOMER_ID\", \"ORDER_PRICE\", \"ORDER_PRICE_DELIVERY\", \"ORDER_ADDRESS\", \"ORDER_UNLOADING_DATA\", \"ORDER_COMMENTORDER_COMMENT\", ac.\"ACCOUNTANT_ID\"," +
@@ -280,6 +278,52 @@ namespace Leticiya.Interaction
 
             order.Comment = row["ORDER_COMMENTORDER_COMMENT"].ToString();
             return order;
+        }
+
+        public List<string> DataOther(string Name_tree, int Id)
+        {
+            List<string> list = new List<string>();
+            string sql = null;
+            switch (Name_tree)
+            {
+                case "Категории":
+                    sql = $"SELECT \"CATEGORY_NAME\" FROM public.\"Category\"" +
+                        $"WHERE \"CATEGORY_ID\" = {Id}";
+                    break;
+                case "Цеха":
+                    sql = "SELECT \"WORKSHOP_NAME\" FROM public.\"Workshop\"" +
+                        $"WHERE \"WORKSHOP_ID\" = {Id}";
+                    break;
+                case "Товары":
+                    sql = "SELECT \"WORKSHOP_NAME\" FROM public.\"Workshop\"" +
+                       $"WHERE \"WORKSHOP_ID\" = {Id}";
+                    break;
+                case "Заказчики":
+                    sql = "SELECT \"WORKSHOP_NAME\" FROM public.\"Workshop\"" +
+                        $"WHERE \"WORKSHOP_ID\" = {Id}";
+                    break;
+                case "Пользователи":
+                    sql = "SELECT \"WORKSHOP_NAME\" FROM public.\"Workshop\"" +
+                       $"WHERE \"WORKSHOP_ID\" = {Id}";
+                    break;
+            }
+
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(dataReader);
+                    dataReader.Close();
+                    DataRow row = dataTable.Rows[0];
+                    for (int i = 0; i < row.Table.Columns.Count; i++)
+                        list.Add(row[i].ToString());
+                }
+                Program.connection.Close();
+            }
+
+            return list;
         }
     }
 }

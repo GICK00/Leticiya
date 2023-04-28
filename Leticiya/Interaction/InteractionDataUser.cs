@@ -11,7 +11,7 @@ namespace Leticiya.Interaction
         private readonly ServicesUser servicesUser = new ServicesUser();
         private int OrderId;
         private int AccounterId;
-        
+
 
         public void AddUpdateDataOrder(string type, Order order, int order_id)
         {
@@ -72,7 +72,7 @@ namespace Leticiya.Interaction
             if (order.products.Count == 0)
                 return;
 
-            if(type != "add")
+            if (type != "add")
             {
                 sql = "DELETE FROM \"Order_Product\"" +
                     $"\r\nWHERE \"ORDER_ID\" = {OrderId}";
@@ -97,10 +97,10 @@ namespace Leticiya.Interaction
                 Program.connection.Open();
                 sqlCommand.ExecuteNonQuery();
                 Program.connection.Close();
-            }     
+            }
         }
 
-        public void AddDataOther(string sql)
+        public void AddUpdateDataOther(string sql)
         {
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {
