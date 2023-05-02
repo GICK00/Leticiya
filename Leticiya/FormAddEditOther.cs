@@ -2,6 +2,7 @@
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -9,16 +10,27 @@ namespace Leticiya
 {
     public partial class FormAddEditOther : MaterialForm
     {
-        ServicesUser ServicesUser = new ServicesUser();
+        ServicesUser servicesUser = new ServicesUser();
         InteractionDataUser interactionDataUser = new InteractionDataUser();
 
-        private string type;
-        public FormAddEditOther(string name, string type)
+        private string Type;
+        private string Name_tree;
+        private int Id;
+        public FormAddEditOther(string type, string name_tree, int id)
         {
             InitializeComponent();
 
-            this.type = type;
-            this.Text = name;
+            Type = type;
+            Name_tree = name_tree;
+            Id = id;
+
+            if (Type != "add")
+            {
+                this.Text = $"{name_tree} №{id}";
+                buttonAddEdit.Text = "Изменить";
+            }
+            else
+                this.Text = name_tree;
 
             new Thread(() =>
             {
@@ -27,11 +39,8 @@ namespace Leticiya
                 materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
                 materialSkinManager.ColorScheme = new ColorScheme(Primary.Grey300, Primary.Grey900, Primary.Grey200, Accent.LightBlue200, TextShade.BLACK);
             }).Start();
-
-            if (type != "add")
-                buttonAddEdit.Text = "Изменить";
-
-            switch (this.Text)
+                
+            switch (Name_tree)
             {
                 case "Категории":
                     panelCategory.Visible = true;
@@ -58,37 +67,39 @@ namespace Leticiya
 
         private void FormAddEditOther_Load(object sender, EventArgs e)
         {
-
+            if (Type == "add")
+                return;
+            DataInForm();            
         }
 
         private void buttonAddEdit_Click(object sender, EventArgs e)
         {
             try
             {
-                if (type == "add")
-                {
-                    string sql = null;
-                    switch (this.Text)
+                string sql = null;
+                if (Type == "add")
+                {   
+                    switch (Name_tree)
                     {
                         case "Категории":
                             sql = "INSERT INTO public.\"Category\" (\"CATEGORY_NAME\")" +
                                 $"\r\nVALUES ('{textBoxCategory.Text.Trim()}')";
                             break;
                         case "Цеха":
-                            sql = "INSERT INTO \"Workshop\" (\"WORKSHOP_NAME\")" +
+                            sql = "INSERT INTO public.\"Workshop\" (\"WORKSHOP_NAME\")" +
                                 $"\r\n\tVALUES ('{textBoxWorkshop.Text.Trim()}')";
                             break;
                         case "Товары":
-                            sql = "INSERT INTO \"Product\" (\"PRODUCT_NAME\", \"CATEGORY_ID\", \"PRODUCT_PRICE\", \"WORKSHOP_ID\")" +
+                            sql = "INSERT INTO public.\"Product\" (\"PRODUCT_NAME\", \"CATEGORY_ID\", \"PRODUCT_PRICE\", \"WORKSHOP_ID\")" +
                                 $"\r\n\tVALUES ('{textBoxPRODUCT_NAME.Text.Trim()}','{comboBoxCategory.Text}','{textBoxPRODUCT_PRICE.Text.Trim()}','{comboBoxWorkshop.Text}')";
                             break;
                         case "Заказчики":
                             string[] FIO = textBoxCUSTOMER_NAME.Text.Trim().Split();
                             if (FIO.Length > 3)
-                                sql = "INSERT INTO \"Customer\" (\"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_TELEPHONE\", \"CUSTOMER_ORGANIZATION\")" +
+                                sql = "INSERT INTO public.\"Customer\" (\"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_TELEPHONE\", \"CUSTOMER_ORGANIZATION\")" +
                                     $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','{FIO[2]}','{textBoxCUSTOMER_TELEPHONE.Text.Trim()}','{textBoxCUSTOMER_ORGANIZATION.Text.Trim()}')";
                             else
-                                sql = "INSERT INTO \"Customer\" (\"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_TELEPHONE\", \"CUSTOMER_ORGANIZATION\")" +
+                                sql = "INSERT INTO public.\"Customer\" (\"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_TELEPHONE\", \"CUSTOMER_ORGANIZATION\")" +
                                     $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','','{textBoxCUSTOMER_TELEPHONE.Text.Trim()}','{textBoxCUSTOMER_ORGANIZATION.Text.Trim()}')";
                             break;
                         case "Пользователи":
@@ -96,31 +107,52 @@ namespace Leticiya
                             switch (FIO.Length)
                             {
                                 case 3:
-                                    sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
+                                    sql = "INSERT INTO public.\"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
                                         $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','{FIO[2]}','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
                                     break;
                                 case 2:
-                                    sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
+                                    sql = "INSERT INTO public.\"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
                                         $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
                                     break;
                                 case 1:
-                                    sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
+                                    sql = "INSERT INTO public.\"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
                                         $"\r\n\tVALUES ('{FIO[0]}','','','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
                                     break;
                                 case 0:
-                                    sql = "INSERT INTO \"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
+                                    sql = "INSERT INTO public.\"Accountant\" (\"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\")" +
                                         $"\r\n\tVALUES ('','','','{textBoxLogin.Text.Trim()}','{textBoxPassword.Text.Trim()}','{comboBoxPosition.Text}')";
                                     break;
                             }
                             break;
                     }
-                    interactionDataUser.AddDataOther(sql);
-                    ServicesUser.ReloadViewBD(this.Text);
+                    Program.formMain.toolStripStatusLabel2.Text = "Запись добавлена";
                 }
                 else
                 {
-
+                    //Доделать изменение для каждого раздела
+                    switch (Name_tree)
+                    {
+                        case "Категории":
+                            sql = $"UPDATE public.\"Category\" SET \"CATEGORY_NAME\" = '{textBoxCategory.Text}'" +
+                                $"WHERE \"CATEGORY_ID\" = {Id}";
+                            break;
+                        case "Цеха":
+                            sql = "";
+                            break;
+                        case "Товары":
+                            sql = "";
+                            break;
+                        case "Заказчики":
+                            sql = "";
+                            break;
+                        case "Пользователи":
+                            sql = "";
+                            break;
+                    }
+                    Program.formMain.toolStripStatusLabel2.Text = "Запись изменена";
                 }
+                interactionDataUser.AddUpdateDataOther(sql);
+                servicesUser.ReloadViewBD(Name_tree);
             }
             catch
             {
@@ -129,5 +161,37 @@ namespace Leticiya
         }
 
         private void buttonExit_Click(object sender, EventArgs e) => this.Close();
+
+        //Доделать выгрузку данных при откртии формы для изменения
+        private void DataInForm()
+        {
+            List<string> list = servicesUser.DataOther(Name_tree, Id);
+            switch (Name_tree)
+            {
+                case "Категории":
+                    textBoxCategory.Text = list[0];
+                    break;
+                case "Цеха":
+                    textBoxWorkshop.Text = list[0];
+                    break;
+                case "Товары":
+                    textBoxPRODUCT_NAME.Text = list[0];
+                    comboBoxCategory.Text = list[1];
+                    textBoxPRODUCT_PRICE.Text = list[2];
+                    comboBoxWorkshop.Text = list[3];
+                    break;
+                case "Заказчики":
+                    textBoxCUSTOMER_NAME.Text = $"{list[0]} {list[1]} {list[2]}";
+                    textBoxCUSTOMER_ORGANIZATION.Text = list[3];
+                    textBoxCUSTOMER_TELEPHONE.Text = list[4];
+                    break;
+                case "Пользователи":
+                    textBoxAccountentName.Text = $"{list[0]} {list[1]} {list[2]}";
+                    textBoxLogin.Text = list[3];
+                    textBoxPassword.Text = list[4];
+                    comboBoxPosition.Text = list[5];
+                    break;
+            }
+        }
     }
 }

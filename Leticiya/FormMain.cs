@@ -361,12 +361,12 @@ namespace Leticiya
 
             if (treeViewItemSelect == "Заказы")
             {
-                FormAddEditOrder formAddEditDel = new FormAddEditOrder("add");
+                FormAddEditOrder formAddEditDel = new FormAddEditOrder("add", 0);
                 formAddEditDel.ShowDialog();
             }
             else
             {
-                FormAddEditOther formAddEditDelOther = new FormAddEditOther(treeViewItemSelect, "add");
+                FormAddEditOther formAddEditDelOther = new FormAddEditOther("add", treeViewItemSelect, 0);
                 formAddEditDelOther.ShowDialog();
             }
         }
@@ -385,12 +385,12 @@ namespace Leticiya
 
             if (treeViewItemSelect == "Заказы")
             {
-                FormAddEditOrder formAddEditDel = new FormAddEditOrder("edit");
+                FormAddEditOrder formAddEditDel = new FormAddEditOrder("edit", UserGridSelect);
                 formAddEditDel.ShowDialog();
             }
             else
             {
-                FormAddEditOther formAddEditDelOther = new FormAddEditOther(treeViewItemSelect, "edit");
+                FormAddEditOther formAddEditDelOther = new FormAddEditOther("edit", treeViewItemSelect, UserGridSelect);
                 formAddEditDelOther.ShowDialog();
             }
         }
@@ -436,7 +436,6 @@ namespace Leticiya
                     sql = "DELETE FROM \"Accountant\"" +
                     $"\r\nWHERE \"ACCOUNTANT_ID\" = {UserGridSelect};";
                     break;
-
             }
 
             interactionDataUser.Deleted(sql);
@@ -469,6 +468,24 @@ namespace Leticiya
             UserGridSelect = (int)dataGridViewUser.CurrentRow.Cells[0].Value;
 
             toolStripStatusLabel2.Text = $"Выбрана строка № {dataGridViewUser.CurrentRow.Cells[0].Value}";
+        }
+
+        //Контекстное меня для DataGriedViewUser для раздела Заказы
+        private void toolStripButtonViewFullOrder_Click(object sender, EventArgs e)
+        {
+            if (flagSelectUser == false)
+            {
+                MessageBox.Show("Выберете заказ для просмотра.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            FormViewFullOrder formViewFullOrder = new FormViewFullOrder(UserGridSelect);
+            formViewFullOrder.Show();
+        }
+
+        private void contextMenuStripGriedViewUser_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (treeViewItemSelect != "Заказы")
+                e.Cancel = true;
         }
 
         //

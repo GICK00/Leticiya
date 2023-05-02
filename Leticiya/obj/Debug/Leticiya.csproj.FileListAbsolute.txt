@@ -100,3 +100,4 @@ C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddE
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditOther.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditOther.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditOrder.resources
+C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormViewFullOrder.resources

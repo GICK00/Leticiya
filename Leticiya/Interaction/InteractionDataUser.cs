@@ -9,15 +9,25 @@ namespace Leticiya.Interaction
     internal class InteractionDataUser
     {
         private readonly ServicesUser servicesUser = new ServicesUser();
-        private int AccounterId;
         private int OrderId;
+        private int AccounterId;
 
-        public void AddDataOrder(Order order)
+
+        public void AddUpdateDataOrder(string type, Order order, int order_id)
         {
+            OrderId = order_id;
             AccounterId = servicesUser.SearchUser();
-            string sql = "INSERT INTO public.\"Order\" (\"ORDER_STATUS\", \"ORDER_DATA\", \"CUSTOMER_ID\", \"ORDER_PRICE\", \"ORDER_PRICE_DELIVERY\", \"ORDER_ADDRESS\", \"ORDER_UNLOADING_DATA\", \"ORDER_COMMENTORDER_COMMENT\", \"ACCOUNTANT_ID\")" +
+            string sql;
+            if (type == "add")
+                sql = "INSERT INTO public.\"Order\" (\"ORDER_STATUS\", \"ORDER_DATA\", \"CUSTOMER_ID\", \"ORDER_PRICE\", \"ORDER_PRICE_DELIVERY\", \"ORDER_ADDRESS\", \"ORDER_UNLOADING_DATA\", \"ORDER_COMMENTORDER_COMMENT\", \"ACCOUNTANT_ID\")" +
                 $"\r\nVALUES (@ORDER_STATUS, @ORDER_DATA, @CUSTOMER_ID, '{order.OrderPrice()}', '{order.DeleveryPrice}', @ORDER_ADDRESS, @ORDER_UNLOADING_DATA, @ORDER_COMMENTORDER_COMMENT, @ACCOUNTANT_ID)" +
                 "\r\nRETURNING \"ORDER_ID\"";
+            else
+                sql = "UPDATE public.\"Order\" " +
+                    "\r\nSET \"ORDER_STATUS\" = @ORDER_STATUS, \"ORDER_DATA\" = @ORDER_DATA, \"CUSTOMER_ID\" =  @CUSTOMER_ID," +
+                    $"\r\n\"ORDER_PRICE\" = {order.OrderPrice()},  \"ORDER_PRICE_DELIVERY\" = {order.DeleveryPrice}, \"ORDER_ADDRESS\" = @ORDER_ADDRESS," +
+                    "\r\n\"ORDER_UNLOADING_DATA\" = @ORDER_UNLOADING_DATA, \"ORDER_COMMENTORDER_COMMENT\" = @ORDER_COMMENTORDER_COMMENT," +
+                    $"\r\n\"ACCOUNTANT_ID\" = @ACCOUNTANT_ID \r\nWHERE \"ORDER_ID\" = {OrderId}";
 
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {
@@ -31,12 +41,6 @@ namespace Leticiya.Interaction
 
                 sqlCommand.Parameters.Add(new NpgsqlParameter<int>("CUSTOMER_ID", NpgsqlDbType.Integer));
                 sqlCommand.Parameters["CUSTOMER_ID"].Value = order.customer.Id;
-
-                /*sqlCommand.Parameters.Add(new NpgsqlParameter("ORDER_PRICE", NpgsqlDbType.Money));
-                sqlCommand.Parameters["ORDER_PRICE"].Value = ;
-
-                sqlCommand.Parameters.Add(new NpgsqlParameter("ORDER_PRICE_DELIVERY", NpgsqlDbType.Money));
-                sqlCommand.Parameters["ORDER_PRICE_DELIVERY"].Value = ;*/
 
                 sqlCommand.Parameters.Add(new NpgsqlParameter<string>("ORDER_ADDRESS", NpgsqlDbType.Text));
                 sqlCommand.Parameters["ORDER_ADDRESS"].Value = order.Address;
@@ -58,12 +62,28 @@ namespace Leticiya.Interaction
                 sqlCommand.Parameters.Add(new NpgsqlParameter<int>("ACCOUNTANT_ID", NpgsqlDbType.Integer));
                 sqlCommand.Parameters["ACCOUNTANT_ID"].Value = AccounterId;
 
-                OrderId = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                if (type == "add")
+                    OrderId = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                else
+                    sqlCommand.ExecuteNonQuery();
                 Program.connection.Close();
             }
 
             if (order.products.Count == 0)
                 return;
+
+            if (type != "add")
+            {
+                sql = "DELETE FROM \"Order_Product\"" +
+                    $"\r\nWHERE \"ORDER_ID\" = {OrderId}";
+                using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+                {
+                    Program.connection.Open();
+                    sqlCommand.ExecuteNonQuery();
+                    Program.connection.Close();
+                }
+            }
+
             if (order.products.Count >= 1)
                 sql = "INSERT INTO public.\"Order_Product\" (\"ORDER_ID\", \"PRODUCT_ID\", \"ORDER_PRODUCT_COUT\")" +
                     $"\r\nVALUES ('{OrderId}', '{order.products[0].Id}', '{order.products[0].Cout}')";
@@ -72,7 +92,6 @@ namespace Leticiya.Interaction
                 for (int i = 1; i < order.products.Count; i++)
                     sql += $",\r\n('{OrderId}', '{order.products[i].Id}', '{order.products[i].Cout}')";
             }
-
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {
                 Program.connection.Open();
@@ -81,7 +100,7 @@ namespace Leticiya.Interaction
             }
         }
 
-        public void AddDataOther(string sql)
+        public void AddUpdateDataOther(string sql)
         {
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {
