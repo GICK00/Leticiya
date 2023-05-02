@@ -24,6 +24,14 @@ namespace Leticiya
             Name_tree = name_tree;
             Id = id;
 
+            if (Type != "add")
+            {
+                this.Text = $"{name_tree} №{id}";
+                buttonAddEdit.Text = "Изменить";
+            }
+            else
+                this.Text = name_tree;
+
             new Thread(() =>
             {
                 var materialSkinManager = MaterialSkinManager.Instance;
@@ -31,12 +39,6 @@ namespace Leticiya
                 materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
                 materialSkinManager.ColorScheme = new ColorScheme(Primary.Grey300, Primary.Grey900, Primary.Grey200, Accent.LightBlue200, TextShade.BLACK);
             }).Start();
-
-            if (Type != "add")
-            {
-                this.Text = $"{name_tree} №{id}";
-                buttonAddEdit.Text = "Изменить";
-            }
                 
             switch (Name_tree)
             {
