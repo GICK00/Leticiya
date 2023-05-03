@@ -191,6 +191,15 @@ namespace Leticiya.Interaction
                     dataTable.Load(dataReader);
                     dataReader.Close();
                     DataRow row = dataTable.Rows[0];
+
+                    list.Add(row["CUSTOMER_ORGANIZATION"].ToString());
+                    list.Add(row["CUSTOMER_SURNAME"].ToString());
+                    list.Add(row["CUSTOMER_NAME"].ToString());
+                    list.Add(row["CUSTOMER_PATRONYMIC"].ToString());
+                    list.Add(row["ORDER_PRICE"].ToString());
+                    list.Add(row["ACCOUNTANT_SURNAME"].ToString());
+                    list.Add(row["ACCOUNTANT_NAME"].ToString());
+                    list.Add(row["ACCOUNTANT_PATRONYMIC"].ToString());
                 }
                 Program.connection.Close();
             }
