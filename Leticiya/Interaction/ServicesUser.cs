@@ -298,23 +298,24 @@ namespace Leticiya.Interaction
             {
                 case "Категории":
                     sql = $"SELECT \"CATEGORY_NAME\" FROM public.\"Category\"" +
-                        $"WHERE \"CATEGORY_ID\" = {Id}";
+                        $"\r\nWHERE \"CATEGORY_ID\" = {Id}";
                     break;
                 case "Цеха":
                     sql = "SELECT \"WORKSHOP_NAME\" FROM public.\"Workshop\"" +
-                        $"WHERE \"WORKSHOP_ID\" = {Id}";
+                        $"\r\nWHERE \"WORKSHOP_ID\" = {Id}";
                     break;
                 case "Товары":
-                    sql = "SELECT \"WORKSHOP_NAME\" FROM public.\"Workshop\"" +
-                       $"WHERE \"WORKSHOP_ID\" = {Id}";
+                    sql = "SELECT \"PRODUCT_NAME\", \"CATEGORY_NAME\", \"PRODUCT_PRICE\", \"WORKSHOP_NAME\"" +
+                        "\r\nFROM public.\"Product\" p, public.\"Category\" c, public.\"Workshop\" w" +
+                       $"\r\nWHERE \"PRODUCT_ID\" = {Id} AND p.\"CATEGORY_ID\" = c.\"CATEGORY_ID\" AND p.\"WORKSHOP_ID\" = w.\"WORKSHOP_ID\"";
                     break;
                 case "Заказчики":
-                    sql = "SELECT \"WORKSHOP_NAME\" FROM public.\"Workshop\"" +
-                        $"WHERE \"WORKSHOP_ID\" = {Id}";
+                    sql = "SELECT \"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_TELEPHONE\", \"CUSTOMER_ORGANIZATION\" FROM public.\"Customer\"" +
+                        $"WHERE \"CUSTOMER_ID\" = {Id}";
                     break;
                 case "Пользователи":
-                    sql = "SELECT \"WORKSHOP_NAME\" FROM public.\"Workshop\"" +
-                       $"WHERE \"WORKSHOP_ID\" = {Id}";
+                    sql = "SELECT \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\" FROM public.\"Accountant\"" +
+                       $"WHERE \"ACCOUNTANT_ID\" = {Id}";
                     break;
             }
 

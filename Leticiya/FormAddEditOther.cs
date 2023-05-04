@@ -134,19 +134,54 @@ namespace Leticiya
                     {
                         case "Категории":
                             sql = $"UPDATE public.\"Category\" SET \"CATEGORY_NAME\" = '{textBoxCategory.Text}'" +
-                                $"WHERE \"CATEGORY_ID\" = {Id}";
+                                $"\r\nWHERE \"CATEGORY_ID\" = {Id}";
                             break;
                         case "Цеха":
-                            sql = "";
+                            sql = $"UPDATE public.\"Workshop\" SET \"WORKSHOP_NAME\" = '{textBoxWorkshop.Text}'" +
+                                $"\r\nWHERE \"WORKSHOP_ID\" = {Id}";
                             break;
                         case "Товары":
-                            sql = "";
+                            //Долелать
+                            /*sql = "SELECT \"PRODUCT_NAME\", \"CATEGORY_NAME\", \"PRODUCT_PRICE\", \"WORKSHOP_NAME\"" +
+                                "\r\nFROM public.\"Product\" p, public.\"Category\" c, public.\"Workshop\" w" +
+                               $"\r\nWHERE \"PRODUCT_ID\" = {Id} AND p.\"CATEGORY_ID\" = c.\"CATEGORY_ID\" AND p.\"WORKSHOP_ID\" = w.\"WORKSHOP_ID\"";*/
                             break;
                         case "Заказчики":
-                            sql = "";
+                            string[] FIO = textBoxCUSTOMER_NAME.Text.Trim().Split();
+                            if (FIO.Length > 3)
+                                sql = $"UPDATE public.\"Customer\" SET \"CUSTOMER_SURNAME\" = '{FIO[0]}', \"CUSTOMER_NAME\" = '{FIO[1]}', \"CUSTOMER_PATRONYMIC\" = '{FIO[2]}'," +
+                                    $"\"CUSTOMER_TELEPHONE\" = '{textBoxCUSTOMER_TELEPHONE.Text}', \"CUSTOMER_ORGANIZATION\" = '{textBoxCUSTOMER_ORGANIZATION.Text}'" +
+                                    $"\r\nWHERE \"CUSTOMER_ID\" = {Id}";
+                            else
+                                sql = $"UPDATE public.\"Customer\" SET \"CUSTOMER_SURNAME\" = '{FIO[0]}', \"CUSTOMER_NAME\" = '{FIO[1]}', \"CUSTOMER_PATRONYMIC\" = ''," +
+                                    $"\"CUSTOMER_TELEPHONE\" = '{textBoxCUSTOMER_TELEPHONE.Text}', \"CUSTOMER_ORGANIZATION\" = '{textBoxCUSTOMER_ORGANIZATION.Text}'" +
+                                    $"\r\nWHERE \"CUSTOMER_ID\" = {Id}";
                             break;
                         case "Пользователи":
-                            sql = "";
+                            FIO = textBoxAccountentName.Text.Trim().Split();
+                            switch (FIO.Length)
+                            {
+                                case 3:
+                                    sql = $"UPDATE public.\"Accountant\" SET \"ACCOUNTANT_SURNAME\" = '{FIO[0]}', \"ACCOUNTANT_NAME\" = '{FIO[1]}', \"ACCOUNTANT_PATRONYMIC\" = '{FIO[2]}'," +
+                                        $"\"ACCOUNTANT_LOGIN\" = '{textBoxLogin.Text}', \"ACCOUNTANT_PASSWORD\" = '{textBoxPassword.Text}', \"ACCOUNTANT_POSITION\" = '{comboBoxPosition.Text}'" +
+                                        $"WHERE \"ACCOUNTANT_ID\" = {Id}";
+                                    break;
+                                case 2:
+                                    sql = $"UPDATE public.\"Accountant\" SET \"ACCOUNTANT_SURNAME\" = '{FIO[0]}', \"ACCOUNTANT_NAME\" = '{FIO[1]}', \"ACCOUNTANT_PATRONYMIC\" = ''," +
+                                        $"\"ACCOUNTANT_LOGIN\" = '{textBoxLogin.Text}', \"ACCOUNTANT_PASSWORD\" = '{textBoxPassword.Text}', \"ACCOUNTANT_POSITION\" = '{comboBoxPosition.Text}'" +
+                                        $"WHERE \"ACCOUNTANT_ID\" = {Id}";
+                                    break;
+                                case 1:
+                                    sql = $"UPDATE public.\"Accountant\" SET \"ACCOUNTANT_SURNAME\" = '{FIO[0]}', \"ACCOUNTANT_NAME\" = '', \"ACCOUNTANT_PATRONYMIC\" = ''," +
+                                        $"\"ACCOUNTANT_LOGIN\" = '{textBoxLogin.Text}', \"ACCOUNTANT_PASSWORD\" = '{textBoxPassword.Text}', \"ACCOUNTANT_POSITION\" = '{comboBoxPosition.Text}'" +
+                                        $"WHERE \"ACCOUNTANT_ID\" = {Id}";
+                                    break;
+                                case 0:
+                                    sql = $"UPDATE public.\"Accountant\" SET \"ACCOUNTANT_SURNAME\" = '', \"ACCOUNTANT_NAME\" = '', \"ACCOUNTANT_PATRONYMIC\" = ''," +
+                                        $"\"ACCOUNTANT_LOGIN\" = '{textBoxLogin.Text}', \"ACCOUNTANT_PASSWORD\" = '{textBoxPassword.Text}', \"ACCOUNTANT_POSITION\" = '{comboBoxPosition.Text}'" +
+                                        $"WHERE \"ACCOUNTANT_ID\" = {Id}";
+                                    break;
+                            }
                             break;
                     }
                     Program.formMain.toolStripStatusLabel2.Text = "Запись изменена";
@@ -159,8 +194,6 @@ namespace Leticiya
                 MessageBox.Show("Неверное введено Ф.И.О", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void buttonExit_Click(object sender, EventArgs e) => this.Close();
 
         //Доделать выгрузку данных при откртии формы для изменения
         private void DataInForm()
@@ -193,5 +226,7 @@ namespace Leticiya
                     break;
             }
         }
+
+        private void buttonExit_Click(object sender, EventArgs e) => this.Close();
     }
 }

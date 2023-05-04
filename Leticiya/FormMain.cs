@@ -299,6 +299,9 @@ namespace Leticiya
             AdminGridSelect = 0;
             dataGridViewAdmin.ClearSelection();
             interactionTool.buttonClearBD();
+            servicesAdmin.ReloadEditingBD(Program.formMain.comboBox.Text);
+            servicesAdmin.ClearStr();
+            toolStripStatusLabel2.Text = "База данных очищенна";
         }
 
         //Обработчик для создания накладной на заказ
@@ -358,6 +361,9 @@ namespace Leticiya
         {
             if (tools.LoginGuest() != true)
                 return;
+            if (treeViewItemSelect == "Пользователи")
+                if (tools.LoginAdmin() != true)
+                    return;
 
             if (treeViewItemSelect == "Заказы")
             {
@@ -376,6 +382,9 @@ namespace Leticiya
         {
             if (tools.LoginGuest() != true)
                 return;
+            if (treeViewItemSelect == "Пользователи")
+                if (tools.LoginAdmin() != true)
+                    return;
 
             if (flagSelectUser == false)
             {
@@ -400,6 +409,9 @@ namespace Leticiya
         {
             if (tools.LoginGuest() != true)
                 return;
+            if (treeViewItemSelect == "Пользователи")
+                if (tools.LoginAdmin() != true)
+                    return;
 
             if (flagSelectUser == false)
             {

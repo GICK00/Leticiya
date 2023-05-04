@@ -31,12 +31,12 @@ namespace Leticiya
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Заказы");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Категории");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Цеха");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Товары");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Заказчики");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Пользователи");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Заказы");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Категории");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Цеха");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Товары");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Заказчики");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Пользователи");
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -317,7 +317,7 @@ namespace Leticiya
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 711);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 672);
             this.statusStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1231, 24);
@@ -344,12 +344,12 @@ namespace Leticiya
             this.tabControl.ItemSize = new System.Drawing.Size(20, 25);
             this.tabControl.Location = new System.Drawing.Point(3, 80);
             this.tabControl.Margin = new System.Windows.Forms.Padding(0);
-            this.tabControl.MinimumSize = new System.Drawing.Size(1231, 632);
+            this.tabControl.MinimumSize = new System.Drawing.Size(1231, 592);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.Padding = new System.Drawing.Point(0, 0);
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1231, 632);
+            this.tabControl.Size = new System.Drawing.Size(1231, 592);
             this.tabControl.TabIndex = 45;
             this.tabControl.TabStop = false;
             this.tabControl.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl_Selecting);
@@ -371,7 +371,7 @@ namespace Leticiya
             this.tabPage2.Location = new System.Drawing.Point(29, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1198, 624);
+            this.tabPage2.Size = new System.Drawing.Size(1198, 584);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Работа";
             // 
@@ -381,7 +381,7 @@ namespace Leticiya
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.White;
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(35, 574);
+            this.label4.Location = new System.Drawing.Point(35, 534);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 15);
@@ -398,7 +398,7 @@ namespace Leticiya
             this.buttonPrevPage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonPrevPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPrevPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonPrevPage.Location = new System.Drawing.Point(14, 595);
+            this.buttonPrevPage.Location = new System.Drawing.Point(14, 555);
             this.buttonPrevPage.Margin = new System.Windows.Forms.Padding(0);
             this.buttonPrevPage.Name = "buttonPrevPage";
             this.buttonPrevPage.Size = new System.Drawing.Size(23, 23);
@@ -422,7 +422,7 @@ namespace Leticiya
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel5.Controls.Add(this.textBoxCoutPage);
-            this.panel5.Location = new System.Drawing.Point(40, 595);
+            this.panel5.Location = new System.Drawing.Point(40, 555);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(55, 23);
             this.panel5.TabIndex = 78;
@@ -463,7 +463,7 @@ namespace Leticiya
             this.buttonNextpage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonNextpage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonNextpage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonNextpage.Location = new System.Drawing.Point(98, 595);
+            this.buttonNextpage.Location = new System.Drawing.Point(98, 555);
             this.buttonNextpage.Margin = new System.Windows.Forms.Padding(0);
             this.buttonNextpage.Name = "buttonNextpage";
             this.buttonNextpage.Size = new System.Drawing.Size(23, 23);
@@ -498,7 +498,7 @@ namespace Leticiya
             this.dataGridViewUser.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewUser.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewUser.Size = new System.Drawing.Size(1052, 580);
+            this.dataGridViewUser.Size = new System.Drawing.Size(1052, 540);
             this.dataGridViewUser.TabIndex = 2;
             this.dataGridViewUser.TabStop = false;
             this.dataGridViewUser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewUser_MouseDoubleClick);
@@ -508,13 +508,13 @@ namespace Leticiya
             this.contextMenuStripGriedViewUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonViewFullOrder});
             this.contextMenuStripGriedViewUser.Name = "contextMenuStrip1";
-            this.contextMenuStripGriedViewUser.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStripGriedViewUser.Size = new System.Drawing.Size(132, 26);
             this.contextMenuStripGriedViewUser.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripGriedViewUser_Opening);
             // 
             // toolStripButtonViewFullOrder
             // 
             this.toolStripButtonViewFullOrder.Name = "toolStripButtonViewFullOrder";
-            this.toolStripButtonViewFullOrder.Size = new System.Drawing.Size(180, 22);
+            this.toolStripButtonViewFullOrder.Size = new System.Drawing.Size(131, 22);
             this.toolStripButtonViewFullOrder.Text = "Подробно";
             this.toolStripButtonViewFullOrder.Click += new System.EventHandler(this.toolStripButtonViewFullOrder_Click);
             // 
@@ -546,25 +546,25 @@ namespace Leticiya
             this.treeView.ItemHeight = 20;
             this.treeView.Location = new System.Drawing.Point(5, 38);
             this.treeView.Name = "treeView";
-            treeNode1.Name = "Заказы";
-            treeNode1.Text = "Заказы";
-            treeNode2.Name = "Категории";
-            treeNode2.Text = "Категории";
-            treeNode3.Name = "Цеха";
-            treeNode3.Text = "Цеха";
-            treeNode4.Name = "Товары";
-            treeNode4.Text = "Товары";
-            treeNode5.Name = "Заказчики";
-            treeNode5.Text = "Заказчики";
-            treeNode6.Name = "Пользователи";
-            treeNode6.Text = "Пользователи";
+            treeNode7.Name = "Заказы";
+            treeNode7.Text = "Заказы";
+            treeNode8.Name = "Категории";
+            treeNode8.Text = "Категории";
+            treeNode9.Name = "Цеха";
+            treeNode9.Text = "Цеха";
+            treeNode10.Name = "Товары";
+            treeNode10.Text = "Товары";
+            treeNode11.Name = "Заказчики";
+            treeNode11.Text = "Заказчики";
+            treeNode12.Name = "Пользователи";
+            treeNode12.Text = "Пользователи";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6});
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12});
             this.treeView.Scrollable = false;
             this.treeView.Size = new System.Drawing.Size(132, 122);
             this.treeView.TabIndex = 0;
@@ -1110,13 +1110,13 @@ namespace Leticiya
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(1237, 738);
+            this.ClientSize = new System.Drawing.Size(1237, 700);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.MinimumSize = new System.Drawing.Size(1237, 738);
+            this.MinimumSize = new System.Drawing.Size(1237, 700);
             this.Name = "FormMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

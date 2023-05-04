@@ -12,7 +12,6 @@ namespace Leticiya.Interaction
             SymmetricAlgorithm sa = Aes.Create();
             Rfc2898DeriveBytes hasher = new Rfc2898DeriveBytes(password, sa.IV, 1000, HashAlgorithmName.SHA256);
             sa.Key = hasher.GetBytes(32);
-
             MemoryStream ms = new MemoryStream();
             ms.Write(sa.IV, 0, sa.IV.Length);
             using (CryptoStream cs = new CryptoStream(ms, sa.CreateEncryptor(), CryptoStreamMode.Write))

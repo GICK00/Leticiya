@@ -60,7 +60,6 @@ namespace Leticiya
                         }
                         finally
                         {
-                            Task.Delay(1000);
                             Program.connection.Close();
                         }
                     });
@@ -122,7 +121,7 @@ namespace Leticiya
                     await Task.Run(() =>
                     {
                         excelClass.ExpExcel(Convert.ToInt32(sqlLoad));
-                        Task.Delay(300);
+                        
                     });
                     progressBar.Value += 50;
                     await Task.Delay(500);

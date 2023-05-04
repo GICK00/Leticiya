@@ -73,7 +73,7 @@ namespace Leticiya.Interaction
             {
                 MessageBox.Show("Файл конфигурации отсуствует! Будет создан новый файл шаблон в корне программы.", "Критическая ошибка конфигурации", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 File.Create(path).Close();
-                File.WriteAllText(path, $"Host=localhost;Port=5432;Database=;Username= ; Password= ; Cancellation Timeout=2000\r\nUpdateApp=False");
+                File.WriteAllText(path, $"Host=localhost;Port=5432;Database=;Username=;Password=;Cancellation Timeout=2000\r\nUpdateApp=False");
                 streamReader = new StreamReader(path);
                 connSrring = streamReader.ReadLine();
                 streamReader.Close();
@@ -83,12 +83,21 @@ namespace Leticiya.Interaction
             }
             else
             {
-                //Сделать обработку исключения при файле с неверной конфигурацией
-                streamReader = new StreamReader(path);
-                connSrring = streamReader.ReadLine();
-                streamReader.Close();
-                Program.connection = new NpgsqlConnection(connSrring);
-                return true;
+                try
+                {
+                    //Сделать обработку исключения при файле с неверной конфигурацией
+                    streamReader = new StreamReader(path);
+                    connSrring = streamReader.ReadLine();
+                    streamReader.Close();
+                    Program.connection = new NpgsqlConnection(connSrring);
+                    return true;
+                }
+                catch
+                {
+                    File.Delete(path);
+                    MessageBox.Show("Файл конфигурации заполнен не верно, файл будет удален.", "Критическая ошибка конфигурации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
         }
 

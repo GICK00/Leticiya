@@ -45,9 +45,6 @@ namespace Leticiya.Interaction
                 sqlCommand.ExecuteNonQuery();
                 Program.connection.Close();
             }
-            servicesAdmin.ReloadEditingBD(Program.formMain.comboBox.Text);
-            servicesAdmin.ClearStr();
-            Program.formMain.toolStripStatusLabel2.Text = "База данных очищенна";
         }
     }
 }
