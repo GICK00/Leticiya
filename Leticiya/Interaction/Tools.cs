@@ -10,7 +10,6 @@ namespace Leticiya.Interaction
     internal class Tools
     {
         private readonly WebClient client = new WebClient();
-        private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
         private readonly ServicesUser servicesUser = new ServicesUser();
 
         private static StreamReader streamReader;
@@ -182,15 +181,9 @@ namespace Leticiya.Interaction
         {
             if (FormLogin.Position[0] == "admin")
             {
-                servicesAdmin.DataTableAdmin();
-                Program.formMain.dataGridViewAdmin.Enabled = true;
-                servicesAdmin.Visibl();
-                servicesAdmin.ReloadEditingBD(Program.formMain.comboBox.Text);
-
                 Program.formMain.treeView.Enabled = true;
                 Program.formMain.dataGridViewUser.Enabled = true;
                 servicesUser.ReloadViewBD(FormMain.treeViewItemSelect);
-
             }
             else
             {

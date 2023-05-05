@@ -14,23 +14,17 @@ namespace Leticiya
     public partial class FormMain : MaterialForm
     {
         public static readonly MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-        private readonly InteractionDataAdmin interactionDataAdmin = new InteractionDataAdmin();
         private readonly InteractionDataUser interactionDataUser = new InteractionDataUser();
-        private readonly InteractionTool interactionTool = new InteractionTool();
-        private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
         private readonly ServicesUser servicesUser = new ServicesUser();
         private readonly Tools tools = new Tools();
 
-        private readonly FormRequest formRequest = new FormRequest();
         private readonly FormInfo formInfo = new FormInfo();
         private readonly FormLogin formLogin = new FormLogin();
         private readonly FormSettings formSettings = new FormSettings();
 
         public static string treeViewItemSelect = null;
 
-        public static bool flagSelectAdmin = false;
         public static bool flagSelectUser = false;
-        public static int AdminGridSelect = 0;
         public static int UserGridSelect = 0;
 
         public FormMain()
@@ -46,14 +40,7 @@ namespace Leticiya
                 materialSkinManager.ColorScheme = new ColorScheme(Primary.Grey300, Primary.Grey900, Primary.Grey200, Accent.LightBlue200, TextShade.BLACK);
             }).Start();
 
-            ServicesAdmin.saveFileDialogBack.Filter = "Bak files(*.bak)|*.bak";
             ExcelClass.saveFileDialogExp.Filter = "Excel files(*.xlsx)|*.xlsx";
-            ServicesAdmin.openFileDialogSQL.Filter = "Sql files(*.sql)|*.sql| Text files(*.txt)|*.txt| All files(*.*)|*.*";
-            ServicesAdmin.openFileDialogRes.Filter = "Bak files(*.bak)|*.bak";
-
-            servicesAdmin.Visibl();
-
-            dataGridViewAdmin.Enabled = false;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -86,101 +73,6 @@ namespace Leticiya
         }
 
         //
-        //Кнопки формы на page для admin
-        //
-
-        //Обработчик проверки на привилегии учетной записи для переключения tabControl в режим для адимна (режим полного доступа над БД)
-        private void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
-        {
-            if (tools.LoginAdmin() != true)
-                e.Cancel = true;
-        }
-
-        //Обработчик обрабатывающий переключение таблиц в comboBox для дальнейшей работы с ними
-        private void comboBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (tools.Test() != true)
-                return;
-            servicesAdmin.ClearStr();
-            servicesAdmin.ReloadEditingBD(comboBox.Text);
-            servicesAdmin.comboBoxFilter(comboBox.Text);
-            servicesAdmin.Visibl();
-        }
-
-        //Обработчик добавления информации для выбранной таблицы в comboBox
-        private void buttonAdd_Click(object sender, EventArgs e)
-        {
-            if (tools.Test() != true)
-                return;
-            interactionDataAdmin.AddAndUpdate("Add");
-        }
-
-        //Обработчик изменения выбранной информации для выбранной таблицы в comboBox
-        private void buttonUpdate_Click(object sender, EventArgs e)
-        {
-            if (tools.Test() != true)
-                return;
-            interactionDataAdmin.AddAndUpdate("Update");
-        }
-
-        //Обработчик поиска информации в выбранной таблицы в comboBox
-        private void buttonSearch_Click(object sender, EventArgs e)
-        {
-            if (tools.Test() != true)
-                return;
-            FormDeletedSearch formDeletedAndSearch = new FormDeletedSearch("sea");
-            formDeletedAndSearch.ShowDialog();
-        }
-
-        //Обработчик удаления информации в выбранной таблицы в comboBox
-        private void buttonDeleted_Click(object sender, EventArgs e)
-        {
-            if (tools.Test() != true)
-                return;
-
-            if (flagSelectAdmin == false)
-            {
-                MessageBox.Show("Выберете, что нужно изменить", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            interactionDataAdmin.Deleted(AdminGridSelect);
-        }
-
-        //Обработчик обновления информации в dataGriedView (выгрузка информации из таблиц БД в dataGriedView)
-        private void buttonReload_Click(object sender, EventArgs e)
-        {
-            if (tools.Test() != true)
-                return;
-            servicesAdmin.ReloadEditingBD(comboBox.Text);
-        }
-
-        //Обработчик очищения всех полей имеющихся на tabControl
-        public void buttonClearStr_Click(object sender, EventArgs e) => servicesAdmin.ClearStr();
-
-        //Обработчик фильтрации информации в таблице
-        private void buttonFilter_Click(object sender, EventArgs e)
-        {
-            if (tools.Test() != true)
-                return;
-            servicesAdmin.Filter(comboBox.Text, comboBoxFilter.Text);
-        }
-
-        //Кнопки переключения между страницами для admin
-        private void buttonPrevPage2_Click(object sender, EventArgs e)
-        {
-            if (Convert.ToInt32(textBoxCoutPageAdmin.Text) > 1)
-                textBoxCoutPageAdmin.Text = (Convert.ToInt32(textBoxCoutPageAdmin.Text) - 1).ToString();
-        }
-
-        private void buttonNextPage2_Click(object sender, EventArgs e) => textBoxCoutPageAdmin.Text = (Convert.ToInt32(textBoxCoutPageAdmin.Text) + 1).ToString();
-
-        private void textBoxCoutPageAdmin_TextChanged(object sender, EventArgs e)
-        {
-            if (Convert.ToInt32(textBoxCoutPageAdmin.Text) >= 1)
-                servicesAdmin.ReloadEditingBD(comboBox.Text);
-        }
-
-        //
         //ToolStrip
         //
 
@@ -194,13 +86,6 @@ namespace Leticiya
             {
                 MessageBox.Show("Подключение к базе данных установленно", "Проверка подключения", MessageBoxButtons.OK);
                 toolStripStatusLabel2.Text = "Готово к работе";
-
-                if (FormLogin.Position != null)
-                {
-                    servicesAdmin.DataTableAdmin();
-                    servicesAdmin.Visibl();
-                    servicesAdmin.ReloadEditingBD(comboBox.Text);
-                }
             }
             else
             {
@@ -228,22 +113,10 @@ namespace Leticiya
         {
             if (FormLogin.Position != null)
             {
-                tabControl.SelectTab(tabPage2);
                 FormLogin.Position = null;
                 this.Text = "Мебельная фабрика Leticiya";
                 materialSkinManager.AddFormToManage(this);
-
-                servicesAdmin.Visibl();
-
-                comboBox.DataSource = null;
-                comboBoxFilter.DataSource = null;
                 treeView.Enabled = false;
-
-                dataGridViewAdmin.Enabled = false;
-                dataGridViewAdmin.DataSource = null;
-
-                dataGridViewAdmin.ClearSelection();
-                FormMain.flagSelectAdmin = false;
 
                 dataGridViewUser.Enabled = false;
                 dataGridViewUser.DataSource = null;
@@ -262,53 +135,12 @@ namespace Leticiya
         //Обработчик открывающий форму настроек БД (в ней можно прописать строку подключения к БД)
         private void toolStripButtonSettings_Click(object sender, EventArgs e) => formSettings.ShowDialog();
 
-        //Обработчик открывает форму в которой можно выполнять запросы к БД (открывать существующие файлы или писать запрос в онне)
-        private void buttonRunRequest_Click(object sender, EventArgs e)
-        {
-            if (tools.CheckConfig() != true || tools.Test() != true)
-                return;
-            FormMain.flagSelectAdmin = false;
-            AdminGridSelect = 0;
-            dataGridViewAdmin.ClearSelection();
-            formRequest.ShowDialog();
-        }
-
-        //Обработчик создания полной резервной копии БД
-        private void buttonCreateCopy_Click(object sender, EventArgs e)
-        {
-            ServicesAdmin.saveFileDialogBack.FileName = "Leticiya.bak";
-            if (tools.CheckConfig() != true || tools.Test() != true || ServicesAdmin.saveFileDialogBack.ShowDialog() == DialogResult.Cancel)
-                return;
-            interactionTool.buttonCreateCopy();
-        }
-
-        //Обработчик восстановления резервной копии БД
-        private void buttonReestablish_Click(object sender, EventArgs e)
-        {
-            if (tools.CheckConfig() != true || tools.Test() != true)
-                return;
-            interactionTool.buttonReestablish();
-        }
-
-        //Обработчик очищающий строки данных во всех таблицах БД
-        private void buttonClearBD_Click(object sender, EventArgs e)
-        {
-            if (tools.CheckConfig() != true || tools.Test() != true)
-                return;
-            FormMain.flagSelectAdmin = false;
-            AdminGridSelect = 0;
-            dataGridViewAdmin.ClearSelection();
-            interactionTool.buttonClearBD();
-            servicesAdmin.ReloadEditingBD(Program.formMain.comboBox.Text);
-            servicesAdmin.ClearStr();
-            toolStripStatusLabel2.Text = "База данных очищенна";
-        }
-
         //Обработчик для создания накладной на заказ
         private void CreateInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (tools.LoginGuest() != true)
                 return;
+
             if (treeViewItemSelect != "Заказы")
             {
                 MessageBox.Show("Откройте раздел \"Заказы\" и выберети заказ для создания накладной.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -320,30 +152,12 @@ namespace Leticiya
                 MessageBox.Show("Выберете заказ на который нужно создать накладную.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
             ExcelClass.saveFileDialogExp.FileName = $"Накладаная_№{UserGridSelect}_{DateTime.Now.ToString("dd.MM.yyyy")}.xlsx";
             if (tools.Test() != true || ExcelClass.saveFileDialogExp.ShowDialog() == DialogResult.Cancel)
                 return;
             Tools.PanelLoad(UserGridSelect.ToString(), "excel");
         }
-
-        //
-        //DataGridView1 на page для admin
-        //
-
-        //Обработчик обрабатывающий двойное нажатие на строку в dataGridView на tabControl для админов
-        private void dataGridViewAdmin_MouseDoubleClick(object sender, EventArgs e)
-        {
-            servicesAdmin.TextViewTextBox(servicesAdmin.ArrayUpdate());
-            FormMain.flagSelectAdmin = true;
-
-            AdminGridSelect = dataGridViewAdmin.CurrentRow.Index + 1;
-
-            toolStripStatusLabel2.Text = $"Выбрана строка № {dataGridViewAdmin.CurrentRow.Index + 1}";
-        }
-
-        //
-        //Кнопки формы на page для user
-        //
 
         //Обработчик выбора вкладки на TreeView
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -353,7 +167,6 @@ namespace Leticiya
             UserGridSelect = 0;
             flagSelectUser = false;
             toolStripStatusLabel2.Text = $"Выбран раздел {treeViewItemSelect}";
-
         }
 
         //Обработчки добавления
@@ -449,7 +262,6 @@ namespace Leticiya
                     $"\r\nWHERE \"ACCOUNTANT_ID\" = {UserGridSelect};";
                     break;
             }
-
             interactionDataUser.Deleted(sql);
         }
 
@@ -476,9 +288,7 @@ namespace Leticiya
         private void dataGridViewUser_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             FormMain.flagSelectUser = true;
-
             UserGridSelect = (int)dataGridViewUser.CurrentRow.Cells[0].Value;
-
             toolStripStatusLabel2.Text = $"Выбрана строка № {dataGridViewUser.CurrentRow.Cells[0].Value}";
         }
 
@@ -513,16 +323,8 @@ namespace Leticiya
         }
 
         //Оптимизация отображения таблиц при изменение размеров окна
-        private void FormMain_ResizeBegin(object sender, EventArgs e)
-        {
-            dataGridViewAdmin.Visible = false;
-            dataGridViewUser.Visible = false;
-        }
+        private void FormMain_ResizeBegin(object sender, EventArgs e) => dataGridViewUser.Visible = false;
 
-        private void FormMain_ResizeEnd(object sender, EventArgs e)
-        {
-            dataGridViewAdmin.Visible = true;
-            dataGridViewUser.Visible = true;
-        }
+        private void FormMain_ResizeEnd(object sender, EventArgs e) => dataGridViewUser.Visible = true;
     }
 }

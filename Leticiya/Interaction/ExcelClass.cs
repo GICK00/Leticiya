@@ -18,7 +18,7 @@ namespace Leticiya.Interaction
             Excel.Worksheet worksheet = workbook.Sheets[1];
             Excel.Range excelCells = null;
 
-            List<string> dataOrder = servicesUser.DataOrder(Id_Order);
+            List<string> dataOrder = servicesUser.DataOrderInExcel(Id_Order);
             List<string>[] dataOrderProduct = servicesUser.DataOrderProduct(Id_Order);
             int n = dataOrderProduct.Length;
 

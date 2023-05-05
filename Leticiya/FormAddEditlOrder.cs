@@ -11,7 +11,6 @@ namespace Leticiya
 {
     public partial class FormAddEditOrder : MaterialForm
     {
-        private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
         private readonly ServicesUser servicesUser = new ServicesUser();
         private readonly InteractionDataUser interactionDataUser = new InteractionDataUser();
 
@@ -56,7 +55,7 @@ namespace Leticiya
         {
             if (CustomerId == -1)
             {
-                MessageBox.Show("Нет такого заказчика");
+                MessageBox.Show("Нет такого заказчика, проверьте пожалуйста корректность введёных данных.");
                 return;
             }
 
@@ -84,18 +83,15 @@ namespace Leticiya
             order.Comment = textBoxComment.Text.Trim();
 
             if (type == "add")
-                interactionDataUser.AddUpdateDataOrder("add", order, -1);
-            else
-                interactionDataUser.AddUpdateDataOrder("edit", order, OrderId);
-
-            if (type == "add")
             {
+                interactionDataUser.AddUpdateDataOrder("add", order, -1);
                 Program.formMain.toolStripStatusLabel2.Text = "Заказ оформлен";
             }
             else
             {
+                interactionDataUser.AddUpdateDataOrder("edit", order, OrderId);
                 Program.formMain.toolStripStatusLabel2.Text = "Заказ обновлен";
-            }
+            }                
             servicesUser.ReloadViewBD("Заказы");
         }
 

@@ -8,7 +8,6 @@ namespace Leticiya
 {
     public partial class FormLoad : Form
     {
-        private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
         private readonly ExcelClass excelClass = new ExcelClass();
 
         private string sqlLoad;
@@ -89,7 +88,6 @@ namespace Leticiya
                         }
                     });
                     progressBar.Value += 50;
-                    servicesAdmin.ReloadEditingBD(Program.formMain.comboBox.Text);
                     await Task.Delay(500);
                     break;
                 case "back":
@@ -121,7 +119,7 @@ namespace Leticiya
                     await Task.Run(() =>
                     {
                         excelClass.ExpExcel(Convert.ToInt32(sqlLoad));
-                        
+
                     });
                     progressBar.Value += 50;
                     await Task.Delay(500);

@@ -178,12 +178,6 @@
     <Compile Include="FormAddEditOther.Designer.cs">
       <DependentUpon>FormAddEditOther.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDeletedSearch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormDeletedSearch.Designer.cs">
-      <DependentUpon>FormDeletedSearch.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,12 +208,6 @@
     <Compile Include="FormAddEditlOrder.Designer.cs">
       <DependentUpon>FormAddEditlOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRequest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormRequest.Designer.cs">
-      <DependentUpon>FormRequest.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,18 +222,12 @@
     </Compile>
     <Compile Include="Interaction\Encrypt.cs" />
     <Compile Include="Interaction\ExcelClass.cs" />
-    <Compile Include="Interaction\InteractionDataAdmin.cs" />
     <Compile Include="Interaction\InteractionDataUser.cs" />
-    <Compile Include="Interaction\InteractionTool.cs" />
-    <Compile Include="Interaction\ServicesAdmin.cs" />
     <Compile Include="Interaction\ServicesUser.cs" />
     <Compile Include="Interaction\Tools.cs" />
     <Compile Include="Program.cs" />
     <EmbeddedResource Include="FormAddEditOther.resx">
       <DependentUpon>FormAddEditOther.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormDeletedSearch.resx">
-      <DependentUpon>FormDeletedSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInfo.resx">
       <DependentUpon>FormInfo.cs</DependentUpon>
@@ -259,9 +241,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormRequest.resx">
-      <DependentUpon>FormRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>

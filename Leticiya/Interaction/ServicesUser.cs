@@ -8,10 +8,7 @@ namespace Leticiya.Interaction
 {
     internal class ServicesUser
     {
-        //Метод вывода содержимого таблицы БД в таблицу dataGridView1
-        //Выбранная таблица определяется пользователем или находится по стандарту в comboBox
-        //Вызов обновляет данные в dataGridView1 и сбрасывает выделенную строку
-
+        //Вывод кратких данных в главную таблицу по каждому разделу
         public void ReloadViewBD(string element)
         {
             Program.formMain.label1.Text = element;
@@ -94,6 +91,7 @@ namespace Leticiya.Interaction
             }
         }
 
+        //Вывод всех заказчиков
         public List<List<string>> DataTableCustomer()
         {
             List<List<string>> list = new List<List<string>>();
@@ -126,7 +124,7 @@ namespace Leticiya.Interaction
             return list;
         }
 
-        //Выгрузка в comboBox товаров для добавления
+        //Вывод всех товаров
         public List<List<string>> DataTableOrderProduct()
         {
             List<List<string>> list = new List<List<string>>();
@@ -157,7 +155,67 @@ namespace Leticiya.Interaction
             return list;
         }
 
-        //Поиск информации в БД
+        //Вывод всех категорий
+        public List<List<string>> DataTableCategory()
+        {
+            List<List<string>> list = new List<List<string>>();
+            List<string> names = new List<string>();
+            List<string> dataCategory = new List<string>();
+
+            const string sql = "SELECT \"CATEGORY_ID\", \"CATEGORY_NAME\"" +
+                "\r\nFROM public.\"Category\"";
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(dataReader);
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        names.Add(row["CATEGORY_NAME"].ToString());
+                        dataCategory.Add(row["CATEGORY_ID"].ToString() + "|" + row["CATEGORY_NAME"].ToString());
+                    }
+                    dataReader.Close();
+                }
+                Program.connection.Close();
+                list.Add(names);
+                list.Add(dataCategory);
+            }
+            return list;
+        }
+
+        //Вывод всех цехов
+        public List<List<string>> DataTableWorkshop()
+        {
+            List<List<string>> list = new List<List<string>>();
+            List<string> names = new List<string>();
+            List<string> dataWorkshop = new List<string>();
+
+            const string sql = "SELECT \"WORKSHOP_ID\", \"WORKSHOP_NAME\"" +
+                "\r\nFROM public.\"Workshop\"";
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(dataReader);
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        names.Add(row["WORKSHOP_NAME"].ToString());
+                        dataWorkshop.Add(row["WORKSHOP_ID"].ToString() + "|" + row["WORKSHOP_NAME"].ToString());
+                    }
+                    dataReader.Close();
+                }
+                Program.connection.Close();
+                list.Add(names);
+                list.Add(dataWorkshop);
+            }
+            return list;
+        }
+
+        //Поиск Id авторизованного пользователя
         public int SearchUser()
         {
             int id;
@@ -173,39 +231,7 @@ namespace Leticiya.Interaction
             return id;
         }
 
-        // Заппрос на вывод данныз для заполнения их в таблиц Excel
-        public List<string> DataOrder(int order_id)
-        {
-            string sql = "SELECT o.\"ORDER_ID\", \"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"ORDER_PRICE\"," +
-                "\r\n\"CUSTOMER_ORGANIZATION\", \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\"" +
-                "\r\nFROM public.\"Order\" o, public.\"Customer\" cu, public.\"Accountant\" ac" +
-                $"\r\nWHERE o.\"ORDER_ID\" = {order_id} AND o.\"CUSTOMER_ID\" = cu.\"CUSTOMER_ID\" AND o.\"ACCOUNTANT_ID\" = ac.\"ACCOUNTANT_ID\"";
-
-            List<string> list = new List<string>();
-            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
-            {
-                Program.connection.Open();
-                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
-                {
-                    DataTable dataTable = new DataTable();
-                    dataTable.Load(dataReader);
-                    dataReader.Close();
-                    DataRow row = dataTable.Rows[0];
-
-                    list.Add(row["CUSTOMER_ORGANIZATION"].ToString());
-                    list.Add(row["CUSTOMER_SURNAME"].ToString());
-                    list.Add(row["CUSTOMER_NAME"].ToString());
-                    list.Add(row["CUSTOMER_PATRONYMIC"].ToString());
-                    list.Add(row["ORDER_PRICE"].ToString());
-                    list.Add(row["ACCOUNTANT_SURNAME"].ToString());
-                    list.Add(row["ACCOUNTANT_NAME"].ToString());
-                    list.Add(row["ACCOUNTANT_PATRONYMIC"].ToString());
-                }
-                Program.connection.Close();
-            }
-            return list;
-        }
-
+        //Данные о товарах для указанного заказа
         public List<string>[] DataOrderProduct(int order_id)
         {
             string sql = "SELECT p.\"PRODUCT_ID\", \"CATEGORY_NAME\", \"PRODUCT_NAME\", \"PRODUCT_PRICE\", \"ORDER_PRODUCT_COUT\"" +
@@ -240,6 +266,7 @@ namespace Leticiya.Interaction
             return mas;
         }
 
+        //Подробная информация о заказе
         public Order FullDataOrder(int order_id)
         {
             string sql = "SELECT o.\"ORDER_ID\", \"ORDER_STATUS\", \"ORDER_DATA\", cu.\"CUSTOMER_ID\", \"ORDER_PRICE\", \"ORDER_PRICE_DELIVERY\", \"ORDER_ADDRESS\", \"ORDER_UNLOADING_DATA\", \"ORDER_COMMENTORDER_COMMENT\", ac.\"ACCOUNTANT_ID\"," +
@@ -289,7 +316,7 @@ namespace Leticiya.Interaction
             return order;
         }
 
-        //Доделать запросы!
+        //Подробная информация в выбраном разделе.
         public List<string> DataOther(string Name_tree, int Id)
         {
             List<string> list = new List<string>();
@@ -333,7 +360,39 @@ namespace Leticiya.Interaction
                 }
                 Program.connection.Close();
             }
+            return list;
+        }
 
+        //Вывод данных о заказе для заполнения их в таблиц Excel
+        public List<string> DataOrderInExcel(int order_id)
+        {
+            string sql = "SELECT o.\"ORDER_ID\", \"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"ORDER_PRICE\"," +
+                "\r\n\"CUSTOMER_ORGANIZATION\", \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\"" +
+                "\r\nFROM public.\"Order\" o, public.\"Customer\" cu, public.\"Accountant\" ac" +
+                $"\r\nWHERE o.\"ORDER_ID\" = {order_id} AND o.\"CUSTOMER_ID\" = cu.\"CUSTOMER_ID\" AND o.\"ACCOUNTANT_ID\" = ac.\"ACCOUNTANT_ID\"";
+
+            List<string> list = new List<string>();
+            using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
+            {
+                Program.connection.Open();
+                using (NpgsqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(dataReader);
+                    dataReader.Close();
+                    DataRow row = dataTable.Rows[0];
+
+                    list.Add(row["CUSTOMER_ORGANIZATION"].ToString());
+                    list.Add(row["CUSTOMER_SURNAME"].ToString());
+                    list.Add(row["CUSTOMER_NAME"].ToString());
+                    list.Add(row["CUSTOMER_PATRONYMIC"].ToString());
+                    list.Add(row["ORDER_PRICE"].ToString());
+                    list.Add(row["ACCOUNTANT_SURNAME"].ToString());
+                    list.Add(row["ACCOUNTANT_NAME"].ToString());
+                    list.Add(row["ACCOUNTANT_PATRONYMIC"].ToString());
+                }
+                Program.connection.Close();
+            }
             return list;
         }
     }

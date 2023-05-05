@@ -9,7 +9,6 @@ namespace Leticiya
 {
     public partial class FormLogin : MaterialForm
     {
-        private readonly ServicesAdmin servicesAdmin = new ServicesAdmin();
         private readonly ServicesUser servicesUser = new ServicesUser();
         private readonly Tools tools = new Tools();
 

@@ -83,12 +83,10 @@ C:\Users\DimaF\source\repos\Leticiya\Leticiya\bin\Debug\System.Threading.Tasks.E
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\bin\Debug\System.ValueTuple.xml
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.AssemblyReference.cache
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.SuggestedBindingRedirects.cache
-C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormDeletedSearch.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormInfo.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormLoad.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormLogin.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormMain.resources
-C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormRequest.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormSettings.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.Properties.Resources.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.GenerateResource.cache

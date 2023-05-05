@@ -1,4 +1,5 @@
-﻿using Leticiya.Interaction;
+﻿using Leticiya.Class;
+using Leticiya.Interaction;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -39,7 +40,7 @@ namespace Leticiya
                 materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
                 materialSkinManager.ColorScheme = new ColorScheme(Primary.Grey300, Primary.Grey900, Primary.Grey200, Accent.LightBlue200, TextShade.BLACK);
             }).Start();
-                
+
             switch (Name_tree)
             {
                 case "Категории":
@@ -51,6 +52,8 @@ namespace Leticiya
                     panelWorkshop.Enabled = true;
                     break;
                 case "Товары":
+                    comboBoxCategory.DataSource = servicesUser.DataTableCategory()[0];
+                    comboBoxWorkshop.DataSource = servicesUser.DataTableWorkshop()[0];
                     panelProduct.Visible = true;
                     panelProduct.Enabled = true;
                     break;
@@ -69,7 +72,7 @@ namespace Leticiya
         {
             if (Type == "add")
                 return;
-            DataInForm();            
+            DataInForm();
         }
 
         private void buttonAddEdit_Click(object sender, EventArgs e)
@@ -78,7 +81,7 @@ namespace Leticiya
             {
                 string sql = null;
                 if (Type == "add")
-                {   
+                {
                     switch (Name_tree)
                     {
                         case "Категории":
@@ -90,12 +93,18 @@ namespace Leticiya
                                 $"\r\n\tVALUES ('{textBoxWorkshop.Text.Trim()}')";
                             break;
                         case "Товары":
-                            sql = "INSERT INTO public.\"Product\" (\"PRODUCT_NAME\", \"CATEGORY_ID\", \"PRODUCT_PRICE\", \"WORKSHOP_ID\")" +
-                                $"\r\n\tVALUES ('{textBoxPRODUCT_NAME.Text.Trim()}','{comboBoxCategory.Text}','{textBoxPRODUCT_PRICE.Text.Trim()}','{comboBoxWorkshop.Text}')";
+                            if (SearchCategory() != -1 && SearchWorkshop() != -1)
+                                sql = "INSERT INTO public.\"Product\" (\"PRODUCT_NAME\", \"CATEGORY_ID\", \"PRODUCT_PRICE\", \"WORKSHOP_ID\")" +
+                                    $"\r\n\tVALUES ('{textBoxPRODUCT_NAME.Text.Trim()}','{SearchCategory()}','{textBoxPRODUCT_PRICE.Text.Trim()}','{SearchWorkshop()}')";
+                            else
+                            {
+                                MessageBox.Show("Нет такой категории или производителя, проверьте пожалуйста корректность введёных данных.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
                             break;
                         case "Заказчики":
                             string[] FIO = textBoxCUSTOMER_NAME.Text.Trim().Split();
-                            if (FIO.Length > 3)
+                            if (FIO.Length == 3)
                                 sql = "INSERT INTO public.\"Customer\" (\"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_TELEPHONE\", \"CUSTOMER_ORGANIZATION\")" +
                                     $"\r\n\tVALUES ('{FIO[0]}','{FIO[1]}','{FIO[2]}','{textBoxCUSTOMER_TELEPHONE.Text.Trim()}','{textBoxCUSTOMER_ORGANIZATION.Text.Trim()}')";
                             else
@@ -141,14 +150,19 @@ namespace Leticiya
                                 $"\r\nWHERE \"WORKSHOP_ID\" = {Id}";
                             break;
                         case "Товары":
-                            //Долелать
-                            /*sql = "SELECT \"PRODUCT_NAME\", \"CATEGORY_NAME\", \"PRODUCT_PRICE\", \"WORKSHOP_NAME\"" +
-                                "\r\nFROM public.\"Product\" p, public.\"Category\" c, public.\"Workshop\" w" +
-                               $"\r\nWHERE \"PRODUCT_ID\" = {Id} AND p.\"CATEGORY_ID\" = c.\"CATEGORY_ID\" AND p.\"WORKSHOP_ID\" = w.\"WORKSHOP_ID\"";*/
+                            if (SearchCategory() != -1 && SearchWorkshop() != -1)
+                                sql = $"UPDATE public.\"Product\" SET \"PRODUCT_NAME\" = '{textBoxPRODUCT_NAME.Text}' ,\"CATEGORY_ID\" = '{SearchCategory()}'," +
+                                    $"\"PRODUCT_PRICE\" = '{textBoxPRODUCT_PRICE.Text}', \"WORKSHOP_ID\" = '{SearchWorkshop()}'" +
+                                   $"\r\nWHERE \"PRODUCT_ID\" = {Id}";
+                            else
+                            {
+                                MessageBox.Show("Нет такой категории или производителя, проверьте пожалуйста корректность введёных данных.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
                             break;
                         case "Заказчики":
                             string[] FIO = textBoxCUSTOMER_NAME.Text.Trim().Split();
-                            if (FIO.Length > 3)
+                            if (FIO.Length == 3)
                                 sql = $"UPDATE public.\"Customer\" SET \"CUSTOMER_SURNAME\" = '{FIO[0]}', \"CUSTOMER_NAME\" = '{FIO[1]}', \"CUSTOMER_PATRONYMIC\" = '{FIO[2]}'," +
                                     $"\"CUSTOMER_TELEPHONE\" = '{textBoxCUSTOMER_TELEPHONE.Text}', \"CUSTOMER_ORGANIZATION\" = '{textBoxCUSTOMER_ORGANIZATION.Text}'" +
                                     $"\r\nWHERE \"CUSTOMER_ID\" = {Id}";
@@ -191,7 +205,7 @@ namespace Leticiya
             }
             catch
             {
-                MessageBox.Show("Неверное введено Ф.И.О", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Неверное введено Ф.И.О., проверьте пожалуйста корректность введёных данных.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -215,8 +229,8 @@ namespace Leticiya
                     break;
                 case "Заказчики":
                     textBoxCUSTOMER_NAME.Text = $"{list[0]} {list[1]} {list[2]}";
-                    textBoxCUSTOMER_ORGANIZATION.Text = list[3];
-                    textBoxCUSTOMER_TELEPHONE.Text = list[4];
+                    textBoxCUSTOMER_TELEPHONE.Text = list[3];
+                    textBoxCUSTOMER_ORGANIZATION.Text = list[4];
                     break;
                 case "Пользователи":
                     textBoxAccountentName.Text = $"{list[0]} {list[1]} {list[2]}";
@@ -227,6 +241,62 @@ namespace Leticiya
             }
         }
 
+        private int SearchCategory()
+        {
+            List<string> list = servicesUser.DataTableCategory()[1];
+
+            string[] data;
+
+            foreach (string row in list)
+            {
+                data = row.Split("|".ToCharArray());
+                string dam = data[1];
+                if (dam == comboBoxCategory.Text)
+                    return Convert.ToInt32(data[0]);
+            }
+            return -1;
+        }
+
+        private int SearchWorkshop()
+        {
+            List<string> list = servicesUser.DataTableWorkshop()[1];
+
+            string[] data;
+
+            foreach (string row in list)
+            {
+                data = row.Split("|".ToCharArray());
+                string dam = data[1];
+                if (dam == comboBoxWorkshop.Text)
+                    return Convert.ToInt32(data[0]);
+            }
+            return -1;
+        }
+
         private void buttonExit_Click(object sender, EventArgs e) => this.Close();
+
+        private void textBoxCUSTOMER_NAME_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxCUSTOMER_NAME.Text.Trim().Split().Length > 3)
+            {
+                textBoxCUSTOMER_NAME.MaxLength = textBoxCUSTOMER_NAME.Text.Trim().Length - 2;
+                textBoxCUSTOMER_NAME.Text = textBoxCUSTOMER_NAME.Text.Remove(textBoxCUSTOMER_NAME.Text.Length - 2);
+                MessageBox.Show("Введите Ф.И.О.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                textBoxAccountentName.MaxLength = 200;
+        }
+
+        private void textBoxAccountentName_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxAccountentName.Text.Trim().Split().Length > 3)
+            {
+                textBoxAccountentName.MaxLength = textBoxAccountentName.Text.Trim().Length - 2;
+                textBoxAccountentName.Text = textBoxAccountentName.Text.Remove(textBoxAccountentName.Text.Length - 2);
+                MessageBox.Show("Введите Ф.И.О.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                textBoxAccountentName.MaxLength = 200;
+        }
     }
 }

@@ -317,6 +317,7 @@
             this.textBoxAccountentName.Name = "textBoxAccountentName";
             this.textBoxAccountentName.Size = new System.Drawing.Size(290, 13);
             this.textBoxAccountentName.TabIndex = 50;
+            this.textBoxAccountentName.TextChanged += new System.EventHandler(this.textBoxAccountentName_TextChanged);
             // 
             // panelProduct
             // 
@@ -351,8 +352,9 @@
             // 
             // comboBoxWorkshop
             // 
+            this.comboBoxWorkshop.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxWorkshop.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxWorkshop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.comboBoxWorkshop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxWorkshop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBoxWorkshop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxWorkshop.FormattingEnabled = true;
@@ -410,8 +412,9 @@
             // 
             // comboBoxCategory
             // 
+            this.comboBoxCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxCategory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.comboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategory.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBoxCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxCategory.FormattingEnabled = true;
@@ -568,6 +571,7 @@
             this.textBoxCUSTOMER_NAME.Name = "textBoxCUSTOMER_NAME";
             this.textBoxCUSTOMER_NAME.Size = new System.Drawing.Size(290, 13);
             this.textBoxCUSTOMER_NAME.TabIndex = 50;
+            this.textBoxCUSTOMER_NAME.TextChanged += new System.EventHandler(this.textBoxCUSTOMER_NAME_TextChanged);
             // 
             // panelCategory
             // 
