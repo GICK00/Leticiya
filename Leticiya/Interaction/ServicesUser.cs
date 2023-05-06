@@ -303,8 +303,11 @@ namespace Leticiya.Interaction
 
             order.Address = row["ORDER_ADDRESS"].ToString();
             order.Status = row["ORDER_STATUS"].ToString();
-            order.DataOrder = row["ORDER_DATA"].ToString();
-            order.DataDelevery = row["ORDER_UNLOADING_DATA"].ToString();
+            order.DataOrder = Convert.ToDateTime(row["ORDER_DATA"]).ToString("dd.MM.yyyy");
+            if (row["ORDER_UNLOADING_DATA"].ToString().Length != 0)
+                order.DataDelevery = Convert.ToDateTime(row["ORDER_UNLOADING_DATA"]).ToString("dd.MM.yyyy");
+            else
+                order.DataDelevery = null;
             order.DeleveryPrice = Convert.ToDouble(row["ORDER_PRICE_DELIVERY"]);
 
             List<string>[] dataOrderProduct = DataOrderProduct(order_id);
@@ -338,11 +341,11 @@ namespace Leticiya.Interaction
                     break;
                 case "Заказчики":
                     sql = "SELECT \"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_TELEPHONE\", \"CUSTOMER_ORGANIZATION\" FROM public.\"Customer\"" +
-                        $"WHERE \"CUSTOMER_ID\" = {Id}";
+                        $"\r\nWHERE \"CUSTOMER_ID\" = {Id}";
                     break;
                 case "Пользователи":
                     sql = "SELECT \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_LOGIN\", \"ACCOUNTANT_PASSWORD\", \"ACCOUNTANT_POSITION\" FROM public.\"Accountant\"" +
-                       $"WHERE \"ACCOUNTANT_ID\" = {Id}";
+                       $"\r\nWHERE \"ACCOUNTANT_ID\" = {Id}";
                     break;
             }
 

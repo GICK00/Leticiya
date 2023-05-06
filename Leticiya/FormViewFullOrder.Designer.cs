@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.labelPriceOrder = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.labelAddres = new System.Windows.Forms.Label();
             this.labelTelepfone = new System.Windows.Forms.Label();
@@ -52,9 +55,6 @@
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cout = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label16 = new System.Windows.Forms.Label();
-            this.labelPriceOrder = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -72,9 +72,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(346, 569);
+            this.panel1.Size = new System.Drawing.Size(346, 575);
             this.panel1.TabIndex = 87;
             // 
             // panel2
@@ -103,8 +103,46 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(340, 563);
+            this.panel2.Size = new System.Drawing.Size(340, 569);
             this.panel2.TabIndex = 75;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.White;
+            this.label18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label18.Location = new System.Drawing.Point(7, 545);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(77, 13);
+            this.label18.TabIndex = 102;
+            this.label18.Text = "Комментарий";
+            // 
+            // labelPriceOrder
+            // 
+            this.labelPriceOrder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelPriceOrder.BackColor = System.Drawing.Color.White;
+            this.labelPriceOrder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelPriceOrder.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelPriceOrder.Location = new System.Drawing.Point(7, 312);
+            this.labelPriceOrder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelPriceOrder.Name = "labelPriceOrder";
+            this.labelPriceOrder.Size = new System.Drawing.Size(154, 15);
+            this.labelPriceOrder.TabIndex = 101;
+            this.labelPriceOrder.Text = "Общая стоимость";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.White;
+            this.label16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label16.Location = new System.Drawing.Point(7, 292);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(112, 13);
+            this.label16.TabIndex = 100;
+            this.label16.Text = "Стоимость доставки";
             // 
             // label15
             // 
@@ -129,7 +167,7 @@
             this.labelAddres.Location = new System.Drawing.Point(6, 151);
             this.labelAddres.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAddres.Name = "labelAddres";
-            this.labelAddres.Size = new System.Drawing.Size(325, 63);
+            this.labelAddres.Size = new System.Drawing.Size(315, 63);
             this.labelAddres.TabIndex = 98;
             this.labelAddres.Text = "Адрес доставки";
             // 
@@ -143,7 +181,7 @@
             this.labelTelepfone.Location = new System.Drawing.Point(6, 113);
             this.labelTelepfone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTelepfone.Name = "labelTelepfone";
-            this.labelTelepfone.Size = new System.Drawing.Size(54, 15);
+            this.labelTelepfone.Size = new System.Drawing.Size(155, 15);
             this.labelTelepfone.TabIndex = 97;
             this.labelTelepfone.Text = "Телефон";
             // 
@@ -157,7 +195,7 @@
             this.labelFIOorgan.Location = new System.Drawing.Point(6, 77);
             this.labelFIOorgan.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFIOorgan.Name = "labelFIOorgan";
-            this.labelFIOorgan.Size = new System.Drawing.Size(115, 15);
+            this.labelFIOorgan.Size = new System.Drawing.Size(261, 15);
             this.labelFIOorgan.TabIndex = 96;
             this.labelFIOorgan.Text = "Ф.И.О, Организация";
             // 
@@ -171,7 +209,7 @@
             this.labelDataOrder.Location = new System.Drawing.Point(6, 41);
             this.labelDataOrder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDataOrder.Name = "labelDataOrder";
-            this.labelDataOrder.Size = new System.Drawing.Size(74, 15);
+            this.labelDataOrder.Size = new System.Drawing.Size(155, 15);
             this.labelDataOrder.TabIndex = 95;
             this.labelDataOrder.Text = "Дата заказа";
             // 
@@ -185,7 +223,7 @@
             this.labelStatus.Location = new System.Drawing.Point(6, 6);
             this.labelStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(82, 15);
+            this.labelStatus.Size = new System.Drawing.Size(155, 15);
             this.labelStatus.TabIndex = 94;
             this.labelStatus.Text = "Статус заказа";
             // 
@@ -211,7 +249,7 @@
             this.labelComment.Location = new System.Drawing.Point(7, 354);
             this.labelComment.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelComment.Name = "labelComment";
-            this.labelComment.Size = new System.Drawing.Size(325, 187);
+            this.labelComment.Size = new System.Drawing.Size(315, 187);
             this.labelComment.TabIndex = 92;
             this.labelComment.Text = "Комментарий";
             // 
@@ -225,7 +263,7 @@
             this.labelPriceDeliv.Location = new System.Drawing.Point(6, 273);
             this.labelPriceDeliv.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPriceDeliv.Name = "labelPriceDeliv";
-            this.labelPriceDeliv.Size = new System.Drawing.Size(114, 15);
+            this.labelPriceDeliv.Size = new System.Drawing.Size(155, 15);
             this.labelPriceDeliv.TabIndex = 84;
             this.labelPriceDeliv.Text = "Стоимость доставки";
             // 
@@ -239,7 +277,7 @@
             this.labelDataUpload.Location = new System.Drawing.Point(6, 235);
             this.labelDataUpload.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDataUpload.Name = "labelDataUpload";
-            this.labelDataUpload.Size = new System.Drawing.Size(90, 15);
+            this.labelDataUpload.Size = new System.Drawing.Size(155, 15);
             this.labelDataUpload.TabIndex = 83;
             this.labelDataUpload.Text = "Дата разгрузки";
             // 
@@ -322,23 +360,23 @@
             this.Price});
             this.dataGridViewProduct.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dataGridViewProduct.EnableHeadersVisualStyles = false;
-            this.dataGridViewProduct.Location = new System.Drawing.Point(5, 6);
+            this.dataGridViewProduct.Location = new System.Drawing.Point(5, 0);
             this.dataGridViewProduct.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridViewProduct.Name = "dataGridViewProduct";
             this.dataGridViewProduct.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProduct.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewProduct.RowHeadersVisible = false;
             this.dataGridViewProduct.RowHeadersWidth = 20;
             this.dataGridViewProduct.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewProduct.Size = new System.Drawing.Size(395, 566);
+            this.dataGridViewProduct.Size = new System.Drawing.Size(405, 575);
             this.dataGridViewProduct.TabIndex = 86;
             this.dataGridViewProduct.TabStop = false;
             // 
@@ -372,51 +410,13 @@
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.White;
-            this.label16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label16.Location = new System.Drawing.Point(7, 292);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(112, 13);
-            this.label16.TabIndex = 100;
-            this.label16.Text = "Стоимость доставки";
-            // 
-            // labelPriceOrder
-            // 
-            this.labelPriceOrder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelPriceOrder.BackColor = System.Drawing.Color.White;
-            this.labelPriceOrder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelPriceOrder.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelPriceOrder.Location = new System.Drawing.Point(7, 312);
-            this.labelPriceOrder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelPriceOrder.Name = "labelPriceOrder";
-            this.labelPriceOrder.Size = new System.Drawing.Size(101, 15);
-            this.labelPriceOrder.TabIndex = 101;
-            this.labelPriceOrder.Text = "Общая стоимость";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.White;
-            this.label18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label18.Location = new System.Drawing.Point(7, 545);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(77, 13);
-            this.label18.TabIndex = 102;
-            this.label18.Text = "Комментарий";
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.BackColor = System.Drawing.Color.White;
-            this.splitContainer1.Location = new System.Drawing.Point(2, 67);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 67);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -428,8 +428,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridViewProduct);
             this.splitContainer1.Panel2MinSize = 397;
-            this.splitContainer1.Size = new System.Drawing.Size(765, 575);
-            this.splitContainer1.SplitterDistance = 355;
+            this.splitContainer1.Size = new System.Drawing.Size(763, 575);
+            this.splitContainer1.SplitterDistance = 349;
             this.splitContainer1.TabIndex = 88;
             // 
             // FormViewFullOrder

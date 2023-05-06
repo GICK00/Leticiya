@@ -34,6 +34,11 @@ namespace Leticiya
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddEditOrder));
             this.buttonAddEdit = new System.Windows.Forms.Button();
             this.dataGridViewProduct = new System.Windows.Forms.DataGridView();
+            this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cout = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBoxCustomer = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -69,11 +74,6 @@ namespace Leticiya
             this.label12 = new System.Windows.Forms.Label();
             this.panel18 = new System.Windows.Forms.Panel();
             this.textBoxComment = new System.Windows.Forms.TextBox();
-            this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cout = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduct)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -125,7 +125,7 @@ namespace Leticiya
             this.Price});
             this.dataGridViewProduct.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dataGridViewProduct.EnableHeadersVisualStyles = false;
-            this.dataGridViewProduct.Location = new System.Drawing.Point(327, 97);
+            this.dataGridViewProduct.Location = new System.Drawing.Point(326, 97);
             this.dataGridViewProduct.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridViewProduct.Name = "dataGridViewProduct";
             this.dataGridViewProduct.ReadOnly = true;
@@ -145,6 +145,36 @@ namespace Leticiya
             this.dataGridViewProduct.TabIndex = 71;
             this.dataGridViewProduct.TabStop = false;
             this.dataGridViewProduct.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewProduct_MouseDoubleClick);
+            // 
+            // IdProduct
+            // 
+            this.IdProduct.HeaderText = "Номер товара";
+            this.IdProduct.Name = "IdProduct";
+            this.IdProduct.ReadOnly = true;
+            // 
+            // NameProduct
+            // 
+            this.NameProduct.HeaderText = "Название товара";
+            this.NameProduct.Name = "NameProduct";
+            this.NameProduct.ReadOnly = true;
+            // 
+            // Category
+            // 
+            this.Category.HeaderText = "Категория товара";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            // 
+            // Cout
+            // 
+            this.Cout.HeaderText = "Количество товара";
+            this.Cout.Name = "Cout";
+            this.Cout.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цеан товара (за шт.)";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
             // 
             // label7
             // 
@@ -178,9 +208,9 @@ namespace Leticiya
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(3, 67);
+            this.panel1.Location = new System.Drawing.Point(2, 67);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 576);
+            this.panel1.Size = new System.Drawing.Size(321, 577);
             this.panel1.TabIndex = 74;
             // 
             // panel2
@@ -213,7 +243,7 @@ namespace Leticiya
             this.panel2.Controls.Add(this.buttonAddEdit);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(315, 570);
+            this.panel2.Size = new System.Drawing.Size(315, 571);
             this.panel2.TabIndex = 75;
             // 
             // label14
@@ -542,7 +572,7 @@ namespace Leticiya
             this.panel10.Controls.Add(this.panel11);
             this.panel10.Location = new System.Drawing.Point(763, 67);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(321, 576);
+            this.panel10.Size = new System.Drawing.Size(321, 577);
             this.panel10.TabIndex = 76;
             // 
             // panel11
@@ -555,7 +585,7 @@ namespace Leticiya
             this.panel11.Controls.Add(this.panel18);
             this.panel11.Location = new System.Drawing.Point(3, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(315, 570);
+            this.panel11.Size = new System.Drawing.Size(315, 571);
             this.panel11.TabIndex = 75;
             // 
             // label12
@@ -594,36 +624,6 @@ namespace Leticiya
             this.textBoxComment.TabIndex = 10;
             this.textBoxComment.Text = "Подьем на 3 этаж, отсутствует грузовой лифт";
             // 
-            // IdProduct
-            // 
-            this.IdProduct.HeaderText = "Номер товара";
-            this.IdProduct.Name = "IdProduct";
-            this.IdProduct.ReadOnly = true;
-            // 
-            // NameProduct
-            // 
-            this.NameProduct.HeaderText = "Название товара";
-            this.NameProduct.Name = "NameProduct";
-            this.NameProduct.ReadOnly = true;
-            // 
-            // Category
-            // 
-            this.Category.HeaderText = "Категория товара";
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            // 
-            // Cout
-            // 
-            this.Cout.HeaderText = "Количество товара";
-            this.Cout.Name = "Cout";
-            this.Cout.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Цеан товара (за шт.)";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
             // FormAddEditOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -635,7 +635,7 @@ namespace Leticiya
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridViewProduct);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1087, 647);
+            this.MinimumSize = new System.Drawing.Size(1085, 645);
             this.Name = "FormAddEditOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Заказы";

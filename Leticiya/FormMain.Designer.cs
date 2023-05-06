@@ -31,12 +31,12 @@ namespace Leticiya
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Заказы");
-            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Категории");
-            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Цеха");
-            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Товары");
-            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Заказчики");
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Пользователи");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Заказы");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Категории");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Цеха");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Товары");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Заказчики");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Пользователи");
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -267,10 +267,10 @@ namespace Leticiya
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 672);
+            this.statusStrip1.Location = new System.Drawing.Point(4, 673);
             this.statusStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1231, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(1230, 24);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 14;
             this.statusStrip1.Text = "statusStrip1";
@@ -454,25 +454,25 @@ namespace Leticiya
             this.treeView.ItemHeight = 20;
             this.treeView.Location = new System.Drawing.Point(19, 122);
             this.treeView.Name = "treeView";
-            treeNode43.Name = "Заказы";
-            treeNode43.Text = "Заказы";
-            treeNode44.Name = "Категории";
-            treeNode44.Text = "Категории";
-            treeNode45.Name = "Цеха";
-            treeNode45.Text = "Цеха";
-            treeNode46.Name = "Товары";
-            treeNode46.Text = "Товары";
-            treeNode47.Name = "Заказчики";
-            treeNode47.Text = "Заказчики";
-            treeNode48.Name = "Пользователи";
-            treeNode48.Text = "Пользователи";
+            treeNode1.Name = "Заказы";
+            treeNode1.Text = "Заказы";
+            treeNode2.Name = "Категории";
+            treeNode2.Text = "Категории";
+            treeNode3.Name = "Цеха";
+            treeNode3.Text = "Цеха";
+            treeNode4.Name = "Товары";
+            treeNode4.Text = "Товары";
+            treeNode5.Name = "Заказчики";
+            treeNode5.Text = "Заказчики";
+            treeNode6.Name = "Пользователи";
+            treeNode6.Text = "Пользователи";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode43,
-            treeNode44,
-            treeNode45,
-            treeNode46,
-            treeNode47,
-            treeNode48});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6});
             this.treeView.Scrollable = false;
             this.treeView.Size = new System.Drawing.Size(132, 122);
             this.treeView.TabIndex = 80;

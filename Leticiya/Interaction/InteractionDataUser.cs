@@ -37,7 +37,7 @@ namespace Leticiya.Interaction
                 sqlCommand.Parameters["@ORDER_STATUS"].Value = order.Status;
 
                 sqlCommand.Parameters.Add(new NpgsqlParameter("ORDER_DATA", NpgsqlDbType.Date));
-                sqlCommand.Parameters["ORDER_DATA"].Value = DateTime.Parse(order.DataOrder);
+                sqlCommand.Parameters["ORDER_DATA"].Value = Convert.ToDateTime(order.DataOrder);
 
                 sqlCommand.Parameters.Add(new NpgsqlParameter<int>("CUSTOMER_ID", NpgsqlDbType.Integer));
                 sqlCommand.Parameters["CUSTOMER_ID"].Value = order.customer.Id;

@@ -105,7 +105,7 @@ namespace Leticiya
             {
                 data = row.Split("|".ToCharArray());
                 string dam = data[1] + " " + data[2];
-                if (dam == comboBoxCustomer.Text)
+                if (dam.Trim() == comboBoxCustomer.Text.Trim())
                 {
                     textBoxTelephone.Text = data[3];
                     CustomerId = Convert.ToInt32(data[0]);
@@ -126,7 +126,7 @@ namespace Leticiya
                 foreach (string row in list)
                 {
                     data = row.Split("|".ToCharArray());
-                    if (data[1] == comboBoxProduct.Text)
+                    if (data[1].Trim() == comboBoxProduct.Text.Trim())
                     {
                         dataGridViewProduct.Rows.Add(data[0], data[1], data[2], Convert.ToInt32(textBoxCout.Text), data[3]);
                         return;

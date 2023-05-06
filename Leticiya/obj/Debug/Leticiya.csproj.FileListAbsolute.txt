@@ -34,12 +34,10 @@ C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\bin\Debug\System.Threading.
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\bin\Debug\System.ValueTuple.xml
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.AssemblyReference.cache
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.SuggestedBindingRedirects.cache
-C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormDeletedSearch.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormInfo.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormLoad.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormLogin.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormMain.resources
-C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormRequest.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormSettings.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.Properties.Resources.resources
 C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.csproj.GenerateResource.cache
@@ -99,3 +97,4 @@ C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddE
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditOther.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormAddEditOrder.resources
 C:\Users\DimaF\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormViewFullOrder.resources
+C:\Users\Dmitryi Gick\source\repos\Leticiya\Leticiya\obj\Debug\Leticiya.FormViewFullOrder.resources

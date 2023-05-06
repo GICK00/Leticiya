@@ -203,9 +203,13 @@ namespace Leticiya
                 interactionDataUser.AddUpdateDataOther(sql);
                 servicesUser.ReloadViewBD(Name_tree);
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Неверное введено Ф.И.О., проверьте пожалуйста корректность введёных данных.", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Ошибка ввода, проверьте пожалуйста корректность введёных данных. {ex.Message}", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
+            {
+                Program.connection.Close();
             }
         }
 
@@ -251,7 +255,7 @@ namespace Leticiya
             {
                 data = row.Split("|".ToCharArray());
                 string dam = data[1];
-                if (dam == comboBoxCategory.Text)
+                if (dam.Trim() == comboBoxCategory.Text.Trim())
                     return Convert.ToInt32(data[0]);
             }
             return -1;
@@ -267,7 +271,7 @@ namespace Leticiya
             {
                 data = row.Split("|".ToCharArray());
                 string dam = data[1];
-                if (dam == comboBoxWorkshop.Text)
+                if (dam.Trim() == comboBoxWorkshop.Text.Trim())
                     return Convert.ToInt32(data[0]);
             }
             return -1;

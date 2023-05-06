@@ -183,6 +183,7 @@ namespace Leticiya.Interaction
             {
                 Program.formMain.treeView.Enabled = true;
                 Program.formMain.dataGridViewUser.Enabled = true;
+                Program.formMain.treeView.Select();
                 servicesUser.ReloadViewBD(FormMain.treeViewItemSelect);
             }
             else
@@ -191,6 +192,7 @@ namespace Leticiya.Interaction
                 {
                     Program.formMain.treeView.Enabled = true;
                     Program.formMain.dataGridViewUser.Enabled = true;
+                    Program.formMain.treeView.Select();
                     servicesUser.ReloadViewBD(FormMain.treeViewItemSelect);
                 }
             }

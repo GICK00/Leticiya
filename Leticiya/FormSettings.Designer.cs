@@ -320,7 +320,7 @@ namespace Leticiya
             this.buttonSaves.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonSaves.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSaves.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSaves.Location = new System.Drawing.Point(340, 258);
+            this.buttonSaves.Location = new System.Drawing.Point(337, 258);
             this.buttonSaves.Margin = new System.Windows.Forms.Padding(0);
             this.buttonSaves.Name = "buttonSaves";
             this.buttonSaves.Size = new System.Drawing.Size(84, 23);
@@ -339,7 +339,7 @@ namespace Leticiya
             this.buttonSettingsExe.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.buttonSettingsExe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSettingsExe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSettingsExe.Location = new System.Drawing.Point(223, 258);
+            this.buttonSettingsExe.Location = new System.Drawing.Point(220, 258);
             this.buttonSettingsExe.Margin = new System.Windows.Forms.Padding(0);
             this.buttonSettingsExe.Name = "buttonSettingsExe";
             this.buttonSettingsExe.Size = new System.Drawing.Size(111, 23);
@@ -364,16 +364,16 @@ namespace Leticiya
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(439, 289);
+            this.ClientSize = new System.Drawing.Size(435, 289);
             this.Controls.Add(this.checkBoxUpdate);
             this.Controls.Add(this.buttonSettingsExe);
             this.Controls.Add(this.buttonSaves);
             this.Controls.Add(this.panelEmployee);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(439, 289);
+            this.MaximumSize = new System.Drawing.Size(435, 289);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(439, 289);
+            this.MinimumSize = new System.Drawing.Size(435, 289);
             this.Name = "FormSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Параметры";
