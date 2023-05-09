@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leticiya", "Leticiya\Leticiya.csproj", "{D7E8E387-BDB3-49CA-8FB9-B253D2F07C84}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{AE65AC68-A27B-40DF-8259-9033DC511393}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{D7E8E387-BDB3-49CA-8FB9-B253D2F07C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7E8E387-BDB3-49CA-8FB9-B253D2F07C84}.Release|Any CPU.ActiveCfg = Release|x64
 		{D7E8E387-BDB3-49CA-8FB9-B253D2F07C84}.Release|Any CPU.Build.0 = Release|x64
+		{AE65AC68-A27B-40DF-8259-9033DC511393}.Debug|Any CPU.ActiveCfg = Debug
+		{AE65AC68-A27B-40DF-8259-9033DC511393}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
