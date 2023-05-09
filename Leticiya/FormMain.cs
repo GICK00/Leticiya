@@ -323,8 +323,8 @@ namespace Leticiya
         }
 
         //Оптимизация отображения таблиц при изменение размеров окна
-        private void FormMain_ResizeBegin(object sender, EventArgs e) => dataGridViewUser.Visible = false;
+        private void FormMain_ResizeBegin(object sender, EventArgs e) => dataGridViewUser.DataSource = null;
 
-        private void FormMain_ResizeEnd(object sender, EventArgs e) => dataGridViewUser.Visible = true;
+        private void FormMain_ResizeEnd(object sender, EventArgs e) => servicesUser.ReloadViewBD(treeViewItemSelect);
     }
 }

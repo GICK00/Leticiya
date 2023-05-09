@@ -3,7 +3,9 @@ using Leticiya.Interaction;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
+using System.Activities.Expressions;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -85,14 +87,22 @@ namespace Leticiya
             if (type == "add")
             {
                 interactionDataUser.AddUpdateDataOrder("add", order, -1);
-                Program.formMain.toolStripStatusLabel2.Text = "Заказ оформлен";
+                Program.formMain.toolStripStatusLabel2.Text = $"Заказ №{OrderId} оформлен";
             }
             else
             {
-                interactionDataUser.AddUpdateDataOrder("edit", order, OrderId);
-                Program.formMain.toolStripStatusLabel2.Text = "Заказ обновлен";
-            }                
+                interactionDataUser.AddUpdateDataOrder("edit", order, OrderId);            
+                Program.formMain.toolStripStatusLabel2.Text = $"Заказ №{OrderId} обновлен";
+            }
             servicesUser.ReloadViewBD("Заказы");
+
+            foreach (DataGridViewRow row in Program.formMain.dataGridViewUser.Rows)
+                if ((int)row.Cells[0].Value == OrderId)
+                {
+                    Program.formMain.dataGridViewUser.ClearSelection();
+                    Program.formMain.dataGridViewUser.FirstDisplayedScrollingRowIndex = row.Index;
+                    Program.formMain.dataGridViewUser.Rows[row.Index].Selected = true;
+                }
         }
 
         private void comboBoxCustomer_TextChanged(object sender, EventArgs e)

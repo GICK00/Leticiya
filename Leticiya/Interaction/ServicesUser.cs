@@ -33,6 +33,7 @@ namespace Leticiya.Interaction
                 case "Категории":
                     sql = "SELECT \"CATEGORY_ID\" AS \"Номер категории\", \"CATEGORY_NAME\" AS \"Название категории\"" +
                         "\r\nFROM public.\"Category\"" +
+                        "\r\nORDER BY \"CATEGORY_ID\" DESC" +
                         "\r\nLIMIT 41";
                     if (textBoxCoutPage > 1)
                         sql += $"\r\nOFFSET {offsetPage}";
@@ -40,6 +41,7 @@ namespace Leticiya.Interaction
                 case "Цеха":
                     sql = "SELECT \"WORKSHOP_ID\" AS \"Номер цеха\", \"WORKSHOP_NAME\" AS \"Название цеха\"" +
                         "\r\nFROM public.\"Workshop\"" +
+                        "\r\nORDER BY \"WORKSHOP_ID\" DESC" +
                         "\r\nLIMIT 41";
                     if (textBoxCoutPage > 1)
                         sql += $"\r\nOFFSET {offsetPage}";
