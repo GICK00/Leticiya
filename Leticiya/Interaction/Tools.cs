@@ -116,7 +116,7 @@ namespace Leticiya.Interaction
                     string text = $"Доступна новая версия приложения.\r\nВаша текущая версия {Program.ver}. \r\nОбновить программу?";
                     DialogResult dialogResult = MessageBox.Show(text, "Достуно новое обновление", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (dialogResult == DialogResult.Yes)
-                        System.Diagnostics.Process.Start("https://github.com/GICK00/Leticiya");
+                        System.Diagnostics.Process.Start("https://github.com/GICK00/Leticiya/releases/tag/Ver-Beta-2.0.0-L");
                 }
             }
             catch (Exception ex)
