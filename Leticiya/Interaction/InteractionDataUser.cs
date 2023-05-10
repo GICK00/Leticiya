@@ -22,7 +22,7 @@ namespace Leticiya.Interaction
                 $"\r\nVALUES (@ORDER_STATUS, @ORDER_DATA, @CUSTOMER_ID, '{order.OrderPrice()}', '{order.DeleveryPrice}', @ORDER_ADDRESS, @ORDER_UNLOADING_DATA, @ORDER_COMMENTORDER_COMMENT, @ACCOUNTANT_ID)" +
                 "\r\nRETURNING \"ORDER_ID\"";
             else
-                sql = "UPDATE public.\"Order\" " +
+                sql = "UPDATE public.\"Order\"" +
                     "\r\nSET \"ORDER_STATUS\" = @ORDER_STATUS, \"ORDER_DATA\" = @ORDER_DATA, \"CUSTOMER_ID\" =  @CUSTOMER_ID," +
                     $"\r\n\"ORDER_PRICE\" = {order.OrderPrice()},  \"ORDER_PRICE_DELIVERY\" = {order.DeleveryPrice}, \"ORDER_ADDRESS\" = @ORDER_ADDRESS," +
                     "\r\n\"ORDER_UNLOADING_DATA\" = @ORDER_UNLOADING_DATA, \"ORDER_COMMENTORDER_COMMENT\" = @ORDER_COMMENTORDER_COMMENT," +
@@ -70,18 +70,6 @@ namespace Leticiya.Interaction
 
             if (order.products.Count == 0)
                 return;
-
-            if (type != "add")
-            {
-                sql = "DELETE FROM \"Order_Product\"" +
-                    $"\r\nWHERE \"ORDER_ID\" = {OrderId}";
-                using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
-                {
-                    Program.connection.Open();
-                    sqlCommand.ExecuteNonQuery();
-                    Program.connection.Close();
-                }
-            }
 
             sql = "INSERT INTO public.\"Order_Product\" (\"ORDER_ID\", \"PRODUCT_ID\", \"ORDER_PRODUCT_COUT\")" +
                 $"\r\nVALUES ('{OrderId}', '{order.products[0].Id}', '{order.products[0].Cout}')";
