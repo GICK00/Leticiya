@@ -220,6 +220,7 @@
     <Compile Include="FormViewFullOrder.Designer.cs">
       <DependentUpon>FormViewFullOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interaction\ServicesAutorization.cs" />
     <Compile Include="Interaction\Encrypt.cs" />
     <Compile Include="Interaction\ExcelClass.cs" />
     <Compile Include="Interaction\InteractionDataUser.cs" />

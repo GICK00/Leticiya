@@ -7,41 +7,10 @@ using System.Windows.Forms;
 
 namespace Leticiya.Interaction
 {
-    internal class Tools
+    internal static class Tools
     {
-        private readonly WebClient client = new WebClient();
-        private readonly ServicesUser servicesUser = new ServicesUser();
-
         private static StreamReader streamReader;
         public static string connSrring;
-
-        //Метод проверки поля login пользователя на соответсвие логину гостя
-        public bool LoginGuest()
-        {
-            if (FormLogin.Position != null)
-            {
-                if (FormLogin.Position[0] == "user")
-                    return true;
-                return true;
-            }
-            MessageBox.Show("Вы не вошли в систему!\r\nВойдите в систему во вкладке \"Авторизация\".", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return false;
-        }
-
-        //Метод проверки поля login пользователя на соответсвие логину администратора
-        //Администратор исеет все права для взаимодействия с БД через приложение
-        public bool LoginAdmin()
-        {
-            if (FormLogin.Position != null)
-            {
-                if (FormLogin.Position[0] == "admin")
-                    return true;
-                MessageBox.Show("Вы не являетесь Администратором!", "Ошибка доступа", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            MessageBox.Show("Вы не вошли в систему!\r\nВойдите в систему во вкладке \"Авторизация\".", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return false;
-        }
 
         //Метод вызова панели загрузки
         public static void PanelLoad(string sql, string type)
@@ -52,7 +21,7 @@ namespace Leticiya.Interaction
         }
 
         //Функция проверки поля SQLStat на bool значение для вывода соответвующих уведомлений для пользоватля
-        public bool Test()
+        public static bool TestConnect()
         {
             if (Program.SQLStat != true)
             {
@@ -65,7 +34,7 @@ namespace Leticiya.Interaction
 
         //Функиця проверки файл конфигурации на доступность. Если файл не найден то создается новый файл,
         //в который записывается стандартный тип записи данного файла конфигурации
-        public bool CheckConfig()
+        public static bool CheckConfig()
         {
             string path = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\config.ini";
             if (File.Exists(path) != true)
@@ -101,10 +70,11 @@ namespace Leticiya.Interaction
         }
 
         //Метод Выполняет загрузку текстового файла Vеr.txt находящегося на GitHub
-        public void UpdateApp()
+        public static void UpdateApp()
         {
             try
             {
+                WebClient client = new WebClient();
                 Uri uri = new Uri("https://github.com/GICK00/Leticiya/blob/master/Ver.txt");
                 if (client.DownloadString(uri).Contains(Program.ver))
                 {
@@ -125,46 +95,6 @@ namespace Leticiya.Interaction
             }
         }
 
-        //Метод проверающий привелегии введенного пользователя
-        public static string[] Autorization(string sql)
-        {
-            try
-            {
-                using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
-                {
-                    Program.connection.Open();
-                    using (NpgsqlDataReader reader = sqlCommand.ExecuteReader())
-                    {
-                        reader.Read();
-                        FormLogin.Position = (reader["ACCOUNTANT_POSITION"].ToString().Trim() + " " + reader["ACCOUNTANT_SURNAME"].ToString().Trim() + " " + reader["ACCOUNTANT_NAME"].ToString().Trim() + " " + reader["ACCOUNTANT_PATRONYMIC"].ToString().Trim()).Split();
-                        reader.Close();
-                    }
-                }
-                return FormLogin.Position;
-            }
-            catch
-            {
-                return FormLogin.Position = null;
-            }
-            finally
-            {
-                Program.connection.Close();
-            }
-        }
-
-        public static string AutorizationCache()
-        {
-            string path = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\cahce";
-            string data;
-            using (StreamReader reader = new StreamReader(File.Open(path, FileMode.Open)))
-            {
-                data = reader.ReadToEnd();
-            }
-
-            string[] mas = Encrypt.DecryptText(data, Program.key).Split();
-            return $"SELECT \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_POSITION\" FROM public.\"Accountant\" WHERE \"ACCOUNTANT_LOGIN\" = '{mas[0]}' AND \"ACCOUNTANT_PASSWORD\" = '{mas[1]}'";
-        }
-
         public static void SaveCache(string login, string password)
         {
             string path = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\cahce";
@@ -175,30 +105,6 @@ namespace Leticiya.Interaction
             {
                 writer.Write(Encrypt.EncryptText(login.Trim() + " " + password.Trim(), Program.key));
             }
-        }
-
-        public void VisiblAtAutorization()
-        {
-            if (FormLogin.Position[0] == "admin")
-            {
-                Program.formMain.treeView.Enabled = true;
-                Program.formMain.dataGridViewUser.Enabled = true;
-                Program.formMain.treeView.Select();
-                servicesUser.ReloadViewBD(FormMain.treeViewItemSelect);
-            }
-            else
-            {
-                if (FormLogin.Position[0] == "user")
-                {
-                    Program.formMain.treeView.Enabled = true;
-                    Program.formMain.dataGridViewUser.Enabled = true;
-                    Program.formMain.treeView.Select();
-                    servicesUser.ReloadViewBD(FormMain.treeViewItemSelect);
-                }
-            }
-
-            Program.formMain.toolStripStatusLabel2.Text = "Произведен вход с правами " + FormLogin.Position[0];
-            Program.formMain.Text = "Мебельная фабрика Leticiya - " + FormLogin.Position[0] + " " + FormLogin.Position[1] + " " + FormLogin.Position[2] + " " + FormLogin.Position[3];
         }
     }
 }

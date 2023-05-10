@@ -8,18 +8,17 @@ namespace Leticiya.Interaction
 {
     internal class ExcelClass
     {
-        private readonly ServicesUser servicesUser = new ServicesUser();
-        public static SaveFileDialog saveFileDialogExp = new SaveFileDialog();
+        public readonly static SaveFileDialog saveFileDialogExp = new SaveFileDialog();
 
-        public void ExpExcel(int Id_Order)
+        public static void ExpExcel(int Id_Order)
         {
             Excel.Application application = new Excel.Application();
             Excel.Workbook workbook = application.Workbooks.Add();
             Excel.Worksheet worksheet = workbook.Sheets[1];
             Excel.Range excelCells = null;
 
-            List<string> dataOrder = servicesUser.DataOrderInExcel(Id_Order);
-            List<string>[] dataOrderProduct = servicesUser.DataOrderProduct(Id_Order);
+            List<string> dataOrder = ServicesUser.DataOrderInExcel(Id_Order);
+            List<string>[] dataOrderProduct = ServicesUser.DataOrderProduct(Id_Order);
             int n = dataOrderProduct.Length;
 
             StyleDocyment(worksheet, excelCells, n);
@@ -48,7 +47,7 @@ namespace Leticiya.Interaction
             Marshal.ReleaseComObject(application);
         }
 
-        private void StyleDocyment(Excel.Worksheet worksheet, Excel.Range excelCells, int n)
+        private static void StyleDocyment(Excel.Worksheet worksheet, Excel.Range excelCells, int n)
         {
             worksheet.Cells.Font.Name = "Arial Cyr";
             worksheet.Cells.Font.Size = 10;

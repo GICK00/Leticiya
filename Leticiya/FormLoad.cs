@@ -8,8 +8,6 @@ namespace Leticiya
 {
     public partial class FormLoad : Form
     {
-        private readonly ExcelClass excelClass = new ExcelClass();
-
         private string sqlLoad;
         private string typeLoad;
 
@@ -118,7 +116,7 @@ namespace Leticiya
                 case "excel":
                     await Task.Run(() =>
                     {
-                        excelClass.ExpExcel(Convert.ToInt32(sqlLoad));
+                        ExcelClass.ExpExcel(Convert.ToInt32(sqlLoad));
 
                     });
                     progressBar.Value += 50;

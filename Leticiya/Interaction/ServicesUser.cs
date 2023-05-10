@@ -6,13 +6,13 @@ using System.Data;
 
 namespace Leticiya.Interaction
 {
-    internal class ServicesUser
+    internal static class ServicesUser
     {
         //Вывод кратких данных в главную таблицу по каждому разделу
-        public void ReloadViewBD(string element)
+        public static void ReloadViewBD(string element)
         {
             Program.formMain.label1.Text = element;
-            string sql = null;
+            string sql;
 
             int textBoxCoutPage = Convert.ToInt32(Program.formMain.textBoxCoutPage.Text);
             int offsetPage = (textBoxCoutPage - 1) * 41;
@@ -68,7 +68,7 @@ namespace Leticiya.Interaction
                 case "Пользователи":
                     sql = "SELECT \"ACCOUNTANT_ID\" AS \"Номер пользователя\", \"ACCOUNTANT_SURNAME\" AS \"Фамилия пользователя\", \"ACCOUNTANT_NAME\" AS \"Имя пользователя\", \"ACCOUNTANT_PATRONYMIC\" AS \"Отчество пользователя\"," +
                         "\r\n\"ACCOUNTANT_LOGIN\" AS \"Логин пользователя\"";
-                    if (FormLogin.Position[0] == "admin")
+                    if (ServicesAutorization.Position[0] == "admin")
                         sql += ", \"ACCOUNTANT_PASSWORD\" AS \"Пароль пользователя\", \"ACCOUNTANT_POSITION\" AS \"Права пользователя\"";
                     sql += "\r\nFROM public.\"Accountant\"" +
                         "\r\nORDER BY \"ACCOUNTANT_ID\" DESC" +
@@ -94,7 +94,7 @@ namespace Leticiya.Interaction
         }
 
         //Вывод всех заказчиков
-        public List<List<string>> DataTableCustomer()
+        public static List<List<string>> DataTableCustomer()
         {
             List<List<string>> list = new List<List<string>>();
             List<string> names = new List<string>();
@@ -127,7 +127,7 @@ namespace Leticiya.Interaction
         }
 
         //Вывод всех товаров
-        public List<List<string>> DataTableOrderProduct()
+        public static List<List<string>> DataTableOrderProduct()
         {
             List<List<string>> list = new List<List<string>>();
             List<string> names = new List<string>();
@@ -158,7 +158,7 @@ namespace Leticiya.Interaction
         }
 
         //Вывод всех категорий
-        public List<List<string>> DataTableCategory()
+        public static List<List<string>> DataTableCategory()
         {
             List<List<string>> list = new List<List<string>>();
             List<string> names = new List<string>();
@@ -188,7 +188,7 @@ namespace Leticiya.Interaction
         }
 
         //Вывод всех цехов
-        public List<List<string>> DataTableWorkshop()
+        public static List<List<string>> DataTableWorkshop()
         {
             List<List<string>> list = new List<List<string>>();
             List<string> names = new List<string>();
@@ -218,12 +218,12 @@ namespace Leticiya.Interaction
         }
 
         //Поиск Id авторизованного пользователя
-        public int SearchUser()
+        public static int SearchUser()
         {
             int id;
             string sql = "SELECT \"ACCOUNTANT_ID\"" +
                 "\r\nFROM public.\"Accountant\" " +
-                $"\r\nWHERE \"ACCOUNTANT_SURNAME\" = '{FormLogin.Position[1]}' AND \"ACCOUNTANT_NAME\" = '{FormLogin.Position[2]}'";
+                $"\r\nWHERE \"ACCOUNTANT_SURNAME\" = '{ServicesAutorization.Position[1]}' AND \"ACCOUNTANT_NAME\" = '{ServicesAutorization.Position[2]}'";
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {
                 Program.connection.Open();
@@ -234,7 +234,7 @@ namespace Leticiya.Interaction
         }
 
         //Данные о товарах для указанного заказа
-        public List<string>[] DataOrderProduct(int order_id)
+        public static List<string>[] DataOrderProduct(int order_id)
         {
             string sql = "SELECT p.\"PRODUCT_ID\", \"CATEGORY_NAME\", \"PRODUCT_NAME\", \"PRODUCT_PRICE\", \"ORDER_PRODUCT_COUT\"" +
                 "\r\nFROM public.\"Order\" o, public.\"Product\" p, public.\"Order_Product\" op, public.\"Category\" c" +
@@ -269,7 +269,7 @@ namespace Leticiya.Interaction
         }
 
         //Подробная информация о заказе
-        public Order FullDataOrder(int order_id)
+        public static Order FullDataOrder(int order_id)
         {
             string sql = "SELECT o.\"ORDER_ID\", \"ORDER_STATUS\", \"ORDER_DATA\", cu.\"CUSTOMER_ID\", \"ORDER_PRICE\", \"ORDER_PRICE_DELIVERY\", \"ORDER_ADDRESS\", \"ORDER_UNLOADING_DATA\", \"ORDER_COMMENTORDER_COMMENT\", ac.\"ACCOUNTANT_ID\"," +
                 "\r\n\"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"CUSTOMER_ORGANIZATION\", \"CUSTOMER_TELEPHONE\"" +
@@ -322,7 +322,7 @@ namespace Leticiya.Interaction
         }
 
         //Подробная информация в выбраном разделе.
-        public List<string> DataOther(string Name_tree, int Id)
+        public static List<string> DataOther(string Name_tree, int Id)
         {
             List<string> list = new List<string>();
             string sql = null;
@@ -369,7 +369,7 @@ namespace Leticiya.Interaction
         }
 
         //Вывод данных о заказе для заполнения их в таблиц Excel
-        public List<string> DataOrderInExcel(int order_id)
+        public static List<string> DataOrderInExcel(int order_id)
         {
             string sql = "SELECT o.\"ORDER_ID\", \"CUSTOMER_SURNAME\", \"CUSTOMER_NAME\", \"CUSTOMER_PATRONYMIC\", \"ORDER_PRICE\"," +
                 "\r\n\"CUSTOMER_ORGANIZATION\", \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\"" +

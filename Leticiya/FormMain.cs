@@ -14,9 +14,6 @@ namespace Leticiya
     public partial class FormMain : MaterialForm
     {
         public static readonly MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-        private readonly InteractionDataUser interactionDataUser = new InteractionDataUser();
-        private readonly ServicesUser servicesUser = new ServicesUser();
-        private readonly Tools tools = new Tools();
 
         private readonly FormInfo formInfo = new FormInfo();
         private readonly FormLogin formLogin = new FormLogin();
@@ -24,8 +21,8 @@ namespace Leticiya
 
         public static string treeViewItemSelect = null;
 
-        public static bool flagSelectUser = false;
-        public static int UserGridSelect = 0;
+        private static bool flagSelectUser = false;
+        private static int UserGridSelect = 0;
 
         public FormMain()
         {
@@ -45,7 +42,7 @@ namespace Leticiya
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            if (tools.CheckConfig() != true)
+            if (Tools.CheckConfig() != true)
                 return;
 
             string[] settings = File.ReadAllLines($"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\config.ini");
@@ -54,21 +51,21 @@ namespace Leticiya
             {
                 new Thread(() =>
                 {
-                    tools.UpdateApp();
+                    Tools.UpdateApp();
                 }).Start();
             }
 
             Tools.PanelLoad("", "open");
-            if (tools.Test() != true)
+            if (Tools.TestConnect() != true)
                 return;
             toolStripStatusLabel2.Text = "Готово к работе";
 
             string path = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\cahce";
             if (File.Exists(path) != false)
             {
-                Tools.Autorization(Tools.AutorizationCache());
-                if (FormLogin.Position != null)
-                    tools.VisiblAtAutorization();
+                ServicesAutorization.Autorization(ServicesAutorization.AutorizationCache());
+                if (ServicesAutorization.Position != null)
+                    ServicesAutorization.VisiblAtAutorization();
             }
         }
 
@@ -79,7 +76,7 @@ namespace Leticiya
         //Обработчик переподключения к БД
         private void buttonReconnection_Click(object sender, EventArgs e)
         {
-            if (tools.CheckConfig() != true)
+            if (Tools.CheckConfig() != true)
                 return;
             Tools.PanelLoad("", "open");
             if (Program.SQLStat != false)
@@ -98,12 +95,12 @@ namespace Leticiya
         private void buttonInfo_Click(object sender, EventArgs e) => formInfo.ShowDialog();
 
         //Обработчик проверки версии приложения (верся риложения находится на GitHub)
-        private void buttonUpdateApp_Click(object sender, EventArgs e) => new Thread(() => tools.UpdateApp()).Start();
+        private void buttonUpdateApp_Click(object sender, EventArgs e) => new Thread(() => Tools.UpdateApp()).Start();
 
         //Обработчик открывающая форму авторизации
         private void buttonAuthorization_Click(object sender, EventArgs e)
         {
-            if (tools.CheckConfig() != true || tools.Test() != true)
+            if (Tools.CheckConfig() != true || Tools.TestConnect() != true)
                 return;
             formLogin.ShowDialog();
         }
@@ -111,9 +108,9 @@ namespace Leticiya
         //Обработчик выхода, полностью сбрасывает приложени (запрещает все функции) и производит выход из учетной записи
         private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (FormLogin.Position != null)
+            if (ServicesAutorization.Position != null)
             {
-                FormLogin.Position = null;
+                ServicesAutorization.Position = null;
                 this.Text = "Мебельная фабрика Leticiya";
                 materialSkinManager.AddFormToManage(this);
                 treeView.Enabled = false;
@@ -122,7 +119,7 @@ namespace Leticiya
                 dataGridViewUser.DataSource = null;
 
                 dataGridViewUser.ClearSelection();
-                FormMain.flagSelectUser = false;
+                flagSelectUser = false;
 
                 toolStripStatusLabel2.Text = "Произведен выход из системы";
                 string path = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\cahce";
@@ -138,7 +135,7 @@ namespace Leticiya
         //Обработчик для создания накладной на заказ
         private void CreateInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tools.LoginGuest() != true)
+            if (ServicesAutorization.LoginGuest() != true)
                 return;
 
             if (treeViewItemSelect != "Заказы")
@@ -153,8 +150,8 @@ namespace Leticiya
                 return;
             }
 
-            ExcelClass.saveFileDialogExp.FileName = $"Накладаная_№{UserGridSelect}_{DateTime.Now.ToString("dd.MM.yyyy")}.xlsx";
-            if (tools.Test() != true || ExcelClass.saveFileDialogExp.ShowDialog() == DialogResult.Cancel)
+            ExcelClass.saveFileDialogExp.FileName = $"Накладаная_№{UserGridSelect}_{DateTime.Now:dd.MM.yyyy}.xlsx";
+            if (Tools.TestConnect() != true || ExcelClass.saveFileDialogExp.ShowDialog() == DialogResult.Cancel)
                 return;
             Tools.PanelLoad(UserGridSelect.ToString(), "excel");
         }
@@ -163,7 +160,7 @@ namespace Leticiya
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             treeViewItemSelect = e.Node.Text;
-            servicesUser.ReloadViewBD(treeViewItemSelect);
+            ServicesUser.ReloadViewBD(treeViewItemSelect);
             UserGridSelect = 0;
             flagSelectUser = false;
             toolStripStatusLabel2.Text = $"Выбран раздел {treeViewItemSelect}";
@@ -172,10 +169,10 @@ namespace Leticiya
         //Обработчки добавления
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
-            if (tools.LoginGuest() != true)
+            if (ServicesAutorization.LoginGuest() != true)
                 return;
             if (treeViewItemSelect == "Пользователи")
-                if (tools.LoginAdmin() != true)
+                if (ServicesAutorization.LoginAdmin() != true)
                     return;
 
             if (treeViewItemSelect == "Заказы")
@@ -193,10 +190,10 @@ namespace Leticiya
         //Обработчик изменения 
         private void buttonEditUser_Click(object sender, EventArgs e)
         {
-            if (tools.LoginGuest() != true)
+            if (ServicesAutorization.LoginGuest() != true)
                 return;
             if (treeViewItemSelect == "Пользователи")
-                if (tools.LoginAdmin() != true)
+                if (ServicesAutorization.LoginAdmin() != true)
                     return;
 
             if (flagSelectUser == false)
@@ -220,10 +217,10 @@ namespace Leticiya
         //Обработчик удаления
         private void buttonDelUser_Click(object sender, EventArgs e)
         {
-            if (tools.LoginGuest() != true)
+            if (ServicesAutorization.LoginGuest() != true)
                 return;
             if (treeViewItemSelect == "Пользователи")
-                if (tools.LoginAdmin() != true)
+                if (ServicesAutorization.LoginAdmin() != true)
                     return;
 
             if (flagSelectUser == false)
@@ -262,7 +259,7 @@ namespace Leticiya
                     $"\r\nWHERE \"ACCOUNTANT_ID\" = {UserGridSelect};";
                     break;
             }
-            interactionDataUser.Deleted(sql);
+            InteractionDataUser.Deleted(sql);
         }
 
         //Кнопки переключения между страницами для user
@@ -277,7 +274,7 @@ namespace Leticiya
         private void textBoxCoutPage_TextChanged(object sender, EventArgs e)
         {
             if (Convert.ToInt32(textBoxCoutPage.Text) >= 1)
-                servicesUser.ReloadViewBD(treeViewItemSelect);
+                ServicesUser.ReloadViewBD(treeViewItemSelect);
         }
 
         //
@@ -325,6 +322,6 @@ namespace Leticiya
         //Оптимизация отображения таблиц при изменение размеров окна
         private void FormMain_ResizeBegin(object sender, EventArgs e) => dataGridViewUser.DataSource = null;
 
-        private void FormMain_ResizeEnd(object sender, EventArgs e) => servicesUser.ReloadViewBD(treeViewItemSelect);
+        private void FormMain_ResizeEnd(object sender, EventArgs e) => ServicesUser.ReloadViewBD(treeViewItemSelect);
     }
 }

@@ -9,8 +9,8 @@ namespace Leticiya
 {
     public partial class FormViewFullOrder : MaterialForm
     {
-        private readonly ServicesUser servicesUser = new ServicesUser();
         private int order_id;
+
         public FormViewFullOrder(int order_id)
         {
             InitializeComponent();
@@ -27,14 +27,11 @@ namespace Leticiya
             }).Start();
         }
 
-        private void FormViewFullOrder_Load(object sender, System.EventArgs e)
-        {
-            DataInForm();
-        }
+        private void FormViewFullOrder_Load(object sender, System.EventArgs e) => DataInForm();
 
         private void DataInForm()
         {
-            Order order = servicesUser.FullDataOrder(order_id);
+            Order order = ServicesUser.FullDataOrder(order_id);
             labelStatus.Text = order.Status;
             labelDataOrder.Text = order.DataOrder;
             labelFIOorgan.Text = $"{order.customer.Surname} {order.customer.Name} {order.customer.Patronymic} {order.customer.Organization}".Trim();
@@ -45,7 +42,7 @@ namespace Leticiya
             labelPriceOrder.Text = order.OrderPrice().ToString();
             labelComment.Text = order.Comment;
 
-            List<string>[] orderList = servicesUser.DataOrderProduct(order_id);
+            List<string>[] orderList = ServicesUser.DataOrderProduct(order_id);
             for (int i = 0; i < orderList.Length; i++)
                 dataGridViewProduct.Rows.Add(orderList[i][4], orderList[i][1], orderList[i][0], orderList[i][2], orderList[i][3]);
         }

@@ -15,7 +15,6 @@ namespace Leticiya
     public partial class FormSettings : MaterialForm
     {
         private readonly string path = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}\\config.ini";
-        private readonly Tools tools = new Tools();
 
         public FormSettings()
         {
@@ -33,7 +32,7 @@ namespace Leticiya
         private void FormSettings_Load(object sender, EventArgs e)
         {
             //Проверка файла конфигурации на наличи
-            tools.CheckConfig();
+            Tools.CheckConfig();
 
             string[] settings = File.ReadAllLines(path);
             NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(Tools.connSrring);
@@ -55,7 +54,7 @@ namespace Leticiya
         //Обработчик сохранения введеных данных в файл конфигурации 
         private void buttonSaves_Click(object sender, EventArgs e)
         {
-            if (tools.CheckConfig() != true)
+            if (Tools.CheckConfig() != true)
                 return;
 
             NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(Tools.connSrring)

@@ -9,12 +9,6 @@ namespace Leticiya
 {
     public partial class FormLogin : MaterialForm
     {
-        private readonly ServicesUser servicesUser = new ServicesUser();
-        private readonly Tools tools = new Tools();
-
-
-        public static string[] Position;
-
         public FormLogin()
         {
             InitializeComponent();
@@ -31,7 +25,7 @@ namespace Leticiya
         //Обработчик авторизации
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            if (Position != null)
+            if (ServicesAutorization.Position != null)
             {
                 MessageBox.Show("Вы уже вошли в систему!", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
@@ -40,11 +34,11 @@ namespace Leticiya
             {
                 if (textBox1.Text != "" && textBox2.Text != "")
                 {
-                    Position = null;
+                    ServicesAutorization.Position = null;
                     string sql = $"SELECT \"ACCOUNTANT_SURNAME\", \"ACCOUNTANT_NAME\", \"ACCOUNTANT_PATRONYMIC\", \"ACCOUNTANT_POSITION\" FROM public.\"Accountant\" WHERE \"ACCOUNTANT_LOGIN\" = '{textBox1.Text}' AND \"ACCOUNTANT_PASSWORD\" = '{textBox2.Text}'";
-                    if (Position != Tools.Autorization(sql))
+                    if (ServicesAutorization.Position != ServicesAutorization.Autorization(sql))
                     {
-                        tools.VisiblAtAutorization();
+                        ServicesAutorization.VisiblAtAutorization();
                         Tools.SaveCache(textBox1.Text, textBox2.Text);
 
                         FormMain.materialSkinManager.AddFormToManage(this);

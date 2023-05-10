@@ -6,17 +6,16 @@ using System.Windows.Forms;
 
 namespace Leticiya.Interaction
 {
-    internal class InteractionDataUser
+    internal static class InteractionDataUser
     {
-        private readonly ServicesUser servicesUser = new ServicesUser();
-        private int OrderId;
-        private int AccounterId;
+        private static int OrderId;
+        private static int AccounterId;
 
-
-        public void AddUpdateDataOrder(string type, Order order, int order_id)
+        public static void AddUpdateDataOrder(string type, Order order, int order_id)
         {
             OrderId = order_id;
-            AccounterId = servicesUser.SearchUser();
+            AccounterId = ServicesUser.SearchUser();
+
             string sql;
             if (type == "add")
                 sql = "INSERT INTO public.\"Order\" (\"ORDER_STATUS\", \"ORDER_DATA\", \"CUSTOMER_ID\", \"ORDER_PRICE\", \"ORDER_PRICE_DELIVERY\", \"ORDER_ADDRESS\", \"ORDER_UNLOADING_DATA\", \"ORDER_COMMENTORDER_COMMENT\", \"ACCOUNTANT_ID\")" +
@@ -84,9 +83,8 @@ namespace Leticiya.Interaction
                 }
             }
 
-            if (order.products.Count >= 1)
-                sql = "INSERT INTO public.\"Order_Product\" (\"ORDER_ID\", \"PRODUCT_ID\", \"ORDER_PRODUCT_COUT\")" +
-                    $"\r\nVALUES ('{OrderId}', '{order.products[0].Id}', '{order.products[0].Cout}')";
+            sql = "INSERT INTO public.\"Order_Product\" (\"ORDER_ID\", \"PRODUCT_ID\", \"ORDER_PRODUCT_COUT\")" +
+                $"\r\nVALUES ('{OrderId}', '{order.products[0].Id}', '{order.products[0].Cout}')";
             if (order.products.Count > 1)
             {
                 for (int i = 1; i < order.products.Count; i++)
@@ -100,7 +98,7 @@ namespace Leticiya.Interaction
             }
         }
 
-        public void AddUpdateDataOther(string sql)
+        public static void AddUpdateDataOther(string sql)
         {
             using (NpgsqlCommand sqlCommand = new NpgsqlCommand(sql, Program.connection))
             {
@@ -110,7 +108,7 @@ namespace Leticiya.Interaction
             }
         }
 
-        public void Deleted(string sql)
+        public static void Deleted(string sql)
         {
             DialogResult result = MessageBox.Show("Вы уверенны что хотите удалить строку данных?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No)
@@ -132,7 +130,7 @@ namespace Leticiya.Interaction
             finally
             {
                 Program.connection.Close();
-                servicesUser.ReloadViewBD(FormMain.treeViewItemSelect);
+                ServicesUser.ReloadViewBD(FormMain.treeViewItemSelect);
             }
         }
     }

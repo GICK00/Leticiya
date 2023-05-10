@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Leticiya.Interaction
 {
-    internal class Encrypt
+    internal static class Encrypt
     {
-        public static byte[] EncryptData(byte[] data, string password)
+        private static byte[] EncryptData(byte[] data, string password)
         {
             SymmetricAlgorithm sa = Aes.Create();
             Rfc2898DeriveBytes hasher = new Rfc2898DeriveBytes(password, sa.IV, 1000, HashAlgorithmName.SHA256);
@@ -23,7 +23,7 @@ namespace Leticiya.Interaction
 
         public static string EncryptText(string text, string password) => Convert.ToBase64String(EncryptData(Encoding.UTF8.GetBytes(text), password));
 
-        public static byte[] DecryptData(byte[] data, string password)
+        private static byte[] DecryptData(byte[] data, string password)
         {
             MemoryStream ms = new MemoryStream(data);
             byte[] iv = new byte[16];

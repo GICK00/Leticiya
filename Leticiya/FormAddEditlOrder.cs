@@ -3,9 +3,7 @@ using Leticiya.Interaction;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
-using System.Activities.Expressions;
 using System.Collections.Generic;
-using System.Data;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -13,9 +11,6 @@ namespace Leticiya
 {
     public partial class FormAddEditOrder : MaterialForm
     {
-        private readonly ServicesUser servicesUser = new ServicesUser();
-        private readonly InteractionDataUser interactionDataUser = new InteractionDataUser();
-
         private int CustomerId;
         private int OrderId;
 
@@ -46,8 +41,8 @@ namespace Leticiya
         {
             if (Program.SQLStat != true)
                 return;
-            comboBoxCustomer.DataSource = servicesUser.DataTableCustomer()[0];
-            comboBoxProduct.DataSource = servicesUser.DataTableOrderProduct()[0];
+            comboBoxCustomer.DataSource = ServicesUser.DataTableCustomer()[0];
+            comboBoxProduct.DataSource = ServicesUser.DataTableOrderProduct()[0];
             if (type != "edit")
                 return;
             DataInForm();
@@ -86,15 +81,15 @@ namespace Leticiya
 
             if (type == "add")
             {
-                interactionDataUser.AddUpdateDataOrder("add", order, -1);
+                InteractionDataUser.AddUpdateDataOrder("add", order, -1);
                 Program.formMain.toolStripStatusLabel2.Text = $"Заказ №{OrderId} оформлен";
             }
             else
             {
-                interactionDataUser.AddUpdateDataOrder("edit", order, OrderId);            
+                InteractionDataUser.AddUpdateDataOrder("edit", order, OrderId);
                 Program.formMain.toolStripStatusLabel2.Text = $"Заказ №{OrderId} обновлен";
             }
-            servicesUser.ReloadViewBD("Заказы");
+            ServicesUser.ReloadViewBD("Заказы");
 
             foreach (DataGridViewRow row in Program.formMain.dataGridViewUser.Rows)
                 if ((int)row.Cells[0].Value == OrderId)
@@ -107,7 +102,7 @@ namespace Leticiya
 
         private void comboBoxCustomer_TextChanged(object sender, EventArgs e)
         {
-            List<string> list = servicesUser.DataTableCustomer()[1];
+            List<string> list = ServicesUser.DataTableCustomer()[1];
 
             string[] data;
 
@@ -129,7 +124,7 @@ namespace Leticiya
         {
             try
             {
-                List<string> list = servicesUser.DataTableOrderProduct()[1];
+                List<string> list = ServicesUser.DataTableOrderProduct()[1];
 
                 string[] data;
 
@@ -151,7 +146,7 @@ namespace Leticiya
 
         private void DataInForm()
         {
-            Order order = servicesUser.FullDataOrder(OrderId);
+            Order order = ServicesUser.FullDataOrder(OrderId);
 
             comboBoxCustomer.Text = $"{order.customer.Surname} {order.customer.Name} {order.customer.Patronymic} {order.customer.Organization}".Trim();
 
@@ -161,7 +156,7 @@ namespace Leticiya
             textBoxDeleveryData.Text = order.DataDelevery;
             textBoxDeleveryPrice.Text = order.DeleveryPrice.ToString();
 
-            List<string>[] orderList = servicesUser.DataOrderProduct(OrderId);
+            List<string>[] orderList = ServicesUser.DataOrderProduct(OrderId);
             for (int i = 0; i < orderList.Length; i++)
                 dataGridViewProduct.Rows.Add(orderList[i][4], orderList[i][1], orderList[i][0], orderList[i][2], orderList[i][3]);
 

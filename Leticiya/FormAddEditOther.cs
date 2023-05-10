@@ -1,5 +1,4 @@
-﻿using Leticiya.Class;
-using Leticiya.Interaction;
+﻿using Leticiya.Interaction;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -11,12 +10,10 @@ namespace Leticiya
 {
     public partial class FormAddEditOther : MaterialForm
     {
-        ServicesUser servicesUser = new ServicesUser();
-        InteractionDataUser interactionDataUser = new InteractionDataUser();
-
         private string Type;
         private string Name_tree;
         private int Id;
+
         public FormAddEditOther(string type, string name_tree, int id)
         {
             InitializeComponent();
@@ -52,8 +49,8 @@ namespace Leticiya
                     panelWorkshop.Enabled = true;
                     break;
                 case "Товары":
-                    comboBoxCategory.DataSource = servicesUser.DataTableCategory()[0];
-                    comboBoxWorkshop.DataSource = servicesUser.DataTableWorkshop()[0];
+                    comboBoxCategory.DataSource = ServicesUser.DataTableCategory()[0];
+                    comboBoxWorkshop.DataSource = ServicesUser.DataTableWorkshop()[0];
                     panelProduct.Visible = true;
                     panelProduct.Enabled = true;
                     break;
@@ -200,8 +197,8 @@ namespace Leticiya
                     }
                     Program.formMain.toolStripStatusLabel2.Text = "Запись изменена";
                 }
-                interactionDataUser.AddUpdateDataOther(sql);
-                servicesUser.ReloadViewBD(Name_tree);
+                InteractionDataUser.AddUpdateDataOther(sql);
+                ServicesUser.ReloadViewBD(Name_tree);
             }
             catch (Exception ex)
             {
@@ -216,7 +213,7 @@ namespace Leticiya
         //Доделать выгрузку данных при откртии формы для изменения
         private void DataInForm()
         {
-            List<string> list = servicesUser.DataOther(Name_tree, Id);
+            List<string> list = ServicesUser.DataOther(Name_tree, Id);
             switch (Name_tree)
             {
                 case "Категории":
@@ -247,7 +244,7 @@ namespace Leticiya
 
         private int SearchCategory()
         {
-            List<string> list = servicesUser.DataTableCategory()[1];
+            List<string> list = ServicesUser.DataTableCategory()[1];
 
             string[] data;
 
@@ -263,7 +260,7 @@ namespace Leticiya
 
         private int SearchWorkshop()
         {
-            List<string> list = servicesUser.DataTableWorkshop()[1];
+            List<string> list = ServicesUser.DataTableWorkshop()[1];
 
             string[] data;
 
@@ -276,8 +273,6 @@ namespace Leticiya
             }
             return -1;
         }
-
-        private void buttonExit_Click(object sender, EventArgs e) => this.Close();
 
         private void textBoxCUSTOMER_NAME_TextChanged(object sender, EventArgs e)
         {
@@ -302,5 +297,7 @@ namespace Leticiya
             else
                 textBoxAccountentName.MaxLength = 200;
         }
+
+        private void buttonExit_Click(object sender, EventArgs e) => this.Close();
     }
 }
