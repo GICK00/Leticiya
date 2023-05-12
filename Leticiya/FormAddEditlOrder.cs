@@ -4,6 +4,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -55,6 +56,39 @@ namespace Leticiya
                 MessageBox.Show("Нет такого заказчика, проверьте пожалуйста корректность введёных данных.");
                 return;
             }
+            if (textBoxDataOrder.Text.Trim().Length < 1)
+            {
+                MessageBox.Show("Неверно заполнено поле \"Дата заказа\"");
+                return;
+            }
+            else
+            {
+                Regex regex = new Regex(@"\d\d.\d\d.\d\d\d\d");
+                if (!regex.IsMatch(textBoxDataOrder.Text))
+                {
+                    MessageBox.Show("Неверно заполнено поле \"Дата заказа\"");
+                    return;
+                }
+            }
+            if (textBoxDeleveryPrice.Text.Trim().Length < 1)
+            {
+                MessageBox.Show("Неверно заполнено поле \"Стоимость доставки\"");
+                return;
+            }
+            else if (Convert.ToInt32(textBoxDeleveryPrice.Text) < 0)
+            {
+                MessageBox.Show("Неверно заполнено поле \"Стоимость доставки\"");
+                return;
+            }
+            if (textBoxDeleveryData.Text.Trim().Length > 0)
+            {
+                Regex regex = new Regex(@"\d\d.\d\d.\d\d\d\d");
+                if (!regex.IsMatch(textBoxDeleveryData.Text))
+                {
+                    MessageBox.Show("Неверно заполнено поле \"Дата доставки\"");
+                    return;
+                }
+            }
 
             Order order = new Order();
 
@@ -82,7 +116,7 @@ namespace Leticiya
             if (type == "add")
             {
                 InteractionDataUser.AddUpdateDataOrder("add", order, -1);
-                Program.formMain.toolStripStatusLabel2.Text = $"Заказ №{OrderId} оформлен";
+                Program.formMain.toolStripStatusLabel2.Text = $"Заказ оформлен";
             }
             else
             {
@@ -168,6 +202,12 @@ namespace Leticiya
         private void textBoxCout_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+                e.Handled = true;
+        }
+
+        private void textBoxDeleveryPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
         }
     }

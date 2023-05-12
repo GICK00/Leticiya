@@ -306,7 +306,7 @@ namespace Leticiya.Interaction
             order.Address = row["ORDER_ADDRESS"].ToString();
             order.Status = row["ORDER_STATUS"].ToString();
             order.DataOrder = Convert.ToDateTime(row["ORDER_DATA"]).ToString("dd.MM.yyyy");
-            if (row["ORDER_UNLOADING_DATA"].ToString().Length != 0)
+            if (row["ORDER_UNLOADING_DATA"] != DBNull.Value)
                 order.DataDelevery = Convert.ToDateTime(row["ORDER_UNLOADING_DATA"]).ToString("dd.MM.yyyy");
             else
                 order.DataDelevery = null;

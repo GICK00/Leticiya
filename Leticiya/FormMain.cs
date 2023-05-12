@@ -185,6 +185,7 @@ namespace Leticiya
                 FormAddEditOther formAddEditDelOther = new FormAddEditOther("add", treeViewItemSelect, 0);
                 formAddEditDelOther.ShowDialog();
             }
+            flagSelectUser = false;
         }
 
         //Обработчик изменения 
@@ -212,6 +213,7 @@ namespace Leticiya
                 FormAddEditOther formAddEditDelOther = new FormAddEditOther("edit", treeViewItemSelect, UserGridSelect);
                 formAddEditDelOther.ShowDialog();
             }
+            flagSelectUser = false;
         }
 
         //Обработчик удаления
@@ -260,6 +262,7 @@ namespace Leticiya
                     break;
             }
             InteractionDataUser.Deleted(sql);
+            flagSelectUser = false;
         }
 
         //Кнопки переключения между страницами для user
@@ -284,6 +287,8 @@ namespace Leticiya
         //Обработчик обрабатывающий двойное нажатие на строку в dataGridView на tabControl для админов
         private void dataGridViewUser_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (dataGridViewUser.CurrentRow == null)
+                return;
             FormMain.flagSelectUser = true;
             UserGridSelect = (int)dataGridViewUser.CurrentRow.Cells[0].Value;
             toolStripStatusLabel2.Text = $"Выбрана строка № {dataGridViewUser.CurrentRow.Cells[0].Value}";

@@ -399,7 +399,7 @@ namespace Leticiya
             this.textBoxDeleveryPrice.Name = "textBoxDeleveryPrice";
             this.textBoxDeleveryPrice.Size = new System.Drawing.Size(288, 13);
             this.textBoxDeleveryPrice.TabIndex = 6;
-            this.textBoxDeleveryPrice.Text = "1200";
+            this.textBoxDeleveryPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDeleveryPrice_KeyPress);
             // 
             // label9
             // 
@@ -466,7 +466,6 @@ namespace Leticiya
             this.textBoxDataOrder.Name = "textBoxDataOrder";
             this.textBoxDataOrder.Size = new System.Drawing.Size(288, 13);
             this.textBoxDataOrder.TabIndex = 4;
-            this.textBoxDataOrder.Text = "08.04.2023";
             // 
             // label6
             // 
@@ -526,7 +525,6 @@ namespace Leticiya
             this.textBoxAddres.Name = "textBoxAddres";
             this.textBoxAddres.Size = new System.Drawing.Size(288, 101);
             this.textBoxAddres.TabIndex = 2;
-            this.textBoxAddres.Text = "г.Владимир, 600017, ул.Березина, д.10";
             // 
             // label2
             // 
@@ -622,7 +620,6 @@ namespace Leticiya
             this.textBoxComment.Name = "textBoxComment";
             this.textBoxComment.Size = new System.Drawing.Size(288, 445);
             this.textBoxComment.TabIndex = 10;
-            this.textBoxComment.Text = "Подьем на 3 этаж, отсутствует грузовой лифт";
             // 
             // FormAddEditOrder
             // 
