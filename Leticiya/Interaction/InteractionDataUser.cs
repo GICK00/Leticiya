@@ -44,7 +44,7 @@ namespace Leticiya.Interaction
                 sqlCommand.Parameters.Add(new NpgsqlParameter<string>("ORDER_ADDRESS", NpgsqlDbType.Text));
                 sqlCommand.Parameters["ORDER_ADDRESS"].Value = order.Address;
 
-                if (order.DataDelevery != null)
+                if (order.DataDelevery.Length <= 0)
                 {
                     sqlCommand.Parameters.Add(new NpgsqlParameter("ORDER_UNLOADING_DATA", NpgsqlDbType.Date));
                     sqlCommand.Parameters["ORDER_UNLOADING_DATA"].Value = DBNull.Value;
@@ -109,6 +109,19 @@ namespace Leticiya.Interaction
                     sqlCommand.ExecuteNonQuery();
                 }
                 Program.formMain.toolStripStatusLabel2.Text = $"Данные удалены";
+            }
+            catch (PostgresException ex)
+            {
+                if (ex.SqlState == "23503")
+                {
+                    MessageBox.Show("Данная строка находится в других записях, сначала удалите строку из всех существующих записей", "Ошибка удаления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.formMain.toolStripStatusLabel2.Text = $"Ошибка! {ex.Message}";
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message.ToString(), "Ошибка удаления!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.formMain.toolStripStatusLabel2.Text = $"Ошибка! {ex.Message}";
+                }
             }
             catch (Exception ex)
             {

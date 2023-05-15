@@ -156,25 +156,34 @@ namespace Leticiya
 
         private void buttonAddProduct_Click(object sender, EventArgs e)
         {
-            try
+            int cout;
+            if (textBoxCout.Text.Length > 0)
             {
-                List<string> list = ServicesUser.DataTableOrderProduct()[1];
-
-                string[] data;
-
-                foreach (string row in list)
+                cout = Convert.ToInt32(textBoxCout.Text);
+                if (cout > 0 && cout < 100)
                 {
-                    data = row.Split("|".ToCharArray());
-                    if (data[1].Trim() == comboBoxProduct.Text.Trim())
-                    {
-                        dataGridViewProduct.Rows.Add(data[0], data[1], data[2], Convert.ToInt32(textBoxCout.Text), data[3]);
-                        return;
-                    }
+                    MessageBox.Show("Введите корректное количество товара!", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
             }
-            catch
+            else
             {
                 MessageBox.Show("Введите количество товара!", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+                    
+            List<string> list = ServicesUser.DataTableOrderProduct()[1];
+
+            string[] data;
+
+            foreach (string row in list)
+            {
+                data = row.Split("|".ToCharArray());
+                if (data[1].Trim() == comboBoxProduct.Text.Trim())
+                {
+                    dataGridViewProduct.Rows.Add(data[0], data[1], data[2], cout, data[3]);
+                    return;
+                }
             }
         }
 
