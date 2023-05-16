@@ -329,6 +329,8 @@ namespace Leticiya
 
         private void FormMain_ResizeEnd(object sender, EventArgs e)
         {
+            if (Program.SQLStat != true)
+                return;
             if (ServicesAutorization.Position == null)
                 return;
             ServicesUser.ReloadViewBD(treeViewItemSelect);

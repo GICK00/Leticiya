@@ -171,7 +171,7 @@ namespace Leticiya
                 MessageBox.Show("Введите количество товара!", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-                    
+
             List<string> list = ServicesUser.DataTableOrderProduct()[1];
 
             string[] data;
