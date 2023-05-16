@@ -327,6 +327,11 @@ namespace Leticiya
         //Оптимизация отображения таблиц при изменение размеров окна
         private void FormMain_ResizeBegin(object sender, EventArgs e) => dataGridViewUser.DataSource = null;
 
-        private void FormMain_ResizeEnd(object sender, EventArgs e) => ServicesUser.ReloadViewBD(treeViewItemSelect);
+        private void FormMain_ResizeEnd(object sender, EventArgs e)
+        {
+            if (ServicesAutorization.Position == null)
+                return;
+            ServicesUser.ReloadViewBD(treeViewItemSelect);
+        }
     }
 }

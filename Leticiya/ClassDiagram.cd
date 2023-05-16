@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Leticiya.Class.Customer">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAAAAAAAAAAQABAAAAAAAAIAAAAAAIAA=</HashCode>
+      <FileName>Class\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leticiya.Class.Order">
+    <Position X="2.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAFAAAAABAAAAAAQAAEAKAAAAACAAAAFAAAAAA=</HashCode>
+      <FileName>Class\Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Customer" />
+      <Property Name="Product" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Leticiya.Class.Product">
+    <Position X="5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Class\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leticiya.Interaction.Encrypt">
+    <Position X="8.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAACAAAAAEAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Interaction\Encrypt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leticiya.Interaction.ExcelClass">
+    <Position X="10.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAEAAQAAAAAAAAAA=</HashCode>
+      <FileName>Interaction\ExcelClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leticiya.Interaction.InteractionDataUser">
+    <Position X="4.75" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAEAAAAAAAAAEAAAAAIAACAAA=</HashCode>
+      <FileName>Interaction\InteractionDataUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leticiya.Interaction.ServicesAutorization">
+    <Position X="0.5" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAkAAAAAAAAEAAIAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Interaction\ServicesAutorization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leticiya.Interaction.ServicesUser">
+    <Position X="2.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACgAAQAAAAAAEAAAAAAABgAAACAAAIAAEgAAAAAAA=</HashCode>
+      <FileName>Interaction\ServicesUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leticiya.Interaction.Tools">
+    <Position X="7" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACgAAAAABAAgAAAAABAAAAAAAAAAAAAAIAAAACAAAAA=</HashCode>
+      <FileName>Interaction\Tools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
