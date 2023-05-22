@@ -160,7 +160,7 @@ namespace Leticiya
             if (textBoxCout.Text.Length > 0)
             {
                 cout = Convert.ToInt32(textBoxCout.Text);
-                if (cout > 0 && cout < 100)
+                if (!(cout > 0 && cout < 100))
                 {
                     MessageBox.Show("Введите корректное количество товара!", "Предупреждение!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;

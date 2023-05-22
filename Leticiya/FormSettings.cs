@@ -32,7 +32,11 @@ namespace Leticiya
         private void FormSettings_Load(object sender, EventArgs e)
         {
             //Проверка файла конфигурации на наличи
-            Tools.CheckConfig();
+            if (Tools.CheckConfig() != true)
+            {
+                this.Close();
+                return;
+            }
 
             string[] settings = File.ReadAllLines(path);
             NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(Tools.connSrring);
@@ -56,23 +60,33 @@ namespace Leticiya
         {
             if (Tools.CheckConfig() != true)
                 return;
-
-            NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(Tools.connSrring)
+            try
             {
-                ["Host"] = textBox1.Text.Trim(),
-                ["Port"] = textBox5.Text.Trim(),
-                ["Database"] = textBox4.Text.Trim(),
-                ["Username"] = textBox2.Text.Trim(),
-                ["Password"] = textBox3.Text.Trim(),
-                ["CancellationTimeout"] = textBox6.Text.Trim()
-            };
+                NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(Tools.connSrring)
+                {
+                    ["Host"] = textBox1.Text.Trim(),
+                    ["Port"] = textBox5.Text.Trim(),
+                    ["Database"] = textBox4.Text.Trim(),
+                    ["Username"] = textBox2.Text.Trim(),
+                    ["Password"] = textBox3.Text.Trim(),
+                    ["CancellationTimeout"] = textBox6.Text.Trim()
+                };
 
-            string settings = builder.ConnectionString + "\r\nUpdateApp=" + checkBoxUpdate.Checked;
-            File.WriteAllText(path, settings);
+                string settings = builder.ConnectionString + "\r\nUpdateApp=" + checkBoxUpdate.Checked;
+                File.WriteAllText(path, settings);
 
-            DialogResult dialogResult = MessageBox.Show("Параметры успешно сохранены.", "Настройки", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            if (dialogResult == DialogResult.OK)
-                this.Close();
+                DialogResult dialogResult = MessageBox.Show("Параметры успешно сохранены.", "Настройки", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (dialogResult == DialogResult.OK)
+                    this.Close();
+            }
+            catch (NpgsqlException)
+            {
+                MessageBox.Show("Неверно введены данные!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка {ex.Message}", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         //Обработчик вызова дополнительной программы (программа работы с БД, ее подключение и отсоединение от сервера)

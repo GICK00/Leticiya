@@ -159,6 +159,8 @@ namespace Leticiya
         //Обработчик выбора вкладки на TreeView
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (Tools.CheckConfig() != true || Tools.TestConnect() != true)
+                return;
             treeViewItemSelect = e.Node.Text;
             ServicesUser.ReloadViewBD(treeViewItemSelect);
             UserGridSelect = 0;
