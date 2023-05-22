@@ -237,12 +237,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6C1CF62531894C0DB2DC60919D98AAC4"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_7A6EB3624001407096E1D9F9F1CF4AC7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -257,12 +251,6 @@
         {
         "MsmKey" = "8:_7CF454C5FCAE195AD9D6153604496419"
         "OwnerKey" = "8:_3640DBBCC8E5855778EFC51D36072799"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8850E0E399C94A0C9C1340B813E2CD0A"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -936,26 +924,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6C1CF62531894C0DB2DC60919D98AAC4"
-            {
-            "SourcePath" = "8:..\\Leticiya\\bin\\Debug\\cahce"
-            "TargetName" = "8:cahce"
-            "Tag" = "8:"
-            "Folder" = "8:_942358B3BEB346DF9D3A881239C50065"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7CF454C5FCAE195AD9D6153604496419"
             {
             "AssemblyRegister" = "3:1"
@@ -985,26 +953,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8850E0E399C94A0C9C1340B813E2CD0A"
-            {
-            "SourcePath" = "8:..\\Leticiya\\bin\\Debug\\config.ini"
-            "TargetName" = "8:config.ini"
-            "Tag" = "8:"
-            "Folder" = "8:_942358B3BEB346DF9D3A881239C50065"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9447F4BF0F5ED543A68ECD982CE1A213"
